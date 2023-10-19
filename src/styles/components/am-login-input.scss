@@ -1,0 +1,46 @@
+.login-mat-form-field {
+  //change color of the "eye" icon
+  .mat-mdc-icon-button {
+    color: #fff;
+  }
+
+  //change color of hover effect from login inputs
+  --mdc-outlined-text-field-hover-outline-color: #fff;
+
+  //change login inputs caret color
+  --mdc-outlined-text-field-caret-color: #fff;
+
+  //change color of inputs placeholder
+  --mdc-outlined-text-field-input-text-placeholder-color: #fff;
+
+  // inputs border color normal and focused
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled) {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: #fff;
+    }
+
+    &.mdc-text-field--focused {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        border-color: #ba8e73;
+      }
+    }
+  }
+
+  // change color input texts
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled),
+  .mdc-text-field--outlined.mdc-text-field--focused:not(
+      .mdc-text-field--invalid
+    ) {
+    .mdc-floating-label {
+      color: #fff;
+    }
+
+    .mdc-text-field__input {
+      color: #fff;
+    }
+  }
+}
