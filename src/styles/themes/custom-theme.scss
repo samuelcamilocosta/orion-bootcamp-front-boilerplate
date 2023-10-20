@@ -1,0 +1,129 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$dark-primary-text: rgba(black, 0.87);
+$dark-secondary-text: rgba(black, 0.54);
+$dark-disabled-text: rgba(black, 0.38);
+$dark-dividers: rgba(black, 0.12);
+$dark-focused: rgba(black, 0.12);
+$light-primary-text: white;
+$light-secondary-text: rgba(white, 0.7);
+$light-disabled-text: rgba(white, 0.5);
+$light-dividers: rgba(white, 0.12);
+$light-focused: rgba(white, 0.12);
+
+$custom-primary-palette: (
+  50: #f8f4f1,
+  100: #eadcd4,
+  200: #dfcbbf,
+  300: #d1b3a1,
+  400: #c8a58f,
+  500: #ba8e73,
+  600: #a98169,
+  700: #846552,
+  800: #664e3f,
+  900: #4e3c30,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  ),
+);
+$custom-disabled-palette: (
+  50: #f5f5f5,
+  100: #dfdfdf,
+  200: #cfcfcf,
+  300: #b9b9b9,
+  400: #acacac,
+  500: #979797,
+  600: #898989,
+  700: #6b6b6b,
+  800: #535353,
+  900: #3f3f3f,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  ),
+);
+$sup-green-palette: (
+  50: #f5fbf5,
+  100: #e0f2df,
+  200: #d1ecd0,
+  300: #bbe4ba,
+  400: #aedead,
+  500: #9ad698,
+  600: #8cc38a,
+  700: #6d986c,
+  800: #557654,
+  900: #415a40,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  ),
+);
+$sup-red-palette: (
+  50: #fcf3f3,
+  100: #f6d9d9,
+  200: #f2c7c7,
+  300: #ecaeae,
+  400: #e99e9e,
+  500: #e38686,
+  600: #cf7a7a,
+  700: #a15f5f,
+  800: #7d4a4a,
+  900: #5f3838,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  ),
+);
+
+$my-accent: mat.define-palette($custom-primary-palette, 500);
+$my-sup-green: mat.define-palette($sup-green-palette, 500);
+$my-warn: mat.define-palette($sup-red-palette, 500);
+$my-disabled: mat.define-palette($custom-disabled-palette, 500);
+
+$my-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-sup-green,
+      accent: $my-accent,
+      warn: $my-warn,
+      disabled: $my-disabled,
+    ),
+  )
+);
+
+@include mat.all-component-themes($my-theme);

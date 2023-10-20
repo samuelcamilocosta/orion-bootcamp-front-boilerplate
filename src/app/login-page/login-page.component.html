@@ -1,22 +1,50 @@
-<div>
-    <h1>Bem vindo(a)!</h1>
-    <p>Por favor, preencha os campos abaixo para logar.</p>
-</div>
-
-<form>
-    <div>
-        <input type="email" name="email" id="email" />
-        <input type="password" name="password" id="password" />
+<section class="login-page-container">
+  <div class="login-div-container">
+    <div class="login-text">
+      <h1>Bem vindo(a)!</h1>
+      <p>Por favor, preencha os campos abaixo para logar.</p>
     </div>
-    <div>
-        <input type="checkbox" name="rememberMe" id="rememberMe" value="rememberMe" />
-        <label for="rememberMe">Lembrar de mim</label>
-        <p>
-            <a href="#">Esqueceu a senha?</a>
-        </p>
+
+    <form class="form-container">
+      <mat-form-field class="login-mat-form-field" appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input
+          type="email"
+          matInput
+          [formControl]="emailFormControl"
+          placeholder="Ex. pat@example.com"
+        />
+        <mat-error
+          *ngIf="
+            emailFormControl.hasError('email') &&
+            !emailFormControl.hasError('required')
+          "
+        >
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="login-mat-form-field" appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+
+    <div class="checkbox-container">
+      <mat-checkbox class="custom-checkbox">Lembrar-me</mat-checkbox>
+      <a mat-button href="" target="_blank">Esqueceu a senha?</a>
     </div>
-    <button type="submit">Entrar</button>    
-</form>
-
-
-
+    <button class="submitBtn" mat-flat-button disabled>ENTRAR</button>
+  </div>
+</section>

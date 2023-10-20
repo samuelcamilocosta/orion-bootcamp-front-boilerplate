@@ -1,0 +1,104 @@
+.login-mat-form-field {
+  //change color of hover effect from login inputs
+  --mdc-outlined-text-field-hover-outline-color: #fff;
+
+  //change login inputs caret color
+  --mdc-outlined-text-field-caret-color: #fff;
+
+  //change color of inputs placeholder
+  --mdc-outlined-text-field-input-text-placeholder-color: #fff;
+
+  //change color of the "eye" icon
+  .mat-mdc-icon-button {
+    color: #fff;
+  }
+
+  //remove the * after E-mail
+  .mdc-floating-label--required:not(
+      .mdc-floating-label--hide-required-marker
+    )::after {
+    content: "";
+  }
+
+  // inputs border color normal and focused
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled) {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: #fff;
+    }
+
+    &.mdc-text-field--focused {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        border-color: #ba8e73;
+      }
+    }
+  }
+
+  // change color input texts
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled),
+  .mdc-text-field--outlined.mdc-text-field--focused:not(
+      .mdc-text-field--invalid
+    ) {
+    .mdc-floating-label {
+      color: #fff;
+    }
+
+    .mdc-text-field__input {
+      color: #fff;
+    }
+  }
+}
+
+.login-div-container {
+  .custom-checkbox {
+    //change color of the checkbox checkmark when active
+    --mdc-checkbox-selected-checkmark-color: #fff;
+
+    //style the checkbox label
+    .mdc-form-field {
+      color: white;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    // increase the checkbox input area
+    .mdc-checkbox__background {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+    .mdc-checkbox {
+      padding-right: 0.5rem;
+      flex: 0 0 1rem;
+    }
+  }
+
+  // change the checkbox ripple effect size and position
+  .mat-mdc-checkbox-ripple,
+  .mdc-checkbox__ripple {
+    left: -0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  // change the checkbox input area position
+  .mdc-checkbox__background {
+    left: 0 !important;
+    top: 0.5rem !important;
+  }
+  //remove the padding from label "Lembrar-me"
+  .mdc-form-field > label {
+    padding-left: 0;
+  }
+
+  //change the checkbox input area border color
+  .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
+      [data-indeterminate="true"]
+    )
+    ~ .mdc-checkbox__background {
+    border-color: #64656e;
+  }
+}
