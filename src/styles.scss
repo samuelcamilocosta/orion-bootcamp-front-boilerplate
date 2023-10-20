@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "styles/components/am-login-input.scss";
 @import "styles/components/am-login-button.scss";
+@import "styles/themes/custom-theme.scss";
+
+:root {
+  --primary-color: #ba8e73;
+}
 
 * {
   margin: 0;

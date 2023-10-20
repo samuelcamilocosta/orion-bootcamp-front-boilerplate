@@ -1,8 +1,3 @@
-// testing the use of themes
-// @use "@angular/material" as mat;
-// @include mat.core();
-// @import "./styles/custom-palette/custom-palette.scss";
-
 section {
   position: relative;
   display: flex;
@@ -54,11 +49,15 @@ section {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 1.5rem;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
     a,
     label {
-      color: var(--foundation-gray-scale-white, #fff);
+      color: #fff;
       font-size: 1rem;
       font-weight: 500;
     }
@@ -82,10 +81,5 @@ section {
     p {
       margin: 0;
     }
-  }
-
-  #rememberMe {
-    color-scheme: dark;
-    // -webkit-appearance: none;
   }
 }
