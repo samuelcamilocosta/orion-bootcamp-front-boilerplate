@@ -12,9 +12,7 @@
           type="email"
           matInput
           [formControl]="emailFormControl"
-          placeholder="Ex. pat@example.com"
-          [class.email-error]="emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)"
-          [class.email-valid]="emailFormControl.valid"
+          placeholder="Ex. pat@example.com"          
         />
         <mat-error
           *ngIf="
