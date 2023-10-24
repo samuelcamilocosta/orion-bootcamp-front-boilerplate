@@ -37,5 +37,13 @@ export class LoginPageComponent {
     Validators.required,
     Validators.email,
   ]);
-  passwordFormControl = new FormControl('', []);
+  passwordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&]).{8,}$/)
+  ]);
+
+  isLoginButtonDisabled(): boolean {
+    return this.emailFormControl.invalid || this.passwordFormControl.invalid;
+  }
+
 }

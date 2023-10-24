@@ -13,6 +13,8 @@
           matInput
           [formControl]="emailFormControl"
           placeholder="Ex. pat@example.com"
+          [class.email-error]="emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)"
+          [class.email-valid]="emailFormControl.valid"
         />
         <mat-error
           *ngIf="
@@ -26,9 +28,10 @@
           Email is <strong>required</strong>
         </mat-error>
       </mat-form-field>
+
       <mat-form-field class="login-mat-form-field" appearance="outline">
         <mat-label>Senha</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" />
+        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" />
         <button
           mat-icon-button
           matSuffix
@@ -45,6 +48,9 @@
       <mat-checkbox class="custom-checkbox">Lembrar-me</mat-checkbox>
       <a mat-button href="" target="_blank">Esqueceu a senha?</a>
     </div>
-    <button class="submitBtn" mat-flat-button disabled>ENTRAR</button>
+    <button class="submitBtn" 
+      mat-flat-button [disabled]="isLoginButtonDisabled()"     
+      >ENTRAR
+    </button>
   </div>
 </section>
