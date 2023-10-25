@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import {
-  FormControl,
   Validators,
   FormsModule,
   ReactiveFormsModule,
+  FormGroup,
+  FormBuilder,
 } from '@angular/forms';
+
 import { NgIf, JsonPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,17 +35,23 @@ import { MatDividerModule } from '@angular/material/divider';
 })
 export class LoginPageComponent {
   hide = true;
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-    Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&]).{8,}$/)
-  ]);
+  formGroup: FormGroup;
 
-  isLoginButtonDisabled(): boolean {
-    return this.emailFormControl.invalid || this.passwordFormControl.invalid;
+  constructor(private fb: FormBuilder) {
+    this.formGroup = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&]).{8,}$/)
+        ]
+      ]
+    })
+  }
+
+    isLoginButtonDisabled(): boolean {
+    return this.formGroup.invalid;
   }
 
 }
