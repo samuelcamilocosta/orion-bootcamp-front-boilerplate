@@ -1,0 +1,81 @@
+<section class="login-page-container">
+  <div class="login-div-container">
+    <div class="login-text">
+      <h1>Bem vindo(a)!</h1>
+      <p>Por favor, preencha os campos abaixo para logar.</p>
+    </div>
+    <form
+      class="form-container"
+      [formGroup]="loginFormControl"
+      (ngSubmit)="onSubmit()"
+    >
+      <!-- Email field -->
+      <mat-form-field class="login-mat-form-field" appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input
+          name="email"
+          type="email"
+          matInput
+          formControlName="email"
+          placeholder="Ex. pat@example.com"
+        />
+        <mat-error
+          *ngIf="
+            loginFormControl.get('email')?.hasError('pattern') &&
+            !loginFormControl.get('email')?.hasError('required')
+          "
+        >
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="loginFormControl.get('email')?.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Password field -->
+      <mat-form-field class="login-mat-form-field" appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input
+          name="password"
+          formControlName="password"
+          matInput
+          [type]="hide ? 'password' : 'text'"
+        />
+        <mat-error
+          *ngIf="
+            loginFormControl.get('password')?.hasError('pattern') &&
+            !loginFormControl.get('password')?.hasError('required')
+          "
+        >
+          Please enter a valid password
+        </mat-error>
+        <mat-error
+          *ngIf="loginFormControl.get('password')?.hasError('required')"
+        >
+          Tamanho mínimo = <strong> 8 </strong>
+        </mat-error>
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <div class="checkbox-container">
+        <mat-checkbox class="custom-checkbox">Lembrar-me</mat-checkbox>
+        <a mat-button routerLink="/recovery">Esqueceu a senha?</a>
+      </div>
+      <button
+        type="submit"
+        class="submitBtn"
+        mat-flat-button
+        [disabled]="!loginFormControl.valid"
+      >
+        ENTRAR
+      </button>
+    </form>
+  </div>
+</section>
