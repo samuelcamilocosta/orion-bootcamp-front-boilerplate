@@ -1,24 +1,25 @@
-// button:disabled styles
-.mat-mdc-unelevated-button.submitBtn:disabled {
-  background: #979797;
-  color: #171717;
-  opacity: 0.3;
-  display: flex;
-  height: 3.5rem;
-  padding: 0.625rem 0.5rem;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
+// submit button styles
+.submitBtn {
+  // disabled submit button style
+  &.mat-mdc-unelevated-button:disabled {
+    background: #979797;
+    color: #171717;
+    opacity: 0.3;
+    font-weight: 700;
+  }
+  //active submit button
+  &.mat-mdc-unelevated-button:not(:disabled) {
+    color: #fff;
+    background: #ba8e73;
+  }
 }
 
-.mat-mdc-unelevated-button.submitBtn:not(:disabled) {
-  background: #BA8E73;
-  color: white;
-  opacity: 1;
-  display: flex;
-  height: 3.5rem;
-  padding: 0.625rem 0.5rem;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
+// password recovery cancel button
+.cancelBtn {
+  &.mat-mdc-unelevated-button:not(:disabled) {
+    display: flex;
+    color: #ffffff;
+    background-color: transparent;
+    border: 1px solid #47474e;
+  }
 }
