@@ -33,11 +33,29 @@ import { MatDividerModule } from '@angular/material/divider';
     MatDividerModule,
   ],
 })
+
+/**
+ * Login page that includes a login form.
+ */
 export class LoginPageComponent {
+  /**
+   * Variable to control password visibility
+   * */
   hide = true;
+
+  /**
+   * Form group for login
+   */
   formGroup: FormGroup;
 
+  /**
+   * Constructor for the LoginPageComponent class.   * 
+   * @param fb A FormBuilder to create the FormGroup.
+   */
   constructor(private fb: FormBuilder) {
+    /**
+     * Initialize the FormGroup with email and password fields along with their respective validations
+     */
     this.formGroup = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -50,6 +68,11 @@ export class LoginPageComponent {
     })
   }
 
+  /**
+   * 
+   * Checks whether the login button should be disabled based on form validations.   * 
+   * @returns True if the login button should be disabled; otherwise, returns False.
+   */
     isLoginButtonDisabled(): boolean {
     return this.formGroup.invalid;
   }
