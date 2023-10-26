@@ -12,9 +12,15 @@
           type="email"
           matInput
           formControlName="email"
-          placeholder="Ex. pat@example.com"          
+          placeholder="Ex. pat@example.com"
         />
-        <mat-error *ngIf="formGroup.get('email')?.hasError('email')">
+        <mat-error
+          *ngIf="
+            formGroup.get('email')?.hasError('pattern') ||
+            (formGroup.get('email')?.hasError('email') &&
+              !formGroup.get('email')?.hasError('required'))
+          "
+        >
           Please enter a valid email address
         </mat-error>
         <mat-error *ngIf="formGroup.get('email')?.hasError('required')">
@@ -24,10 +30,11 @@
 
       <mat-form-field class="login-mat-form-field" appearance="outline">
         <mat-label>Senha</mat-label>
-        <input 
-          matInput 
-          [type]="hide ? 'password' : 'text'" 
-          formControlName="password" />
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+        />
         <button
           mat-icon-button
           matSuffix
@@ -44,15 +51,19 @@
           Password must meet certain criteria.
         </mat-error>
       </mat-form-field>
+      <div class="checkbox-container">
+        <mat-checkbox class="custom-checkbox">Lembrar-me</mat-checkbox>
+        <a mat-button routerLink="/recovery">Esqueceu a senha?</a>
+      </div>
+      <button
+        mat-flat-button
+        type="submit"
+        class="submitBtn"
+        (click)="onSubmit()"
+        [disabled]="isLoginButtonDisabled()"
+      >
+        ENTRAR
+      </button>
     </form>
-
-    <div class="checkbox-container">
-      <mat-checkbox class="custom-checkbox">Lembrar-me</mat-checkbox>
-      <a mat-button href="" target="_blank">Esqueceu a senha?</a>
-    </div>
-    <button class="submitBtn" 
-      mat-flat-button [disabled]="isLoginButtonDisabled()"     
-      >ENTRAR
-    </button>
   </div>
 </section>
