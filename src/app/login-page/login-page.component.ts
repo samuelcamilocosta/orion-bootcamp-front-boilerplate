@@ -11,11 +11,10 @@ import { AuthService } from '../services/auth/auth.service';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
+/**
+ * Login page that includes a login form.
+ */
 export class LoginPageComponent implements OnInit {
-  /**
-   * Login page that includes a login form.
-   */
-
   /**
    * Variable to control password visibility
    * */
@@ -26,11 +25,11 @@ export class LoginPageComponent implements OnInit {
    */
   formGroup: FormGroup;
 
+  /**
+   * Constructor for the LoginPageComponent class.   *
+   * @param fb A FormBuilder to create the FormGroup.
+   */
   constructor(
-    /**
-     * Constructor for the LoginPageComponent class.   *
-     * @param fb A FormBuilder to create the FormGroup.
-     */
     private fb: FormBuilder,
     private loginService: ApiV1Service,
     private auth: AuthService,
