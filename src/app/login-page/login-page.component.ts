@@ -12,15 +12,33 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
+  /**
+   * Login page that includes a login form.
+   */
+
+  /**
+   * Variable to control password visibility
+   * */
   hide = true;
+
+  /**
+   * Form group for login
+   */
   formGroup: FormGroup;
 
   constructor(
+    /**
+     * Constructor for the LoginPageComponent class.   *
+     * @param fb A FormBuilder to create the FormGroup.
+     */
     private fb: FormBuilder,
     private loginService: ApiV1Service,
     private auth: AuthService,
     private route: Router
   ) {
+    /**
+     * Initialize the FormGroup with email and password fields along with their respective validations
+     */
     this.formGroup = this.fb.group({
       email: [
         '',
@@ -45,6 +63,10 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Checks whether the login button should be disabled based on form validations.
+   * @returns True if the login button should be disabled; otherwise, returns False.
+   */
   isLoginButtonDisabled(): boolean {
     return this.formGroup.invalid;
   }
