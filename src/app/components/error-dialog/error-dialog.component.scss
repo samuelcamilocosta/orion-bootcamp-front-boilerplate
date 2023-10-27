@@ -1,0 +1,25 @@
+.error {
+  width: 20rem;
+  height: 6rem;
+  display: grid;
+  place-items: center;
+
+  h3 {
+    margin: 0;
+  }
+  .modal-exit {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    width: min-content;
+    background-color: transparent;
+    border: none;
+
+    cursor: pointer;
+
+    img {
+      width: 1.61456rem;
+      height: 1.61456rem;
+    }
+  }
+}
