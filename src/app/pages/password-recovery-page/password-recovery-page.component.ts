@@ -12,8 +12,16 @@ import { PasswordRecoveryDialogComponent } from 'src/app/shared/components/passw
   ],
 })
 export class PasswordRecoveryPageComponent {
+  /**
+   * Constructs the PasswordRecoveryPageComponent.
+   *
+   * @param dialog - The MatDialog service for opening dialogs.
+   */
   constructor(private dialog: MatDialog) {}
 
+  /**
+   * A form control for capturing the user's email.
+   */
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -22,10 +30,16 @@ export class PasswordRecoveryPageComponent {
     ),
   ]);
 
+  /**
+   * A form group containing the email form control.
+   */
   formGroup = new FormGroup({
     email: this.emailFormControl,
   });
 
+  /**
+   * Opens a password recovery dialog.
+   */
   openDialog(): void {
     const dialogRef = this.dialog.open(PasswordRecoveryDialogComponent);
 
@@ -33,6 +47,10 @@ export class PasswordRecoveryPageComponent {
       console.log('Dialog closed');
     });
   }
+
+  /**
+   * Handles the form submission.
+   */
   onSubmit() {
     console.log(this.emailFormControl.value);
     this.openDialog();

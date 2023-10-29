@@ -42,6 +42,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 
+/**
+ * A module that exports various Angular Material modules and Angular CDK modules for use in the application.
+ */
 @NgModule({
   exports: [
     A11yModule,
