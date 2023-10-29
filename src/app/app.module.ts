@@ -7,12 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
-import { PasswordRecoveryDialogComponent } from './components/password-recovery-dialog/password-recovery-dialog.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { PasswordRecoveryPageComponent } from './password-recovery-page/password-recovery-page.component';
-import { MaterialModule } from './shared/material/material.module';
-// import { TestPageComponent } from './test-page/test-page.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
+import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
+import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
+import { MaterialModule } from './shared/modules/material.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +20,7 @@ import { MaterialModule } from './shared/material/material.module';
     PasswordRecoveryPageComponent,
     PasswordRecoveryDialogComponent,
     ErrorDialogComponent,
-    // TestPageComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ErrorDialogComponent } from './error-dialog.component';
+import { ErrorDialog } from './error-dialog.component';
 
 describe('ErrorDialogComponent', () => {
-  let component: ErrorDialogComponent;
-  let fixture: ComponentFixture<ErrorDialogComponent>;
+  let component: ErrorDialog;
+  let fixture: ComponentFixture<ErrorDialog>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ErrorDialogComponent]
+      declarations: [ErrorDialog],
     });
-    fixture = TestBed.createComponent(ErrorDialogComponent);
+    fixture = TestBed.createComponent(ErrorDialog);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

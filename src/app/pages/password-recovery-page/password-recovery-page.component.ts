@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { PasswordRecoveryDialogComponent } from '../components/password-recovery-dialog/password-recovery-dialog.component';
+import { PasswordRecoveryDialogComponent } from 'src/app/shared/components/password-recovery-dialog/password-recovery-dialog.component';
 
 @Component({
   selector: 'app-password-recovery-page',
