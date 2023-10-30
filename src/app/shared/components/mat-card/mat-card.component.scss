@@ -1,0 +1,78 @@
+.card-container {
+  width: 23.6875rem;
+  height: 24.6875rem;
+
+  img {
+    width: 23.6875rem;
+    height: 12.125rem;
+    object-fit: cover;
+  }
+
+  .card-soon {
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+    height: 1.26088rem;
+    padding: calc(0.15763rem + 0.31519rem) !important;
+    border-radius: 0.63044rem;
+    background: #f9d6c7;
+
+    // typography
+    color: #b0683b;
+    font-size: 0.55163rem;
+    font-weight: 700;
+    letter-spacing: 0.00988rem;
+  }
+
+  mat-card-content {
+    display: grid;
+    flex-direction: column;
+    padding: 0;
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1rem;
+
+      mat-card-title {
+        color: #000;
+        font-size: 1.125rem;
+        font-weight: 700;
+        line-height: normal;
+      }
+      mat-card-subtitle {
+        color: #000;
+        font-weight: 400;
+        line-height: 140%; /* 1.225rem */
+      }
+    }
+
+    mat-card-actions {
+      padding: 0 1rem 1rem 1rem;
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #ba8e73;
+        width: 100%;
+
+        //typography
+        color: #fff;
+        text-align: center;
+        font-size: 0.875rem;
+        font-weight: 700;
+        line-height: 1rem; /* 114.286% */
+        letter-spacing: 0.07813rem;
+      }
+    }
+  }
+}
+
+// .disabled-card {
+//   opacity: 0.6;
+//   pointer-events: none !important;
+//   cursor: not-allowed !important;
+
+//   /* Additional styles for the disabled state */
+// }
