@@ -1,0 +1,15 @@
+<mat-card class="card-container" [attr.id]="id">
+  <img mat-card-image src="{{ cardImage }}" alt="red rocks from mars" />
+  <mat-card-content>
+    <div>
+      <div class="card-soon" *ngIf="routerLink === ''">EM BREVE</div>
+      <mat-card-title>{{ cardTitle }}</mat-card-title>
+      <mat-card-subtitle>{{ cardSubTitle }}</mat-card-subtitle>
+    </div>
+    <mat-card-actions>
+      <button class="submitBtn" mat-button routerLink="{{ routerLink }}">
+        ENTRAR
+      </button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>
