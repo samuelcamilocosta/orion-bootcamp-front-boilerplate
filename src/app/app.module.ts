@@ -11,6 +11,8 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
 import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
+import { LogoutComponent } from './shared/components/logout-icon/logout.component';
+import { MatCardComponent } from './shared/components/mat-card/mat-card.component';
 import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
 import { MaterialModule } from './shared/modules/material.module';
 @NgModule({
@@ -21,6 +23,8 @@ import { MaterialModule } from './shared/modules/material.module';
     PasswordRecoveryDialogComponent,
     ErrorDialogComponent,
     HomePageComponent,
+    MatCardComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
