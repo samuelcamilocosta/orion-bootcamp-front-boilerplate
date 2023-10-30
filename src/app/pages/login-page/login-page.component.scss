@@ -1,4 +1,4 @@
-section {
+.login-page-container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -9,10 +9,11 @@ section {
 
   .login-div-container {
     width: 100%;
-    max-width: 32.7rem;
+    max-width: 33.7rem;
     display: flex;
     flex-direction: column;
     padding: 0 1rem;
+    gap: 2.5rem;
 
     .login-text {
       display: flex;
@@ -22,7 +23,7 @@ section {
       gap: 0.5rem;
 
       h1 {
-        color: var(--foundation-gray-scale-white, #fff);
+        color: #fff;
         margin: 0;
         font-size: 3rem;
         line-height: 3.5rem;
@@ -30,7 +31,7 @@ section {
         letter-spacing: 0.045rem;
       }
       p {
-        color: var(--foundation-gray-scale-white, #fff);
+        color: #fff;
         font-size: 1rem;
         font-weight: 400;
         margin: 0;
@@ -41,8 +42,11 @@ section {
   form {
     display: flex;
     flex-direction: column;
-    margin: 2.5rem 0 1.5rem 0;
-    gap: 0.656rem;
+    gap: calc(2rem - 1.375rem);
+
+    button {
+      height: 3.5rem;
+    }
   }
 
   .checkbox-container {
@@ -50,7 +54,7 @@ section {
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-block: 0.5rem calc(1.5rem - 0.625rem);
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -61,21 +65,8 @@ section {
       font-size: 1rem;
       font-weight: 500;
     }
-
-    div {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      input {
-        height: 1.5rem;
-        width: 1.5rem;
-        accent-color: #ba8e73;
-        cursor: pointer;
-      }
-      label {
-        cursor: pointer;
-      }
+    a {
+      padding: 0;
     }
 
     p {

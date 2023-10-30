@@ -1,4 +1,19 @@
+.ng-valid {
+  --mdc-outlined-text-field-outline-color: var(--sup-green) !important;
+  --mdc-outlined-text-field-hover-outline-color: var(--sup-green) !important;
+  --mdc-outlined-text-field-focus-outline-color: var(--sup-green) !important;
+}
+
 .login-mat-form-field {
+  // change inputs border-color
+  --mdc-outlined-text-field-outline-color: #fff;
+
+  // change inputs border-color on focus
+  --mdc-outlined-text-field-focus-outline-color: var(--primary-color);
+
+  // change label color on focus
+  --mdc-outlined-text-field-focus-label-text-color: #fff;
+
   //change color of hover effect from login inputs
   --mdc-outlined-text-field-hover-outline-color: #fff;
 
@@ -8,9 +23,17 @@
   //change color of inputs placeholder
   --mdc-outlined-text-field-input-text-placeholder-color: #fff;
 
-  //change color of the "eye" icon
+  // change typing text color
+  --mdc-outlined-text-field-input-text-color: #fff;
+
+  //change label text color
+  --mdc-outlined-text-field-label-text-color: #fff;
+
+  //change color of the "eye" icon and position
   .mat-mdc-icon-button {
     color: #fff;
+    display: grid;
+    place-items: center;
   }
 
   //remove the * after E-mail
@@ -20,39 +43,24 @@
     content: "";
   }
 
-  // inputs border color normal and focused
-  .mdc-text-field--outlined:not(.mdc-text-field--disabled) {
-    .mdc-notched-outline__leading,
-    .mdc-notched-outline__notch,
-    .mdc-notched-outline__trailing {
-      border-color: #fff;
-    }
-
-    &.mdc-text-field--focused {
-      .mdc-notched-outline__leading,
-      .mdc-notched-outline__notch,
-      .mdc-notched-outline__trailing {
-        border-color: #ba8e73;
-      }
-    }
+  //change height of input error message area
+  .mat-mdc-form-field-subscript-wrapper {
+    height: 1.375rem;
   }
 
-  // change color input texts
-  .mdc-text-field--outlined:not(.mdc-text-field--disabled),
-  .mdc-text-field--outlined.mdc-text-field--focused:not(
-      .mdc-text-field--invalid
-    ) {
-    .mdc-floating-label {
-      color: #fff;
-    }
-
-    .mdc-text-field__input {
-      color: #fff;
-    }
+  //change chrome autofill inputs styles
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffffff;
+    // transition: background-color 5000s ease-in-out 0s;
+    // box-shadow: inset 0 0 20px 20px #23232329;
   }
 }
 
-.login-div-container {
+.login-page-container {
   .custom-checkbox {
     //change color of the checkbox checkmark when active
     --mdc-checkbox-selected-checkmark-color: #fff;
@@ -70,6 +78,7 @@
       height: 1.5rem;
       width: 1.5rem;
     }
+    // change distance between checkbox and label "lembrar-me"
     .mdc-checkbox {
       padding-right: 0.5rem;
       flex: 0 0 1rem;
@@ -89,8 +98,8 @@
     top: 0.5rem !important;
   }
   //remove the padding from label "Lembrar-me"
-  .mdc-form-field > label {
-    padding-left: 0;
+  .mdc-form-field label {
+    padding: 0;
   }
 
   //change the checkbox input area border color
