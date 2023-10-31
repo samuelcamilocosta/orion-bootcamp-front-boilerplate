@@ -1,4 +1,4 @@
-.login-background-image {
+.background-image {
   background-image: url("/assets/images/background/Epic-Sky-03 2.png");
   background-size: 150% auto;
   background-position: -15% 35%;
@@ -7,3 +7,14 @@
   height: 100vh;
   background-color: #0f1217;
 }
+
+.background-image.route-home {
+  background-size: 130% auto;
+  background-position: center;
+}
+
+.background-image.route-meteorology {
+  background-size: 130% auto;
+  background-position: center;
+}
+

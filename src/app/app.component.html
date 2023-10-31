@@ -1,5 +1,11 @@
 <!-- app.component.html -->
 <!-- change as you need to make the background image works :) -->
-<div class="login-background-image">
+<div [ngClass]="{
+  'background-image': true,
+  'route-home': isHomeRoute(),
+  'route-meteorology': isMeteorologyRoute()
+}">
   <router-outlet></router-outlet>
 </div>
+
+

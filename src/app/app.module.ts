@@ -13,6 +13,7 @@ import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/pa
 import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
 import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
 import { MaterialModule } from './shared/modules/material.module';
+import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,7 @@ import { MaterialModule } from './shared/modules/material.module';
     PasswordRecoveryDialogComponent,
     ErrorDialogComponent,
     HomePageComponent,
+    MeteorologyPageComponent,
   ],
   imports: [
     BrowserModule,
