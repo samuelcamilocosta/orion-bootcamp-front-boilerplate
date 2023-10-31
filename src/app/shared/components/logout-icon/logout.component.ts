@@ -10,9 +10,13 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class LogoutComponent {
   constructor(private auth: AuthService, private route: Router) {}
 
-  logout() {
-    this.auth.removeItem('token');
+  /**
+   * Logs user out by removing access token from local and session storage
+   * and redirects him to login page.
+   */
 
-    this.route.navigate(['/']);
+  logout(): void {
+    this.auth.removeItem('token'); // Remove the user's authentication token.
+    this.route.navigate(['/']); // Navigate to the home page.
   }
 }

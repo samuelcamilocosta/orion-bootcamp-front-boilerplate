@@ -8,15 +8,14 @@
       <app-logout></app-logout>
     </div>
     <div class="cards-container">
-      <app-mat-card
-        *ngFor="let card of cards; let i = index"
-        [class.disabled-card]="card.routeLink === 'soon'"
+      <app-card
+        *ngFor="let card of cards"
+        [class.disabled-card]="card.route === ''"
         [cardImage]="card.cardImage"
         [cardTitle]="card.cardTitle"
         [cardSubTitle]="card.cardSubTitle"
-        [routerLink]="card.routeLink"
-        [id]="'home-card-' + (i + 1)"
-      ></app-mat-card>
+        [routerLink]="card.route"
+      ></app-card>
     </div>
   </div>
 </section>

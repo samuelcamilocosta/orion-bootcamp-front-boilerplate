@@ -48,10 +48,15 @@ section {
   }
 }
 
+// if the card has no route path it will be disabled
 .disabled-card {
-  border: 2px solid red;
+  pointer-events: none;
+  user-select: none;
 }
 
+/**
+ * Trying to make it responsive
+ */
 @media (max-width: 1300px) {
   .cards-container {
     flex-wrap: wrap;
