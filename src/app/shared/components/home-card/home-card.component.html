@@ -1,21 +1,21 @@
 <section class="card-component-container">
   <img
     [style.filter]="filterImg()"
-    src="{{ cardImage }}"
-    alt="red rocks from mars"
+    src="{{ cardAttributes.cardImage }}"
+    alt="{{ cardAttributes.imageAltText }}"
   />
   <div class="card-content">
     <div class="text-card">
       <div class="card-soon" [style.visibility]="showSoon()">EM BREVE</div>
-      <h3>{{ cardTitle }}</h3>
-      <p>{{ cardSubTitle }}</p>
+      <h3>{{ cardAttributes.cardTitle }}</h3>
+      <p>{{ cardAttributes.cardSubTitle }}</p>
     </div>
     <div class="button-container">
       <button
         class="submitBtn"
         mat-button
         [disabled]="isDisabled()"
-        routerLink="{{ routerLink }}"
+        routerLink="{{ cardAttributes.path }}"
       >
         ENTRAR
       </button>

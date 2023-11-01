@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ICard } from 'src/app/interfaces/home-card-params';
 
 @Component({
   selector: 'app-card',
@@ -7,40 +8,32 @@ import { Component, Input } from '@angular/core';
 })
 export class HomeCardComponent {
   /**
-   * Input property for the card's image URL.
-   * Input property for the card's title.
-   * Input property for the card's subtitle.
-   * Input property for the router link.
+   * Input property that receives card attributes from the parent component.
+   * @type {ICard}
    */
-  @Input() cardImage = '';
-
-  @Input() cardTitle = '';
-
-  @Input() cardSubTitle = '';
-
-  @Input() routerLink = '';
+  @Input() cardAttributes!: ICard;
 
   /**
-   * Determines the visibility of the card based on the presence of a router link.
-   * @returns 'visible' if there's no router link, 'hidden' otherwise.
+   * Determines the visibility of the card based on the presence of a router link path.
+   * @returns 'visible' if there's a empty path, 'hidden' otherwise.
    */
   showSoon(): string {
-    return this.routerLink === '' ? 'visible' : 'hidden';
+    return this.cardAttributes.path === '' ? 'visible' : 'hidden';
   }
 
   /**
-   * Applies a CSS filter to the card image based on the presence of a router link.
-   * @returns 'grayscale(1)' if there's no router link, 'none' otherwise.
+   * Applies a CSS filter to the card image based on the presence of a router link path.
+   * @returns 'grayscale(1)' if there's a empty path, 'none' otherwise.
    */
   filterImg(): string {
-    return this.routerLink === '' ? 'grayscale(1)' : 'none';
+    return this.cardAttributes.path === '' ? 'grayscale(1)' : 'none';
   }
 
   /**
-   * Checks if the card is disabled based on the presence of a router link.
-   * @returns `true` if there's no router link, `false` otherwise.
+   * Checks if the card is disabled based on the presence of a router link path.
+   * @returns `true` if there's  a empty path, `false` otherwise.
    */
   isDisabled(): boolean {
-    return this.routerLink === '' ? true : false;
+    return this.cardAttributes.path === '' ? true : false;
   }
 }
