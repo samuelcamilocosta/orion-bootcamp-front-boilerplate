@@ -40,7 +40,7 @@ export class ApiV1Service {
    *
    * @param _error - The error message to display.
    */
-  private openErrorDialog(_error: string): void {
+  public openErrorDialog(_error: string): void {
     this.dialog.open(ErrorDialogComponent, {
       data: {
         errorMessage: _error,
@@ -53,7 +53,7 @@ export class ApiV1Service {
    *
    * @param error - The HTTP error response.
    */
-  private handleError(error: HttpErrorResponse): void {
+  public handleError(error: HttpErrorResponse): void {
     switch (error.status) {
       case 400:
         this.openErrorDialog(error.error);
@@ -110,8 +110,6 @@ export class ApiV1Service {
         })
         .catch((error) => {
           this.handleError(error);
-
-          console.log(error.message);
 
           reject(error);
         });
