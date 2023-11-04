@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ICard } from 'src/app/interfaces/home-card-params';
+import { GoogleAnalyticsService } from 'src/app/services/metrics/google-analytics.service';
 
 @Component({
   selector: 'app-card',
@@ -7,6 +8,16 @@ import { ICard } from 'src/app/interfaces/home-card-params';
   styleUrls: ['./home-card.component.scss'],
 })
 export class HomeCardComponent {
+  constructor(private googleAnalyticsService: GoogleAnalyticsService) {}
+
+  trackCardClick() {
+    this.googleAnalyticsService.trackEvent(
+      'meteorology_button_click',
+      'button_interaction',
+      'Enter on Meteorology page',
+      1
+    );
+  }
   /**
    * Input property that receives card attributes from the parent component.
    * @type {ICard}
