@@ -1,44 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  title = 'boilerplate-frontend-orion-bootcamp';  
+export class AppComponent {
+  title = 'boilerplate-frontend-orion-bootcamp';
 
   constructor(private router: Router) {}
 
   /**
-   * Subscribe to router events to detect route changes
+   * Check if the current route is different of '/' and '/recovery'
+   * @returns 'true' if it is different a route, 'false' otherwise
    */
-  ngOnInit(): void {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        /**
-         * Changes in HTML
-         */
-      }
-    })
+  isAuthPage(): boolean {
+    if (this.router.url !== '/' && this.router.url !== '/recovery') {
+      return true;
+    }
+    return false;
   }
 
   /**
-   * Check if the current route is 'home'
-   * @returns the 'home' route
+   * Future transition page
    */
-  isHomeRoute(): boolean {
-    return this.router.url === '/home';
+  isTransitionPage(): void {
+    // return this.router.url === '/transition';
   }
-
-  /**
-   * Check if the current route is 'meteorology'
-   * @returns the 'meteorology' route
-   */
-  isMeteorologyRoute(): boolean {
-    return this.router.url === '/meteorology';
-  }
-
-
 }
