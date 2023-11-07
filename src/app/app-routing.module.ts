@@ -14,6 +14,11 @@ const routes: Routes = [
     component: HomePageComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'home/meteorology',
+    component: MeteorologyPageComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

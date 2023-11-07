@@ -1,34 +1,22 @@
 <section class="header-container">
   <div class="header-section">
-    <a routerLink="../home-page/home-page.component.html">
+    <div class="header-text">
       <img
-        src="../../../assets/images/navigation/chevron-forward-outline.png"
+        routerLink="/home"
+        src="assets/images/navigation/chevron-forward-outline.png"
         alt="return"
       />
-    </a>
-    <div class="title-header">
-      <h1>Meteorologia em Marte</h1>
-      <p>Veja abaixo as temperaturas registradas até o momento.</p>
+      <div class="header-title">
+        <h1>Meteorologia em Marte</h1>
+        <p>Veja abaixo as temperaturas registradas até o momento.</p>
+      </div>
     </div>
-    <!-- Ficará somente como exemplo aqui
-        Vamos fazer o botão de sair como um componente a parte
-        -->
-    <div class="exit">
-      <a routerLink="#">
-        <img
-          src="../../../assets/images/navigation/exit-outline.png"
-          alt="exit"
-        />
-      </a>
-    </div>
+    <app-logout></app-logout>
   </div>
-</section>
 
-<!--Somente para registro dos cards, será removido depois-->
-<section>
-  <p>Card principal, do último registro</p>
-</section>
+  <app-hero-card></app-hero-card>
 
-<section>
-  <p>Cards em carrossel</p>
+  <section>
+    <p>Cards em carrossel</p>
+  </section>
 </section>

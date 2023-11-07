@@ -15,6 +15,7 @@ import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/pa
 import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
 import { HomeCardComponent } from './shared/components/home-card/home-card.component';
 import { LogoutComponent } from './shared/components/logout-icon/logout.component';
+import { MeteorologyHeroCardComponent } from './shared/components/meteorology-hero-card/meteorology-hero-card.component';
 import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
 import { MaterialModule } from './shared/modules/material.module';
 @NgModule({
@@ -27,7 +28,8 @@ import { MaterialModule } from './shared/modules/material.module';
     HomeCardComponent,
     HomePageComponent,
     LogoutComponent,
-
+    MeteorologyPageComponent,
+    MeteorologyHeroCardComponent,
   ],
   imports: [
     BrowserModule,
