@@ -1,7 +1,76 @@
-div {
-  padding: 10rem;
+section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 
-  h1 {
-    color: white;
+  .home-page-container {
+    padding: 5.04rem 5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3.81rem;
+
+    .home-page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      div {
+        display: inherit;
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+    }
+
+    div :where(h1, span, p) {
+      font-family: Inter;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      span {
+        color: #ffd2b5;
+      }
+    }
+    p {
+      font-size: 1rem;
+    }
+
+    .cards-container {
+      display: flex;
+      gap: 2.19rem;
+    }
+  }
+}
+
+// if the card has no route path it will be disabled
+.disabled-card {
+  pointer-events: none;
+  user-select: none;
+}
+
+/**
+ * Trying to make it responsive
+ */
+@media (max-width: 1300px) {
+  .cards-container {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 953px) {
+  .home-page-header {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+
+  .cards-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
