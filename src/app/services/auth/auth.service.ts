@@ -96,6 +96,7 @@ export class AuthService {
   isAuthenticated(): boolean {
     const tokenLocal = this.getLocalItem('token');
     const tokenSession = this.getSessionItem('token');
+
     if (tokenLocal || tokenSession) return true;
     return false;
   }
