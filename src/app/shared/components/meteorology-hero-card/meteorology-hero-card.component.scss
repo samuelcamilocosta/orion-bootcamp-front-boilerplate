@@ -1,6 +1,6 @@
 .mat-hero-card-container {
   display: flex;
-  width: 44.558rem;
+  width: 40.875rem;
   height: 13.25rem;
   border-radius: 1.625rem;
   background: rgba(62, 51, 51, 0.25);
@@ -12,19 +12,15 @@
     margin: 0;
   }
   h1 {
-    color: var(--foundation-gray-scale-white, #fff);
-    font-family: Inter;
+    color: #fff;
     font-size: 2.25rem;
-    font-style: normal;
     font-weight: 700;
     line-height: normal;
   }
 
   p {
-    color: var(--foundation-gray-scale-white, #fff);
-    font-family: Inter;
+    color: #fff;
     font-size: 1rem;
-    font-style: normal;
     font-weight: 300;
     line-height: normal;
   }
