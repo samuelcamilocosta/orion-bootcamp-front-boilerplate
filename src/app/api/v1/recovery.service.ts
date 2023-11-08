@@ -53,33 +53,50 @@ export class RecoveryService {
    * @param email the email data to send
    * @returns A promise that resolves with the login response data.
    */
-  async sendEmail(email: IEmail): Promise<IEmail> {
-    return new Promise<IEmail>((resolve, reject) => {
-      const request = this.http.post<IEmail>(this.apiURL, email).toPromise();
+  // async sendEmail(email: IEmail): Promise<HttpErrorResponse> {
+  //   return new Promise<HttpErrorResponse>((resolve, reject) => {
+  //     const request = this.http
+  //       .post<HttpErrorResponse>(this.apiURL, email)
+  //       .toPromise();
 
-      request
-        .then((response) => {
-          if (response === null) {
-            this.route.navigate(['/']);
-            setTimeout(() => {
-              this.openDialog();
-            }, 500);
+  //     request
+  //       .then((response) => {
+  //         this.route.navigate(['/']);
+  //         setTimeout(() => {
+  //           this.openDialog();
+  //         }, 500);
 
-            resolve(response);
-          }
-        })
-        .catch((error: HttpErrorResponse) => {
-          if (error.status === 400 || error.status === 200) {
-            this.route.navigate(['/']);
-            setTimeout(() => {
-              this.openDialog();
-            }, 500);
-          } else {
-            this.apiV1Service.handleError(error);
-          }
+  //         resolve(response);
+  //       })
+  //       .catch((error: HttpErrorResponse) => {
+  //         if (error.status === 400 || error.status === 200) {
+  //           this.route.navigate(['/']);
+  //           setTimeout(() => {
+  //             this.openDialog();
+  //           }, 500);
+  //         } else {
+  //           this.apiV1Service.handleError(error);
+  //         }
 
-          reject(error);
-        });
-    });
+  //         reject(error);
+  //       });
+  //   });
+  // }
+
+  async sendEmail(email: IEmail) {
+    try {
+      const response = await this.http
+        .post<HttpErrorResponse>(this.apiURL, email)
+        .toPromise();
+      // The HTTP request was successful, handle the response as needed
+      this.route.navigate(['/']);
+      setTimeout(() => {
+        this.openDialog();
+      }, 500);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 }
