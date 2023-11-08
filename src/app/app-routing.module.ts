@@ -6,13 +6,52 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
 
+/**
+ * The main routing configuration for the application.
+ *
+ * This routing module defines the root and child routes for the application.
+ */
 const routes: Routes = [
+  /**
+   * The root route of the application.
+   *
+   * This route displays the login page by default.
+   */
   { path: '', component: LoginPageComponent },
+
+  /**
+   * The route for password recovery.
+   *
+   * This route displays the password recovery page.
+   */
   { path: 'recovery', component: PasswordRecoveryPageComponent },
+
+  /**
+   * The "page" route as placeholder for better semantics with child routes.
+   *
+   * This route is protected by the AuthGuard, and it contains child routes for "home" and "meteorology" pages.
+   */
   {
-    path: 'home',
-    component: HomePageComponent,
+    path: 'page',
     canActivate: [AuthGuard],
+    children: [
+      /**
+       * The "home" child route.
+       *
+       * This route displays the home page when accessed.
+       */
+      {
+        path: 'home',
+        component: HomePageComponent,
+      },
+
+      /**
+       * The "meteorology" child route.
+       *
+       * This route displays the meteorology page when accessed.
+       */
+      { path: 'meteorology', component: MeteorologyPageComponent },
+    ],
   },
 ];
 
