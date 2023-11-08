@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
 
+/**
+ * Google Analytics Global Tag (gtag) is a variable that provides access to Google Analytics
+ * functionality for tracking and reporting.
+ *
+ * @type {any}
+ */
 declare let gtag: any;
 
 @Injectable({
@@ -27,7 +33,7 @@ export class GoogleAnalyticsService {
    *
    * initializes Google Analytics 4 service
    */
-  private setUpAnalytics(): void {
+  private setUpAnalytics() {
     // Initialize Google Analytics
     gtag('config', `${environment.GA4_id}`);
   }
@@ -47,7 +53,7 @@ export class GoogleAnalyticsService {
     eventCategory: string,
     eventLabel: string,
     eventValue: number
-  ): void {
+  ) {
     gtag('event', eventName, {
       event_category: eventCategory,
       event_label: eventLabel,
