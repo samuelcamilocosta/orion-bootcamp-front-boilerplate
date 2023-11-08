@@ -7,10 +7,23 @@ import { GoogleAnalyticsService } from 'src/app/services/metrics/google-analytic
   templateUrl: './home-card.component.html',
   styleUrls: ['./home-card.component.scss'],
 })
+/**
+ * Component Card for home page
+ */
 export class HomeCardComponent {
+  /**
+   * Constructor
+   *
+   * @param googleAnalyticsService injects Google Analytics 4 service to handle custom metrics.
+   */
   constructor(private googleAnalyticsService: GoogleAnalyticsService) {}
 
-  trackCardClick() {
+  /**
+   * trackMeteorologyBtn
+   *
+   * track the button "Enter" click count from the enabled Meteorology card on home page.
+   */
+  trackMeteorologyBtn() {
     this.googleAnalyticsService.trackEvent(
       'meteorology_button_click',
       'button_interaction',
