@@ -63,3 +63,54 @@ p {
   font-weight: 400;
   margin: 0;
 }
+
+// try 1
+.header-container {
+  .carousel-container {
+    display: inline-flex;
+    gap: 1.5rem;
+    overflow: hidden;
+  }
+
+  .carousel {
+    display: flex;
+    overflow: hidden;
+  }
+
+  .carousel-items {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .carousel-items div {
+    flex: 0 0 auto;
+  }
+
+  .carousel-items div.active {
+    flex: 1 0 auto;
+  }
+}
+
+// try 2
+.header-container {
+  .carousel-container {
+    width: 300px; /* Set your desired width */
+    overflow: hidden;
+    position: relative;
+  }
+
+  .carousel-viewport {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .cards-container {
+    display: flex;
+    gap: 20px; /* Adjust the gap as needed */
+  }
+
+  .active-card {
+    /* Style for the currently active card */
+  }
+}

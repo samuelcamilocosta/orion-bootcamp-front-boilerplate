@@ -15,10 +15,11 @@ import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/pa
 import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
 import { HomeCardComponent } from './shared/components/home-card/home-card.component';
 import { LogoutComponent } from './shared/components/logout-icon/logout.component';
+import { MeteorologyCarouselCardComponent } from './shared/components/meteorology-carousel-card/meteorology-carousel-card.component';
 import { MeteorologyHeroCardComponent } from './shared/components/meteorology-hero-card/meteorology-hero-card.component';
 import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
+import { ImageSliderModule } from './shared/modules/image-slider.module';
 import { MaterialModule } from './shared/modules/material.module';
-import { MeteorologyCarouselCardComponent } from './shared/components/meteorology-carousel-card/meteorology-carousel-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { MeteorologyCarouselCardComponent } from './shared/components/meteorolog
     ReactiveFormsModule,
     NgIf,
     HttpClientModule,
+    ImageSliderModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],
