@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RecoveryService } from 'src/app/api/v1/recovery.service';
+import { IEmail } from 'src/app/interfaces/recovery-params';
 
 @Component({
   selector: 'app-password-recovery-page',
@@ -10,6 +11,10 @@ import { RecoveryService } from 'src/app/api/v1/recovery.service';
     '../login-page/login-page.component.scss',
   ],
 })
+
+/**
+ * Password Recovery page that includes a email form.
+ */
 export class PasswordRecoveryPageComponent {
   constructor(private recoveryService: RecoveryService) {}
 
@@ -32,10 +37,12 @@ export class PasswordRecoveryPageComponent {
   });
 
   /**
-   * Handles the form submission.
+   * Handles form submission by sending data to the email service.
    */
-  async onSubmit() {
-    const data = this.formGroup.value;
-    await this.recoveryService.sendData(data);
+  async onSubmit(): Promise<void> {
+    const data: IEmail = {
+      email: this.formGroup.value.email!,
+    };
+    await this.recoveryService.sendEmail(data);
   }
 }

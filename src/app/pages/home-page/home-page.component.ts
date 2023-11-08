@@ -12,15 +12,11 @@ export class HomePageComponent {
 
   remove() {
     this.auth.removeItem('token');
-    console.log('removeu e redirecionado');
 
     this.route.navigate(['/']);
   }
 
   ngOnInit(): void {
-    //just as placeholder
-    // console.log(this.formGroup.value);
-
     // check if user is authenticated or not and redirect to another page
     if (!this.auth.isAuthenticated()) {
       this.route.navigate(['/']);
