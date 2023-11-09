@@ -1,5 +1,5 @@
 .background-image {
-  background-image: url("/assets/images/background/Planet-mars.png");
+  background-image: url("/assets/images/background/Epic-Sky-03 2.png");
   background-color: #0f1217;
   background-size: 150% auto;
   background-position: -15% 35%;
@@ -8,8 +8,7 @@
   height: 100vh;
 }
 
-.background-image.auth-page--bg {
-  background-position: center center;
-  background-size: 156% auto;
-  background-attachment: fixed;
+.background-image.private-page--bg {
+  background-position: center;
+  background-size: auto 150%;
 }
