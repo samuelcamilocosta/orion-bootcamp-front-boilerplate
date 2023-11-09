@@ -27,7 +27,7 @@ import { MaterialModule } from './shared/modules/material.module';
     HomeCardComponent,
     HomePageComponent,
     LogoutComponent,
-
+    MeteorologyPageComponent,
   ],
   imports: [
     BrowserModule,
