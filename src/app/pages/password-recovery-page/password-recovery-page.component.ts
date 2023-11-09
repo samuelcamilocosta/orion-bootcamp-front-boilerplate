@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { PasswordRecoveryDialogComponent } from 'src/app/shared/components/password-recovery-dialog/password-recovery-dialog.component';
+import { RecoveryService } from 'src/app/api/v1/recovery.service';
+import { IEmail } from 'src/app/interfaces/recovery-params';
 
 @Component({
   selector: 'app-password-recovery-page',
@@ -11,13 +11,12 @@ import { PasswordRecoveryDialogComponent } from 'src/app/shared/components/passw
     '../login-page/login-page.component.scss',
   ],
 })
+
+/**
+ * Password Recovery page that includes a email form.
+ */
 export class PasswordRecoveryPageComponent {
-  /**
-   * Constructs the PasswordRecoveryPageComponent.
-   *
-   * @param dialog - The MatDialog service for opening dialogs.
-   */
-  constructor(private dialog: MatDialog) {}
+  constructor(private recoveryService: RecoveryService) {}
 
   /**
    * A form control for capturing the user's email.
@@ -38,21 +37,12 @@ export class PasswordRecoveryPageComponent {
   });
 
   /**
-   * Opens a password recovery dialog.
+   * Handles form submission by sending data to the email service.
    */
-  openDialog(): void {
-    const dialogRef = this.dialog.open(PasswordRecoveryDialogComponent);
-
-    dialogRef.afterClosed().subscribe(() => {
-      console.log('Dialog closed');
-    });
-  }
-
-  /**
-   * Handles the form submission.
-   */
-  onSubmit() {
-    console.log(this.emailFormControl.value);
-    this.openDialog();
+  async onSubmit(): Promise<void> {
+    const data: IEmail = {
+      email: this.formGroup.value.email!,
+    };
+    await this.recoveryService.sendEmail(data);
   }
 }

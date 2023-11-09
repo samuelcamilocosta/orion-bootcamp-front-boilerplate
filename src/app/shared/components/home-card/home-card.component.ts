@@ -6,6 +6,9 @@ import { ICard } from 'src/app/interfaces/home-card-params';
   templateUrl: './home-card.component.html',
   styleUrls: ['./home-card.component.scss'],
 })
+/**
+ * Component Card for home page
+ */
 export class HomeCardComponent {
   /**
    * Input property that receives card attributes from the parent component.
