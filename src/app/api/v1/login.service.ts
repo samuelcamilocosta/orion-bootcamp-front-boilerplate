@@ -64,7 +64,7 @@ export class ApiV1Service extends BaseMethods {
               ? this.auth.setLocalItem('token', response)
               : this.auth.setSessionItem('token', response);
 
-            this.route.navigate(['/home']);
+            this.route.navigate(['page/home']);
 
             resolve(response);
           } else {
