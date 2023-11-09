@@ -1,0 +1,48 @@
+.carousel-card-container {
+  width: 9.46925rem;
+  height: 9.72106rem;
+  border-radius: 1.30956rem;
+  border: 0.05rem solid #292929;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1,
+  p {
+    margin: 0;
+  }
+  h1 {
+    color: #fff;
+    font-size: 1.20881rem;
+    font-weight: 700;
+    line-height: normal;
+  }
+  p {
+    color: #fff;
+    font-size: 0.80588rem;
+    font-weight: 300;
+    line-height: normal;
+  }
+
+  hr {
+    width: 7.85744rem;
+    height: 0.05038rem;
+    background: #d9d9d9;
+    margin-block: 0.76rem 0.81rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.43rem;
+  }
+
+  .temperature-container {
+    h1,
+    p {
+      color: #ffd2b5;
+    }
+  }
+}
