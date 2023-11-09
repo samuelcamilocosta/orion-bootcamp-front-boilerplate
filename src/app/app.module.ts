@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
 import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
 import { HomeCardComponent } from './shared/components/home-card/home-card.component';
@@ -26,6 +27,7 @@ import { MaterialModule } from './shared/modules/material.module';
     HomeCardComponent,
     HomePageComponent,
     LogoutComponent,
+    MeteorologyPageComponent,
   ],
   imports: [
     BrowserModule,

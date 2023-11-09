@@ -1,4 +1,4 @@
-.login-background-image {
+.background-image {
   background-image: url("/assets/images/background/Epic-Sky-03 2.png");
   background-size: 150% auto;
   background-position: -15% 35%;
@@ -6,4 +6,9 @@
   width: 100vw;
   height: 100vh;
   background-color: #0f1217;
+}
+
+.background-image.private-page--bg {
+  background-position: center;
+  background-size: auto 150%;
 }
