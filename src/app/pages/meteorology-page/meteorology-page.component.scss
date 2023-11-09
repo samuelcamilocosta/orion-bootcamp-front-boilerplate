@@ -14,6 +14,20 @@
     align-self: center;
   }
 
+  //change button-next color
+  .swiper-container::part(button-next) {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: #ffd2b5;
+  }
+
+  //change button-prev color
+  .swiper-container::part(button-prev) {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: #ffd2b5;
+  }
+
   .header-section {
     display: flex;
     justify-content: space-between;

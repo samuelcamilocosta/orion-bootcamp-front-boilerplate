@@ -14,7 +14,20 @@
     <app-logout></app-logout>
   </div>
 
-  <app-hero-card></app-hero-card>
+  <!-- main card element -->
+  <app-hero-card />
 
-  <app-carousel-card></app-carousel-card>
+  <!-- carousel element start -->
+  <swiper-container
+    class="swiper-container"
+    slides-per-view="7"
+    navigation="true"
+    space-between="24"
+    grab-cursor="true"
+  >
+    <swiper-slide *ngFor="let card of cards">
+      <app-carousel-card [carouselCardParams]="card" />
+    </swiper-slide>
+  </swiper-container>
+  <!-- carousel element end -->
 </section>

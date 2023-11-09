@@ -1,11 +1,11 @@
 <section class="carousel-card-container">
   <div>
-    <h1>SOL 259</h1>
-    <p>10 Setembro</p>
+    <h1>{{ carouselCardParams.solesDate }}</h1>
+    <p>{{ carouselCardParams.earthDate }}</p>
   </div>
   <hr />
   <div class="temperature-container">
-    <h1>Máx.: -17° F</h1>
-    <p>Mín.: -150° F</p>
+    <h1>Máx.: {{ carouselCardParams.maxTemp }}° F</h1>
+    <p>Mín.: {{ carouselCardParams.minTemp }}° F</p>
   </div>
 </section>
