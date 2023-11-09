@@ -18,7 +18,7 @@ export class HomePageComponent {
       cardTitle: 'Meteorologia em Marte',
       cardSubTitle:
         'Veja a previsão do tempo em Marte ao vivo! Descubra como são as temperaturas no planeta vermelho.',
-      path: '/home/meteorology',
+      path: '/page/meteorology',
     },
     {
       cardImage: 'assets/images/home/rocket.jpeg',
