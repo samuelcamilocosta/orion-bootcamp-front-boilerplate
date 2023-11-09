@@ -4,10 +4,12 @@
   border-radius: 1.30956rem;
   border: 0.05rem solid #292929;
 
+  //positioning elements
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 
   h1,
   p {

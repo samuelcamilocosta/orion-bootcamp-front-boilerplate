@@ -14,59 +14,20 @@
     <app-logout></app-logout>
   </div>
 
+  <!-- main card element -->
   <app-hero-card />
 
-  <div
-    class="carousel-container"
-    (mousedown)="onMouseDown($event)"
-    (mouseup)="onMouseUp($event)"
-    (mousemove)="onMouseMove($event)"
-    (mouseleave)="onMouseLeave($event)"
+  <!-- carousel element start -->
+  <swiper-container
+    class="swiper-container"
+    slides-per-view="7"
+    navigation="true"
+    space-between="24"
+    grab-cursor="true"
   >
-    <div
-      class="carousel-viewport"
-      [style.transform]="'translateX(' + slideOffset + 'px)'"
-    >
-      <div class="cards-container">
-        <app-carousel-card
-          *ngFor="let card of visibleCards; let i = index"
-          [carouselCardParams]="card"
-          [ngClass]="{ 'active-card': i === currentIndex }"
-        ></app-carousel-card>
-      </div>
-    </div>
-  </div>
+    <swiper-slide *ngFor="let card of cards">
+      <app-carousel-card [carouselCardParams]="card" />
+    </swiper-slide>
+  </swiper-container>
+  <!-- carousel element end -->
 </section>
-
-<!-- <div class="carousel-container">
-    <app-carousel-card *ngFor="let card of cards" [carouselCardParams]="card" />
-  </div> -->
-
-<!-- <div
-    #carousel
-    class="carousel"
-    (swipeleft)="nextCard()"
-    (swiperight)="prevCard()"
-  >
-    <button
-      (click)="prevCard()"
-      [style.display]="showPrevBtn()"
-      [disabled]="currentCardIndex === 0"
-    >
-      Previous
-    </button>
-    <button
-      (click)="nextCard()"
-      [disabled]="currentCardIndex === cards.length - 1"
-    >
-      Next
-    </button>
-    <div class="carousel-items">
-      <div
-        *ngFor="let card of cards; index as i"
-        [class.active]="i === currentCardIndex"
-      >
-        <app-carousel-card [carouselCardParams]="card" />
-      </div>
-    </div>
-  </div> -->
