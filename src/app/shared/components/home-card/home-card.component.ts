@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { ICard } from 'src/app/interfaces/home-card-params';
-import { GoogleAnalyticsService } from 'src/app/services/metrics/google-analytics.service';
 
 @Component({
   selector: 'app-card',
@@ -11,26 +10,6 @@ import { GoogleAnalyticsService } from 'src/app/services/metrics/google-analytic
  * Component Card for home page
  */
 export class HomeCardComponent {
-  /**
-   * Constructor
-   *
-   * @param googleAnalyticsService injects Google Analytics 4 service to handle custom metrics.
-   */
-  constructor(private googleAnalyticsService: GoogleAnalyticsService) {}
-
-  /**
-   * trackMeteorologyBtn
-   *
-   * track the button "Enter" click count from the enabled Meteorology card on home page.
-   */
-  trackMeteorologyBtn() {
-    this.googleAnalyticsService.trackEvent(
-      'meteorology_button_click',
-      'button_interaction',
-      'Enter on Meteorology page',
-      1
-    );
-  }
   /**
    * Input property that receives card attributes from the parent component.
    * @type {ICard}
