@@ -18,6 +18,7 @@ import { LogoutComponent } from './shared/components/logout-icon/logout.componen
 import { MeteorologyHeroCardComponent } from './shared/components/meteorology-hero-card/meteorology-hero-card.component';
 import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
 import { MaterialModule } from './shared/modules/material.module';
+import { MeteorologyCarouselCardComponent } from './shared/components/meteorology-carousel-card/meteorology-carousel-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { MaterialModule } from './shared/modules/material.module';
     LogoutComponent,
     MeteorologyPageComponent,
     MeteorologyHeroCardComponent,
+    MeteorologyCarouselCardComponent,
   ],
   imports: [
     BrowserModule,
