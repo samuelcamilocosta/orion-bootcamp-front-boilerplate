@@ -1,5 +1,8 @@
-<!-- app.component.html -->
-<!-- change as you need to make the background image works :) -->
-<div class="login-background-image">
+<div
+  [ngClass]="{
+    'background-image': true,
+    'private-page--bg': isPrivatePage(),
+  }"
+>
   <router-outlet></router-outlet>
 </div>

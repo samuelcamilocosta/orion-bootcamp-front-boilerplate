@@ -1,0 +1,64 @@
+.mat-hero-card-container {
+  display: flex;
+  width: 40.875rem;
+  height: 13.25rem;
+  border-radius: 1.625rem;
+  background: rgba(62, 51, 51, 0.25);
+  gap: 2.5rem;
+  padding: 2.75rem 0 2.58rem 2rem;
+
+  h1,
+  p {
+    margin: 0;
+  }
+  h1 {
+    color: #fff;
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  p {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: normal;
+  }
+  .dates-container,
+  .temperature-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.38rem;
+
+    .thermometer,
+    .calendar {
+      margin-bottom: calc(1rem - 0.438rem);
+      width: 2.625rem;
+      height: 2.625rem;
+    }
+  }
+
+  .temperature-container {
+    h1,
+    p {
+      color: #ffd2b5;
+    }
+
+    div {
+      display: flex;
+
+      .vector {
+        align-self: center;
+        margin-left: 0.81rem;
+        width: 1.0625rem;
+        height: 0.6875rem;
+      }
+      .caret-down {
+        align-self: center;
+        margin-left: 0.5rem;
+        width: 1.125rem;
+        height: 1.125rem;
+      }
+    }
+  }
+}
