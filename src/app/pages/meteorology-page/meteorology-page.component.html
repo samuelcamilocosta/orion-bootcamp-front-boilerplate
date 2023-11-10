@@ -1,33 +1,43 @@
-<section class="header-container">
-  <div class="header-section">
-    <div class="header-text">
-      <img
-        routerLink="/page/home"
-        src="assets/images/navigation/chevron-forward-outline.png"
-        alt="return"
-      />
-      <div class="header-title">
-        <h1>Meteorologia em Marte</h1>
-        <p>Veja abaixo as temperaturas registradas até o momento.</p>
+<section>
+  <div class="meteorology-page-container">
+    <div class="meteorology-page-header">
+      <div class="header-text">
+        <img
+          routerLink="/page/home"
+          src="assets/images/navigation/chevron-forward-outline.png"
+          alt="return"
+        />
+        <div>
+          <h1>Meteorologia em Marte</h1>
+          <p>Veja abaixo as temperaturas registradas até o momento.</p>
+        </div>
       </div>
+      <app-logout></app-logout>
     </div>
-    <app-logout></app-logout>
+
+    <div class="hero-card">
+      <!-- main card element -->
+      <app-hero-card [heroCardParams]="newParams" />
+    </div>
+
+    <!-- carousel of cards -->
+    <swiper-container
+      class="swiper-container"
+      slides-per-view="7"
+      navigation="true"
+      space-between="24"
+      grab-cursor="true"
+      keyboard="true"
+      mousewheel="true"
+      hidden-class="swiper-button-hidden"
+    >
+      <swiper-slide *ngFor="let card of cards; let i = index">
+        <app-carousel-card
+          class="card"
+          [carouselCardParams]="card"
+          (click)="updateHeroCard(i)"
+        />
+      </swiper-slide>
+    </swiper-container>
   </div>
-
-  <!-- main card element -->
-  <app-hero-card />
-
-  <!-- carousel element start -->
-  <swiper-container
-    class="swiper-container"
-    slides-per-view="7"
-    navigation="true"
-    space-between="24"
-    grab-cursor="true"
-  >
-    <swiper-slide *ngFor="let card of cards">
-      <app-carousel-card [carouselCardParams]="card" />
-    </swiper-slide>
-  </swiper-container>
-  <!-- carousel element end -->
 </section>
