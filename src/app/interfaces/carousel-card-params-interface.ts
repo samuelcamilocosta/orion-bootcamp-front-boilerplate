@@ -1,6 +1,6 @@
 export interface ICarouselCard {
-  solesDate: string;
-  earthDate: string;
+  solesDate: number;
+  earthDate: number;
   maxTemp: number;
   minTemp: number;
 }
