@@ -16,10 +16,10 @@ export class SolesService extends BaseMethods {
     this.apiUrl = `${environment.api}/v1/soles`;
   }
 
-  async getData(): Promise<ISolesDataInterface> {
-    return new Promise<ISolesDataInterface>((resolve, reject) => {
+  async getData(): Promise<ISolesDataInterface[]> {
+    return new Promise<ISolesDataInterface[]>((resolve, reject) => {
       const request = this.http
-        .get<ISolesDataInterface>(this.apiUrl)
+        .get<ISolesDataInterface[]>(this.apiUrl)
         .toPromise();
 
       request

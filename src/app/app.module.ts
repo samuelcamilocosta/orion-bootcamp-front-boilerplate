@@ -20,6 +20,7 @@ import { MeteorologyHeroCardComponent } from './shared/components/meteorology-he
 import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
 import { ImageSliderModule } from './shared/modules/image-slider.module';
 import { MaterialModule } from './shared/modules/material.module';
+import { LoadingComponent } from './shared/components/loading/loading.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { MaterialModule } from './shared/modules/material.module';
     MeteorologyPageComponent,
     MeteorologyHeroCardComponent,
     MeteorologyCarouselCardComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

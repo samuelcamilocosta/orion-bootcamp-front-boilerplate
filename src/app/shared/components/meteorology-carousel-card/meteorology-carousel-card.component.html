@@ -1,11 +1,16 @@
 <section class="carousel-card-container">
-  <div>
-    <h1>{{ carouselCardParams.sol.solNumberMarsDay }}</h1>
-    <p>{{ "10 Setembro" }}</p>
+  <div *ngIf="carouselCardParams; else loadingTemplate">
+    <div>
+      <h1>{{ carouselCardParams?.sol?.solNumberMarsDay }}</h1>
+      <p>{{ "10 Setembro" }}</p>
+    </div>
+    <hr />
+    <div class="temperature-container">
+      <h1>Máx.: {{ carouselCardParams?.sol?.maximumTemperature }}° F</h1>
+      <p>Mín.: {{ carouselCardParams?.sol?.minimumTemperature }}° F</p>
+    </div>
   </div>
-  <hr />
-  <div class="temperature-container">
-    <h1>Máx.: {{ carouselCardParams.sol.maximumTemperature }}° F</h1>
-    <p>Mín.: {{ carouselCardParams.sol.minimumTemperature }}° F</p>
-  </div>
+  <ng-template #loadingTemplate>
+    <app-loading></app-loading>
+  </ng-template>
 </section>

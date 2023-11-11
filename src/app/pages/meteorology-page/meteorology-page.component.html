@@ -33,7 +33,7 @@
     >
       <swiper-slide *ngFor="let card of cards; let i = index">
         <app-carousel-card
-          *ngIf="cards"
+          *ngIf="card"
           class="card"
           [carouselCardParams]="card"
           (click)="updateHeroCard(i)"

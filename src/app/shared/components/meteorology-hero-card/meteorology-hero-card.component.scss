@@ -4,8 +4,16 @@
   height: 13.25rem;
   border-radius: 1.625rem;
   background: rgba(62, 51, 51, 0.25);
-  gap: 2.5rem;
   padding: 2.75rem 0 2.58rem 2rem;
+
+  app-loading {
+    align-self: center;
+  }
+
+  .loading-container {
+    display: flex;
+    gap: 2.5rem;
+  }
 
   h1,
   p {

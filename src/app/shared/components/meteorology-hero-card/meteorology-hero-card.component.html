@@ -1,30 +1,39 @@
 <section class="mat-hero-card-container">
-  <div class="dates-container">
-    <img
-      class="calendar"
-      src="assets/images/met-hero-card/calendar-outline 1.svg"
-      alt=""
-    />
-    <h1>{{ heroCardParams.sol.solNumberMarsDay }}</h1>
-    <p>{{ "10 Setembro" }}</p>
-  </div>
-  <div class="temperature-container">
-    <img
-      class="thermometer"
-      src="assets/images/met-hero-card/thermometer-outline 1.svg"
-      alt="red marker"
-    />
-    <div>
-      <h1>Máx.: {{ heroCardParams.sol.maximumTemperature }}° F | C</h1>
-      <img class="vector" src="assets/images/met-hero-card/Vector.svg" alt="" />
-    </div>
-    <div>
-      <p>Mín.: {{ heroCardParams.sol.minimumTemperature }}° F | C</p>
+  <div class="loading-container" *ngIf="heroCardParams; else loadingTemplate">
+    <div class="dates-container">
       <img
-        class="caret-down"
-        src="assets/images/met-hero-card/caret-down-outline 1.svg"
+        class="calendar"
+        src="assets/images/met-hero-card/calendar-outline 1.svg"
         alt=""
       />
+      <h1>{{ heroCardParams?.sol?.solNumberMarsDay }}</h1>
+      <p>{{ "10 Setembro" }}</p>
+    </div>
+    <div class="temperature-container">
+      <img
+        class="thermometer"
+        src="assets/images/met-hero-card/thermometer-outline 1.svg"
+        alt="red marker"
+      />
+      <div>
+        <h1>Máx.: {{ heroCardParams?.sol?.maximumTemperature }}° F | C</h1>
+        <img
+          class="vector"
+          src="assets/images/met-hero-card/Vector.svg"
+          alt=""
+        />
+      </div>
+      <div>
+        <p>Mín.: {{ heroCardParams?.sol?.minimumTemperature }}° F | C</p>
+        <img
+          class="caret-down"
+          src="assets/images/met-hero-card/caret-down-outline 1.svg"
+          alt=""
+        />
+      </div>
     </div>
   </div>
+  <ng-template #loadingTemplate>
+    <app-loading></app-loading>
+  </ng-template>
 </section>

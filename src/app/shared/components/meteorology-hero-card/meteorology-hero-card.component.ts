@@ -14,5 +14,5 @@ export class MeteorologyHeroCardComponent {
    * Input property that receives card attributes from the parent component.
    * @type {IHeroCardInterface}
    */
-  @Input() heroCardParams!: ISolesDataInterface;
+  @Input() heroCardParams?: ISolesDataInterface;
 }
