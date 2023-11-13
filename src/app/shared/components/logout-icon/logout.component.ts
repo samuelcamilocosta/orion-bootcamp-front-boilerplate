@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-logout',
@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
  */
 export class LogoutComponent {
   constructor(
-    private auth: AuthService,
+    private storageService: StorageService,
     private route: Router // private googleAnalyticsService: GoogleAnalyticsService
   ) {}
 
@@ -26,7 +26,7 @@ export class LogoutComponent {
    * and redirects him to login page.
    */
   logout(): void {
-    this.auth.removeItem('token');
+    this.storageService.removeItem('token');
     this.route.navigate(['/']);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ITempIndicator } from 'src/app/interfaces/itemp-indicator';
 import { ISolesDataInterface } from 'src/app/interfaces/soles-data-interface';
 import { register } from 'swiper/element/bundle';
 import { SolesService } from '../../api/v1/soles.service';
@@ -16,43 +17,166 @@ register();
  * meteorology page that includes data from mars weather.
  */
 export class MeteorologyPageComponent implements OnInit {
-  newParams: ISolesDataInterface;
-  cards: ISolesDataInterface[];
+  /**
+   * tempType: represents temperature scale (Celsius or Fahrenheit) string on Hero card
+   * carTempType: represents temperature scale (Celsius or Fahrenheit) string on carousel cards
+   * heroCardParams: variable to change hero card params.
+   * cards: array of soles params from api request.
+   * difTempMax & difTempMin represents the max/min temperature difference between today and yesterday.
+   * maxIndicator & minIndicator: represents the indicator os temperature on hero card.
+   */
+  tempType = 'C | F';
+  carTempType = 'C';
+  heroCardParams?: ISolesDataInterface;
+  cards: ISolesDataInterface[] = [];
+  difTempMax = 0;
+  difTempMin = 0;
+  maxIndicator?: ITempIndicator;
+  minIndicator?: ITempIndicator;
+
   /**
    * Constructor
    *
-   * initializes the hero card params
+   * initializes the solesService to handle api request
    */
-  constructor(private solesService: SolesService) {
-    this.cards = [];
-    this.newParams = this.cards[0];
+  constructor(private solesService: SolesService) {}
+
+  /**
+   * ngOnInit
+   *
+   * apply loadData method when page initializes
+   */
+  ngOnInit() {
+    this.loadData();
   }
 
-  async ngOnInit() {
-    await this.loadData();
-  }
-
-  async loadData(): Promise<void> {
+  /**
+   * loadData
+   *
+   * fetches cards data and apply those data to the cards on page
+   */
+  private async loadData(): Promise<void> {
     this.cards = await this.solesService.getData();
-    console.log(this.cards);
-    this.newParams = this.cards[0];
-    console.log(this.newParams);
+
+    this.heroCardParams = this.cards[0];
+
+    this.calculateDifTemp(0);
+    // TODO: trocar formato da data no hero card quando receber o valor correto do endpoint
+    // const date = new Date(this.cards[0].created_at);
+    // console.log(
+    //   date.toLocaleDateString('pt-br', {
+    //     day: 'numeric',
+    //     month: 'long',
+    //     year: 'numeric',
+    //   })
+    // );
   }
 
   /**
-   * newParams
+   * calculateCelsius
    *
-   * represents the hero card params
+   * convert temperature Fahrenheit to Celsius
    */
+  private calculateCelsius(): void {
+    this.cards.forEach((card) => {
+      card.maximumTemperature = (card.maximumTemperature - 32) * (5 / 9);
+      card.minimumTemperature = (card.minimumTemperature - 32) * (5 / 9);
+    });
+  }
 
   /**
-   * updateHeroCard
+   * calculateFahrenheit
    *
-   * updates the hero card params with clicked carousel card params
-   *
-   * @param i index of the carousel card
+   * convert temperature Celsius to Fahrenheit
    */
-  updateHeroCard(i: number): void {
-    this.newParams = this.cards[i];
+  private calculateFahrenheit(): void {
+    this.cards.forEach((card) => {
+      card.maximumTemperature = card.maximumTemperature * (9 / 5) + 32;
+      card.minimumTemperature = card.minimumTemperature * (9 / 5) + 32;
+    });
+  }
+
+  /**
+   * convertTemp
+   *
+   * calculate and change the temperature type and value of all cards on click
+   */
+  protected convertTemp() {
+    const heroCelsius = 'C | F';
+    const carouselCelsius = 'C';
+    const heroFahrenheit = 'F | C';
+    const carouselFahrenheit = 'F';
+
+    if (this.tempType === heroCelsius) {
+      this.calculateFahrenheit();
+    } else {
+      this.calculateCelsius();
+    }
+
+    this.tempType =
+      this.tempType === heroCelsius ? heroFahrenheit : heroCelsius;
+    this.carTempType =
+      this.carTempType === carouselCelsius
+        ? carouselFahrenheit
+        : carouselCelsius;
+  }
+
+  /**
+   * updateHeroCardParams
+   *
+   * updates the hero card params when a carousel card is clicked
+   *
+   * @param i: index of the carousel card
+   */
+  protected updateHeroCardParams(i: number): void {
+    this.heroCardParams = this.cards[i];
+
+    this.calculateDifTemp(i);
+  }
+
+  /**
+   * calculateDifTemp
+   *
+   * calculate the temperature difference between current day and yesterday and apply the suitable indicator (up,down,equal)
+   *
+   * @param i represents the index of cards array
+   */
+  private calculateDifTemp(i: number): void {
+    const currentDayMax = this.cards[i].maximumTemperature;
+    const yesterdayMax = this.cards[i + 1].maximumTemperature;
+    const currentDayMin = this.cards[i].minimumTemperature;
+    const yesterdayMin = this.cards[i + 1].minimumTemperature;
+
+    if (i !== this.cards.length - 1) {
+      this.difTempMax = currentDayMax - yesterdayMax;
+      this.difTempMin = currentDayMin - yesterdayMin;
+    } else {
+      this.difTempMax = 0;
+      this.difTempMin = 0;
+    }
+
+    this.tempIndicator();
+  }
+
+  /**
+   * tempIndicator
+   *
+   * verifies which indicator will be implemented by the diffTempMax and diffTemMin
+   */
+  private tempIndicator(): void {
+    this.maxIndicator = this.getIndicatorValues(this.difTempMax);
+    this.minIndicator = this.getIndicatorValues(this.difTempMin);
+  }
+
+  /**
+   * getIndicatorValues
+   *
+   * gets which indicator will be rendered to the tempIndicator method
+   *
+   * @param diff its a number that represents the difference of temperature (difTempMax or difTempMin)
+   * @returns an object type ITempIndicator that represents which indicator will be rendered
+   */
+  private getIndicatorValues(diff: number): ITempIndicator {
+    return { up: diff > 0, down: diff < 0, equal: diff === 0 };
   }
 }

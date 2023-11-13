@@ -1,6 +1,6 @@
 .carousel-card-container {
   width: 9.46925rem;
-  height: 9.72106rem;
+  height: 9.75rem;
   border-radius: 1.30956rem;
   border: 0.05rem solid #292929;
 
@@ -32,7 +32,7 @@
     width: 7.85744rem;
     height: 0.05038rem;
     background: #d9d9d9;
-    margin-block: 0.76rem 0.81rem;
+    margin-block: calc(0.76rem - 0.438rem) calc(0.81rem - 0.438rem);
   }
 
   div {

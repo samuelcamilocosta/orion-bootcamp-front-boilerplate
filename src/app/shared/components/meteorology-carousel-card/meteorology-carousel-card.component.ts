@@ -13,4 +13,5 @@ export class MeteorologyCarouselCardComponent {
    * Input property that receives card attributes from the parent component.
    */
   @Input() carouselCardParams?: ISolesDataInterface;
+  @Input() carTempType?: string;
 }

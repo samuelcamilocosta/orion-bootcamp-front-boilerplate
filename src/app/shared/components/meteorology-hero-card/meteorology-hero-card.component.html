@@ -1,13 +1,22 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
 <section class="mat-hero-card-container">
-  <div class="loading-container" *ngIf="heroCardParams; else loadingTemplate">
+  <div [ngClass]="isLoading()" *ngIf="heroCardParams; else loadingTemplate">
     <div class="dates-container">
       <img
         class="calendar"
         src="assets/images/met-hero-card/calendar-outline 1.svg"
         alt=""
       />
-      <h1>{{ heroCardParams?.sol?.solNumberMarsDay }}</h1>
-      <p>{{ "10 Setembro" }}</p>
+      <h1>SOL {{ heroCardParams.solNumberMarsDay }}</h1>
+      <!-- TODO: add date from api when possible -->
+      <p>
+        {{
+          heroCardParams.terrestrialDate === ""
+            ? "11 de Novembro de 2023"
+            : heroCardParams.terrestrialDate
+        }}
+      </p>
     </div>
     <div class="temperature-container">
       <img
@@ -16,24 +25,34 @@
         alt="red marker"
       />
       <div>
-        <h1>Máx.: {{ heroCardParams?.sol?.maximumTemperature }}° F | C</h1>
-        <img
-          class="vector"
-          src="assets/images/met-hero-card/Vector.svg"
-          alt=""
+        <h1>
+          Máx.:
+          <span class="temp-span"
+            >{{ heroCardParams.maximumTemperature.toFixed(0) }}°</span
+          >
+          <span class="tempType-span" (click)="changeType()">{{
+            tempType
+          }}</span>
+        </h1>
+        <app-max-temp-indicator
+          class="max-temp-indicator"
+          [maxIndicator]="maxIndicator"
         />
       </div>
       <div>
-        <p>Mín.: {{ heroCardParams?.sol?.minimumTemperature }}° F | C</p>
-        <img
-          class="caret-down"
-          src="assets/images/met-hero-card/caret-down-outline 1.svg"
-          alt=""
+        <p>
+          Mín.: {{ heroCardParams.minimumTemperature.toFixed(0) }}°
+          {{ tempType }}
+        </p>
+
+        <app-min-temp-indicator
+          class="min-temp-indicator"
+          [minIndicator]="minIndicator"
         />
       </div>
     </div>
   </div>
   <ng-template #loadingTemplate>
-    <app-loading></app-loading>
+    <app-loading class="loading-container"></app-loading>
   </ng-template>
 </section>

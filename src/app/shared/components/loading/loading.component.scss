@@ -1,5 +1,7 @@
-.loading {
-  align-self: center;
+.loading-div {
+  display: flex;
+  justify-content: center;
+
   svg {
     width: 50%;
     transform-origin: center;

@@ -1,3 +1,5 @@
+// TODO: mudar a seta de diferença de temperatura
+
 section {
   width: 100vw;
   height: 100vh;
@@ -86,7 +88,18 @@ section {
 /**
  * Trying to make it responsive
  */
-@media (min-width: 2800px) {
+@media (min-width: 2500px) {
+  .swiper-container::part(button-next) {
+    top: 36rem;
+    right: calc(25%) !important;
+  }
+
+  .swiper-container::part(button-prev) {
+    top: 36rem;
+    left: 25% !important;
+  }
+}
+@media (min-width: 2600px) {
   .swiper-container::part(button-next) {
     top: 36rem;
     right: calc(27%) !important;
