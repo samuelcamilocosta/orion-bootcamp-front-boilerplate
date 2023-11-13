@@ -1,8 +1,9 @@
 export interface ISolesDataInterface {
-  sol: {
-    id: number;
-    solNumberMarsDay: number;
-    maximumTemperature: number;
-    minimumTemperature: number;
-  };
+  id: number;
+  solNumberMarsDay: number;
+  terrestrialDate: string;
+  maximumTemperature: number;
+  minimumTemperature: number;
+  created_at: string;
+  updated_at: string;
 }
