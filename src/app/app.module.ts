@@ -23,6 +23,7 @@ import { MinTempIndicatorComponent } from './shared/components/min-temp-indicato
 import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
 import { ImageSliderModule } from './shared/modules/image-slider.module';
 import { MaterialModule } from './shared/modules/material.module';
+import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { MaterialModule } from './shared/modules/material.module';
     LoadingComponent,
     MaxTempIndicatorComponent,
     MinTempIndicatorComponent,
+    TransitionModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -69,7 +69,13 @@ export class ApiV1Service extends BaseMethods {
                   response.user.accessToken
                 );
 
-            this.route.navigate(['page/home']);
+            this.openTransitionModal();
+
+            setTimeout(() => {
+              this.dialog.closeAll();
+
+              this.route.navigate(['page/home']);
+            }, 4400);
 
             resolve(response);
           } else {
