@@ -1,0 +1,13 @@
+.min-indicator-down {
+  fill: var(--sup-green);
+}
+.min-indicator-up {
+  fill: var(--sup-red);
+
+  transform: rotate(180deg);
+}
+.horizontal-rule {
+  width: 1.125rem;
+  height: 1.125rem;
+  fill: #979797;
+}

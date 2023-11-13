@@ -1,0 +1,12 @@
+.max-indicator-down {
+  fill: var(--sup-green);
+  transform: rotate(180deg);
+}
+.max-indicator-up {
+  fill: var(--sup-red);
+}
+span {
+  display: block;
+  width: 18px;
+  border-top: 3px solid #979797;
+}
