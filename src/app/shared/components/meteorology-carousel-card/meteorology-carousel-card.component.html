@@ -1,11 +1,29 @@
 <section class="carousel-card-container">
-  <div>
-    <h1>{{ carouselCardParams.solesDate }}</h1>
-    <p>{{ carouselCardParams.earthDate }}</p>
+  <div *ngIf="carouselCardParams; else loadingTemplate">
+    <div>
+      <h1>SOL {{ carouselCardParams.solNumberMarsDay }}</h1>
+      <!-- TODO: add date from api when possible -->
+      <p>
+        {{
+          carouselCardParams.terrestrialDate === ""
+            ? "11 de Novembro"
+            : carouselCardParams.terrestrialDate
+        }}
+      </p>
+    </div>
+    <hr />
+    <div class="temperature-container">
+      <h1>
+        Máx.: {{ carouselCardParams.maximumTemperature.toFixed(0) }}°
+        {{ carTempType }}
+      </h1>
+      <p>
+        Mín.: {{ carouselCardParams.minimumTemperature.toFixed(0) }}°
+        {{ carTempType }}
+      </p>
+    </div>
   </div>
-  <hr />
-  <div class="temperature-container">
-    <h1>Máx.: {{ carouselCardParams.maxTemp }}° F</h1>
-    <p>Mín.: {{ carouselCardParams.minTemp }}° F</p>
-  </div>
+  <ng-template #loadingTemplate>
+    <app-loading class="loading-container"></app-loading>
+  </ng-template>
 </section>

@@ -12,12 +12,19 @@
           <p>Veja abaixo as temperaturas registradas até o momento.</p>
         </div>
       </div>
-      <app-logout></app-logout>
+      <!-- logout component -->
+      <app-logout />
     </div>
 
     <div class="hero-card">
-      <!-- main card element -->
-      <app-hero-card [heroCardParams]="newParams" />
+      <!-- hero card component -->
+      <app-hero-card
+        [maxIndicator]="maxIndicator"
+        [minIndicator]="minIndicator"
+        [heroCardParams]="heroCardParams"
+        [tempType]="tempType"
+        (spanClick)="convertTemp()"
+      />
     </div>
 
     <!-- carousel of cards -->
@@ -33,10 +40,14 @@
     >
       <swiper-slide *ngFor="let card of cards; let i = index">
         <app-carousel-card
-          class="card"
+          *ngIf="cards; else loadingTemplate"
+          [carTempType]="carTempType"
           [carouselCardParams]="card"
-          (click)="updateHeroCard(i)"
+          (click)="updateHeroCardParams(i)"
         />
+        <ng-template #loadingTemplate>
+          <app-loading class="loading-container"></app-loading>
+        </ng-template>
       </swiper-slide>
     </swiper-container>
   </div>

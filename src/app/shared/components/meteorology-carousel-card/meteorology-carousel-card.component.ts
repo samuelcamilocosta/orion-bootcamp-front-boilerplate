@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ICarouselCard } from 'src/app/interfaces/carousel-card-params-interface';
+import { ISolesDataInterface } from 'src/app/interfaces/soles-data-interface';
 
 @Component({
   selector: 'app-carousel-card',
@@ -11,7 +11,7 @@ export class MeteorologyCarouselCardComponent {
    * carouselCardParams
    *
    * Input property that receives card attributes from the parent component.
-   * @type {ICarouselCard}
    */
-  @Input() carouselCardParams!: ICarouselCard;
+  @Input() carouselCardParams?: ISolesDataInterface;
+  @Input() carTempType?: string;
 }

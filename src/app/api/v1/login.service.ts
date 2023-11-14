@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ILoginParams } from 'src/app/interfaces/login-params.interface';
 import { ILoginRespParams } from 'src/app/interfaces/login-resp-params-interface';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 import { environment } from 'src/environment/environment';
 import { BaseMethods } from './base-methods';
 
@@ -23,12 +23,11 @@ export class ApiV1Service extends BaseMethods {
    *
    * @param http - The HttpClient service for making HTTP requests.
    * @param dialog - Instance of BaseMethod class for displaying error dialogs.
-   * @param auth - The authentication service.
    * @param route - The Router service for navigation.
    */
   constructor(
+    private storageService: StorageService,
     private http: HttpClient,
-    private auth: AuthService,
     private route: Router,
     dialog: MatDialog
   ) {
@@ -61,10 +60,22 @@ export class ApiV1Service extends BaseMethods {
         .then((response) => {
           if (response) {
             remember
-              ? this.auth.setLocalItem('token', response)
-              : this.auth.setSessionItem('token', response);
+              ? this.storageService.setLocalItem(
+                  'token',
+                  response.user.accessToken
+                )
+              : this.storageService.setSessionItem(
+                  'token',
+                  response.user.accessToken
+                );
 
-            this.route.navigate(['page/home']);
+            this.openTransitionModal();
+
+            setTimeout(() => {
+              this.dialog.closeAll();
+
+              this.route.navigate(['page/home']);
+            }, 4400);
 
             resolve(response);
           } else {

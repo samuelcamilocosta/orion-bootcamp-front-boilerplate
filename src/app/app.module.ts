@@ -14,12 +14,16 @@ import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-p
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
 import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
 import { HomeCardComponent } from './shared/components/home-card/home-card.component';
+import { LoadingComponent } from './shared/components/loading/loading.component';
 import { LogoutComponent } from './shared/components/logout-icon/logout.component';
+import { MaxTempIndicatorComponent } from './shared/components/max-temp-indicator/max-temp-indicator.component';
 import { MeteorologyCarouselCardComponent } from './shared/components/meteorology-carousel-card/meteorology-carousel-card.component';
 import { MeteorologyHeroCardComponent } from './shared/components/meteorology-hero-card/meteorology-hero-card.component';
+import { MinTempIndicatorComponent } from './shared/components/min-temp-indicator/min-temp-indicator.component';
 import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
 import { ImageSliderModule } from './shared/modules/image-slider.module';
 import { MaterialModule } from './shared/modules/material.module';
+import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +37,10 @@ import { MaterialModule } from './shared/modules/material.module';
     MeteorologyPageComponent,
     MeteorologyHeroCardComponent,
     MeteorologyCarouselCardComponent,
+    LoadingComponent,
+    MaxTempIndicatorComponent,
+    MinTempIndicatorComponent,
+    TransitionModalComponent,
   ],
   imports: [
     BrowserModule,

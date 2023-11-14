@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { PasswordRecoveryDialogComponent } from 'src/app/shared/components/password-recovery-dialog/password-recovery-dialog.component';
+import { TransitionModalComponent } from 'src/app/shared/components/transition-modal/transition-modal.component';
 
 export class BaseMethods {
   /**
@@ -11,9 +12,30 @@ export class BaseMethods {
    */
   constructor(protected dialog: MatDialog) {}
 
+  /**
+   * openTransitionModal
+   *
+   * Opens a 100% viewport transition modal after login authentication
+   */
+  protected openTransitionModal(): void {
+    this.dialog.open(TransitionModalComponent, {
+      delayFocusTrap: false,
+      disableClose: true,
+      enterAnimationDuration: 0,
+      hasBackdrop: false,
+    });
+  }
+
+  /**
+   * openSuccessesDialog
+   *
+   * opens a successes dialog after submit email on recovery page
+   * for better user experience.
+   */
   protected openSuccessesDialog(): void {
     this.dialog.open(PasswordRecoveryDialogComponent);
   }
+
   /**
    * Opens an error dialog with the provided error message.
    *

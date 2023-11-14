@@ -1,0 +1,85 @@
+// .modal.fade .modal-dialog,
+// .modal.in .modal-dialog {
+//   -webkit-transform: translate(0, 0);
+//   -ms-transform: translate(0, 0);
+//   transform: translate(0, 0);
+// }
+
+.transition-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: #0f1217;
+  background-image: url("/assets/images/background/Epic-Sky-03 2.png");
+  background-size: cover;
+
+  //typography and position of elements
+  text-align: center;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5.5rem;
+
+  .header-container {
+    display: grid;
+    place-items: center;
+    gap: 2rem;
+
+    img {
+      animation: fadeIn 1.1s infinite alternate;
+      animation-delay: 1.1s;
+    }
+  }
+
+  .swiper-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 33.75rem;
+    height: 7.0625rem;
+
+    swiper-slide {
+      animation: fadeIn 0.3s;
+      animation-delay: 2.17s;
+    }
+
+    &::part(bullet) {
+      background-color: #ffffff40;
+    }
+    &::part(bullet-active) {
+      background-color: #ffd2b5;
+    }
+
+    h3 {
+      margin: 0;
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 0.01875rem;
+    }
+    p {
+      margin-block: 0.94rem 2rem;
+      color: #928e8b;
+      font-size: 1rem;
+      text-align: center;
+      line-height: normal;
+    }
+  }
+}
+
+// animations
+@keyframes fadeIn {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
