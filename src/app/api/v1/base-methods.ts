@@ -60,6 +60,34 @@ export class BaseMethods {
         this.openErrorDialog(error.error);
         break;
 
+      case 401:
+        this.openErrorDialog(
+          'Não autorizado. Credenciais de autenticação ausentes ou incorretas.'
+        );
+        break;
+
+      case 403:
+        this.openErrorDialog(
+          'Proibido. A solicitação foi entendida, mas a autorização foi recusada.'
+        );
+        break;
+
+      case 404:
+        this.openErrorDialog('Recurso não encontrado.');
+        break;
+
+      case 409:
+        this.openErrorDialog(
+          'Conflito. A solicitação não pôde ser concluída devido a um conflito no estado do recurso.'
+        );
+        break;
+
+      case 422:
+        this.openErrorDialog(
+          'Entidade não processável. O servidor não pôde processar as instruções contidas na solicitação.'
+        );
+        break;
+
       case 0:
       case 500:
         this.openErrorDialog(

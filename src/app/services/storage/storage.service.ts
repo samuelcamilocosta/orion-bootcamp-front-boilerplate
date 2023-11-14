@@ -8,7 +8,9 @@ export class StorageService {
   private sessionStorage: Storage;
 
   /**
-   * Constructs the AuthService and initializes local and session storage.
+   * constructor
+   *
+   * initializes local and session storage.
    */
   constructor() {
     this.localStorage = window.localStorage;

@@ -21,6 +21,8 @@ export class ApiV1Service extends BaseMethods {
   /**
    * Constructs the ApiV1Service.
    *
+   *
+   * @param storageService - Service that handles the local/session storage methods
    * @param http - The HttpClient service for making HTTP requests.
    * @param dialog - Instance of BaseMethod class for displaying error dialogs.
    * @param route - The Router service for navigation.
