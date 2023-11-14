@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { StorageService } from 'src/app/services/storage/storage.service';
+import { LogoutService } from 'src/app/api/v1/logout.service';
 
 @Component({
   selector: 'app-logout',
@@ -14,19 +13,20 @@ import { StorageService } from 'src/app/services/storage/storage.service';
  * a button component that removes the user authentication and redirects him
  */
 export class LogoutComponent {
-  constructor(
-    private storageService: StorageService,
-    private route: Router // private googleAnalyticsService: GoogleAnalyticsService
-  ) {}
+  /**
+   * constructor
+   *
+   * @param logoutService:  service to handle user authentication token removal and redirects him to login page
+   */
+  constructor(private logoutService: LogoutService) {}
 
   /**
    * logout
    *
-   * Logs user out by removing access token from local and session storage
+   * Logs user out by removing access token from local/session storage and api
    * and redirects him to login page.
    */
   logout(): void {
-    this.storageService.removeItem('token');
-    this.route.navigate(['/']);
+    this.logoutService.removeAuth();
   }
 }
