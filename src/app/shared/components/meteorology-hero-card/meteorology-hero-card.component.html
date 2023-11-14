@@ -9,13 +9,8 @@
         alt=""
       />
       <h1>SOL {{ heroCardParams.solNumberMarsDay }}</h1>
-      <!-- TODO: add date from api when possible -->
       <p>
-        {{
-          heroCardParams.terrestrialDate === ""
-            ? "11 de Novembro de 2023"
-            : heroCardParams.terrestrialDate
-        }}
+        {{ heroCardParams.terrestrialDate }}
       </p>
     </div>
     <div class="temperature-container">

@@ -2,13 +2,8 @@
   <div *ngIf="carouselCardParams; else loadingTemplate">
     <div>
       <h1>SOL {{ carouselCardParams.solNumberMarsDay }}</h1>
-      <!-- TODO: add date from api when possible -->
       <p>
-        {{
-          carouselCardParams.terrestrialDate === ""
-            ? "11 de Novembro"
-            : carouselCardParams.terrestrialDate
-        }}
+        {{ carouselCardParams.terrestrialDate }}
       </p>
     </div>
     <hr />
