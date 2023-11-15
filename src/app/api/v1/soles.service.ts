@@ -38,10 +38,12 @@ export class SolesService extends BaseMethods {
       const request = this.http
         .get<ISolesDataInterface[]>(this.apiUrl)
         .toPromise();
-
       request
         .then((response) => {
           if (response) {
+            response.forEach((data) => {
+              data.terrestrialDate = new Date(data.terrestrialDate);
+            });
             resolve(response);
           } else {
             reject(

@@ -10,7 +10,12 @@
       />
       <h1>SOL {{ heroCardParams.solNumberMarsDay }}</h1>
       <p>
-        {{ heroCardParams.terrestrialDate }}
+        {{
+          heroCardParams.terrestrialDate.toLocaleDateString(
+            "pt-br",
+            heroDateFormat
+          )
+        }}
       </p>
     </div>
     <div class="temperature-container">

@@ -14,4 +14,9 @@ export class MeteorologyCarouselCardComponent {
    */
   @Input() carouselCardParams?: ISolesDataInterface;
   @Input() carTempType?: string;
+
+  carouselDateFormat: Intl.DateTimeFormatOptions = {
+    day: 'numeric',
+    month: 'long',
+  };
 }

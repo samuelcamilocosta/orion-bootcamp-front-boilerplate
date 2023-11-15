@@ -23,7 +23,7 @@ export class MeteorologyPageComponent implements OnInit {
    * heroCardParams: variable to change hero card params.
    * cards: array of soles params from api request.
    * difTempMax & difTempMin represents the max/min temperature difference between today and yesterday.
-   * maxIndicator & minIndicator: represents the indicator os temperature on hero card.
+   * maxIndicator & minIndicator: represents the temperature indicator on hero card.
    */
   tempType = 'C | F';
   carTempType = 'C';
@@ -37,7 +37,7 @@ export class MeteorologyPageComponent implements OnInit {
   /**
    * Constructor
    *
-   * initializes the solesService to handle api request
+   * inject the solesService to handle soles api request
    */
   constructor(private solesService: SolesService) {}
 
@@ -61,15 +61,6 @@ export class MeteorologyPageComponent implements OnInit {
     this.heroCardParams = this.cards[0];
 
     this.calculateDifTemp(0);
-    // TODO: trocar formato da data no hero card quando receber o valor correto do endpoint
-    // const date = new Date(this.cards[0].created_at);
-    // console.log(
-    //   date.toLocaleDateString('pt-br', {
-    //     day: 'numeric',
-    //     month: 'long',
-    //     year: 'numeric',
-    //   })
-    // );
   }
 
   /**
@@ -101,7 +92,7 @@ export class MeteorologyPageComponent implements OnInit {
    *
    * calculate and change the temperature type and value of all cards on click
    */
-  protected convertTemp() {
+  protected convertTemp(): void {
     const heroCelsius = 'C | F';
     const carouselCelsius = 'C';
     const heroFahrenheit = 'F | C';
@@ -142,12 +133,17 @@ export class MeteorologyPageComponent implements OnInit {
    * @param i represents the index of cards array
    */
   private calculateDifTemp(i: number): void {
-    const currentDayMax = this.cards[i].maximumTemperature;
-    const yesterdayMax = this.cards[i + 1].maximumTemperature;
-    const currentDayMin = this.cards[i].minimumTemperature;
-    const yesterdayMin = this.cards[i + 1].minimumTemperature;
+    let currentDayMax = 0;
+    let yesterdayMax = 0;
+    let currentDayMin = 0;
+    let yesterdayMin = 0;
 
     if (i !== this.cards.length - 1) {
+      currentDayMax = this.cards[i].maximumTemperature;
+      yesterdayMax = this.cards[i + 1].maximumTemperature;
+      currentDayMin = this.cards[i].minimumTemperature;
+      yesterdayMin = this.cards[i + 1].minimumTemperature;
+
       this.difTempMax = currentDayMax - yesterdayMax;
       this.difTempMin = currentDayMin - yesterdayMin;
     } else {

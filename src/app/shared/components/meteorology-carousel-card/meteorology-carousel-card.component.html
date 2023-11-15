@@ -3,7 +3,12 @@
     <div>
       <h1>SOL {{ carouselCardParams.solNumberMarsDay }}</h1>
       <p>
-        {{ carouselCardParams.terrestrialDate }}
+        {{
+          carouselCardParams.terrestrialDate.toLocaleDateString(
+            "pt-br",
+            carouselDateFormat
+          )
+        }}
       </p>
     </div>
     <hr />
