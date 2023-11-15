@@ -19,6 +19,7 @@ export class HomePageComponent {
       cardSubTitle:
         'Veja a previsão do tempo em Marte ao vivo! Descubra como são as temperaturas no planeta vermelho.',
       path: '/page/meteorology',
+      btnText: 'ENTRAR',
     },
     {
       cardImage: 'assets/images/home/rocket.jpeg',
@@ -28,6 +29,7 @@ export class HomePageComponent {
       cardSubTitle:
         'O calendário 2023 para Marte está fechado! Em breve abriremos novas inscrições para visitações em 2025.',
       path: '',
+      btnText: 'ENTRAR',
     },
     {
       cardImage: 'assets/images/home/robot.jpeg',
@@ -37,6 +39,7 @@ export class HomePageComponent {
       cardSubTitle:
         'Ansioso por notícias? Logo mais estará disponível o blog “FalaOrion”, seu portal de notícias da Via Láctea!',
       path: '',
+      btnText: 'ENTRAR',
     },
   ];
 }
