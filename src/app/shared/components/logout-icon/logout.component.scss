@@ -39,8 +39,8 @@
     background-color: transparent;
   }
 
-  /* plus sign */
-  .sign {
+  /* plus logout */
+  .logout {
     width: 100%;
     transition-duration: 0.3s;
     display: flex;
@@ -67,7 +67,7 @@
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
   }
 
-  .Btn:hover .sign {
+  .Btn:hover .logout {
     width: 30%;
     transition-duration: 0.3s;
     padding-left: 20px;
