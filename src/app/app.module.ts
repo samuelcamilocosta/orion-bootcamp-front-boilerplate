@@ -21,11 +21,10 @@ import { MeteorologyCarouselCardComponent } from './shared/components/meteorolog
 import { MeteorologyHeroCardComponent } from './shared/components/meteorology-hero-card/meteorology-hero-card.component';
 import { MinTempIndicatorComponent } from './shared/components/min-temp-indicator/min-temp-indicator.component';
 import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
+import { PremiumModalComponent } from './shared/components/premium-modal/premium-modal.component';
+import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
 import { ImageSliderModule } from './shared/modules/image-slider.module';
 import { MaterialModule } from './shared/modules/material.module';
-import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
-import { PremiumModalComponent } from './shared/components/premium-modal/premium-modal.component';
-import { PremiumLogoComponent } from './shared/components/premium-logo/premium-logo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +43,6 @@ import { PremiumLogoComponent } from './shared/components/premium-logo/premium-l
     MinTempIndicatorComponent,
     TransitionModalComponent,
     PremiumModalComponent,
-    PremiumLogoComponent,
   ],
   imports: [
     BrowserModule,
