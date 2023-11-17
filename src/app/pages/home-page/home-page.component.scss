@@ -1,17 +1,18 @@
 section {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
+  align-items: center;
 
   .home-page-container {
-    padding: 5.04rem 5rem;
-
     display: flex;
     flex-direction: column;
     gap: 3.81rem;
+    width: 85.375rem;
+    height: 48rem;
 
     .home-page-header {
+      padding: 5rem 5rem 0 5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -39,12 +40,36 @@ section {
     p {
       font-size: 1rem;
     }
-
-    .cards-container {
-      display: flex;
-      gap: 2.19rem;
-    }
   }
+}
+
+swiper-container {
+  position: absolute;
+  width: 85.375rem;
+  swiper-slide {
+    width: 379px !important;
+    margin: 0;
+  }
+  &::part(wrapper) {
+    padding-inline: 5rem;
+    gap: 2.19rem;
+  }
+}
+
+swiper-container::before,
+swiper-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 5rem;
+  height: 100%;
+  background: rgba(13, 16, 23, 0.35);
+  z-index: 2;
+}
+
+swiper-container::after {
+  right: 0;
+  left: auto;
 }
 
 // if the card has no route path it will be disabled
@@ -54,22 +79,11 @@ section {
 }
 
 /**
- * Trying to make it responsive
+ * Change background color of transparent edges on carousel
  */
-@media (max-width: 1300px) {
-  .cards-container {
-    flex-wrap: wrap;
-  }
-}
-@media (max-width: 953px) {
-  .home-page-header {
-    flex-direction: column-reverse;
-    gap: 2rem;
-  }
-
-  .cards-container {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+@media (min-height: 900px) {
+  swiper-container::before,
+  swiper-container::after {
+    background: rgba(16, 19, 24, 0.35);
   }
 }

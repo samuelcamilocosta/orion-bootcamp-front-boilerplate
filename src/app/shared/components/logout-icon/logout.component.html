@@ -1,19 +1,29 @@
 <!-- logout with animation -->
 <section class="logout-container">
-  <div>
-    <button
-      (click)="openPremiumModal()"
-      mat-stroked-button
+  <button
+    *ngIf="isPremium === false; else templateFree"
+    (click)="openPremiumModal()"
+    mat-stroked-button
+    matTooltipClass="custom-tooltip"
+    matTooltipPosition="above"
+    matTooltip="Acesse e seja Premium"
+    aria-label="Button that displays a tooltip when focused or hovered over"
+  >
+    SEJA PREMIUM
+  </button>
+  <ng-template #templateFree>
+    <img
+      class="premium-icon"
+      src="/assets/images/premium/premium-icon.svg"
+      alt="Purple shield emblem with a central checkmark"
       matTooltipClass="custom-tooltip"
       matTooltipPosition="above"
-      matTooltip="Acesse e seja Premium"
+      matTooltip="Acesse e leia mais sobre o seu perfil premium"
       aria-label="Button that displays a tooltip when focused or hovered over"
-    >
-      SEJA PREMIUM
-    </button>
-  </div>
-  <button (click)="logout()" class="Btn">
-    <div class="logout">
+    />
+  </ng-template>
+  <button (click)="logout()" class="logout-btn">
+    <div class="logout-svg">
       <svg
         width="35"
         height="35"

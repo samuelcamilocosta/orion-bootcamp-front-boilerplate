@@ -41,5 +41,35 @@ export class HomePageComponent {
       path: '',
       btnText: 'ENTRAR',
     },
+    {
+      cardImage: 'assets/images/home/robot.jpeg',
+      imageAltText:
+        'Exploration robot on Mars collecting data on the Martian surface.',
+      cardTitle: 'Notícias de Marte',
+      cardSubTitle:
+        'Ansioso por notícias? Logo mais estará disponível o blog “FalaOrion”, seu portal de notícias da Via Láctea!',
+      path: '',
+      btnText: 'ENTRAR',
+    },
+    {
+      cardImage: 'assets/images/home/robot.jpeg',
+      imageAltText:
+        'Exploration robot on Mars collecting data on the Martian surface.',
+      cardTitle: 'Notícias de Marte',
+      cardSubTitle:
+        'Ansioso por notícias? Logo mais estará disponível o blog “FalaOrion”, seu portal de notícias da Via Láctea!',
+      path: '',
+      btnText: 'ENTRAR',
+    },
+    {
+      cardImage: 'assets/images/home/robot.jpeg',
+      imageAltText:
+        'Exploration robot on Mars collecting data on the Martian surface.',
+      cardTitle: 'Notícias de Marte',
+      cardSubTitle:
+        'Ansioso por notícias? Logo mais estará disponível o blog “FalaOrion”, seu portal de notícias da Via Láctea!',
+      path: '',
+      btnText: 'ENTRAR',
+    },
   ];
 }

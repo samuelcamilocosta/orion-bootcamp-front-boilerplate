@@ -8,11 +8,22 @@
       <app-logout></app-logout>
     </div>
     <div class="cards-container">
-      <app-card
-        *ngFor="let card of cards"
-        [class.disabled-card]="card.path === ''"
-        [cardAttributes]="card"
-      ></app-card>
+      <!-- carousel of cards -->
+      <swiper-container
+        class="swiper-container"
+        slides-per-view="3"
+        grab-cursor="true"
+        keyboard="true"
+        mousewheel="true"
+        free-mode="true"
+      >
+        <swiper-slide *ngFor="let card of cards; let i = index">
+          <app-card
+            [class.disabled-card]="card.path === ''"
+            [cardAttributes]="card"
+          ></app-card>
+        </swiper-slide>
+      </swiper-container>
     </div>
   </div>
 </section>

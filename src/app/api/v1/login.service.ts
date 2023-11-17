@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ILoginParams } from 'src/app/interfaces/login-params.interface';
 import { ILoginRespParams } from 'src/app/interfaces/login-resp-params-interface';
+import { IUser } from 'src/app/interfaces/user-interface';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { environment } from 'src/environment/environment';
 import { BaseMethods } from './base-methods';
@@ -61,18 +62,26 @@ export class ApiV1Service extends BaseMethods {
       request
         .then((response) => {
           if (response) {
+            const userAuth: IUser = {
+              role: response.user.role,
+              accessToken: response.user.accessToken,
+            };
+
             remember
               ? this.storageService.setLocalItem(
-                  'token',
-                  response.user.accessToken
+                  'user',
+                  JSON.stringify(userAuth)
                 )
               : this.storageService.setSessionItem(
-                  'token',
-                  response.user.accessToken
+                  'user',
+                  JSON.stringify(userAuth)
                 );
 
             this.openTransitionModal();
 
+            /**
+             * Transition Modal stays open for 4.4s, after that it closes and redirects user to home page
+             */
             setTimeout(() => {
               this.dialog.closeAll();
 

@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { register } from 'swiper/element/bundle';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -21,11 +22,14 @@ import { MeteorologyCarouselCardComponent } from './shared/components/meteorolog
 import { MeteorologyHeroCardComponent } from './shared/components/meteorology-hero-card/meteorology-hero-card.component';
 import { MinTempIndicatorComponent } from './shared/components/min-temp-indicator/min-temp-indicator.component';
 import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
+import { PremiumLogoComponent } from './shared/components/premium-logo/premium-logo.component';
+import { PremiumModalComponent } from './shared/components/premium-modal/premium-modal.component';
+import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
 import { ImageSliderModule } from './shared/modules/image-slider.module';
 import { MaterialModule } from './shared/modules/material.module';
-import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
-import { PremiumModalComponent } from './shared/components/premium-modal/premium-modal.component';
-import { PremiumLogoComponent } from './shared/components/premium-logo/premium-logo.component';
+
+register();
+
 @NgModule({
   declarations: [
     AppComponent,

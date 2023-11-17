@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { environment } from 'src/environment/environment';
+import { IUser } from '../../interfaces/user-interface';
 import { BaseMethods } from './base-methods';
 
 @Injectable({
@@ -59,7 +60,7 @@ export class LogoutService extends BaseMethods {
 
       await this.http.patch(this.apiURL, {}, { headers }).toPromise();
 
-      this.storageService.removeItem('token');
+      this.storageService.removeItem('user');
 
       this.route.navigate(['/']);
     } catch (error) {
@@ -80,8 +81,20 @@ export class LogoutService extends BaseMethods {
    */
 
   private getTokenFromStorage(): string {
-    return localStorage.length === 0
-      ? this.storageService.getSessionItem('token')
-      : this.storageService.getLocalItem('token');
+    let user: IUser;
+
+    let token: string;
+
+    if (localStorage.length === 0) {
+      user = JSON.parse(this.storageService.getSessionItem('user'));
+
+      token = user.accessToken;
+    } else {
+      user = JSON.parse(this.storageService.getLocalItem('user'));
+
+      token = user.accessToken;
+    }
+
+    return token;
   }
 }
