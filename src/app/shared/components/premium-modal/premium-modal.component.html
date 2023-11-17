@@ -1,0 +1,42 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<section class="premium-modal-container">
+  <div class="wrapper">
+    <div class="header-container">
+      <div class="header-text">
+        <img
+          class="premium-icon"
+          src="/assets/images/premium/premium-logo.svg"
+          alt=""
+        />
+        <h1>SEJA <span>PREMIUM!</span></h1>
+      </div>
+      <img
+        (click)="closeDialog()"
+        class="close-icon"
+        src="/assets/images/premium/close-icon.svg"
+        alt="close"
+      />
+    </div>
+    <div class="main-text">
+      <h1>Olá, explorador(a) Orion!</h1>
+      <p>
+        Desbrave o Orion Marte em sua totalidade com o nossos planos Premium:
+        sem limites, offline, sem anúncios. Acesso ilimitado a todas as áreas.
+      </p>
+    </div>
+    <div class="cards-container">
+      <app-card
+        *ngFor="let card of cards"
+        [cardAttributes]="card"
+        [premiumStyle]="premiumStyleActive"
+      />
+    </div>
+    <p class="explorer-plan-text">
+      Continuar com o plano
+      <a (click)="closeDialog()" routerLink="/page/home">
+        Explorador (Gratuito)</a
+      >.
+    </p>
+  </div>
+</section>

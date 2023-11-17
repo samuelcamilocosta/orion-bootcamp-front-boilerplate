@@ -17,6 +17,11 @@ export class HomeCardComponent {
   @Input() cardAttributes!: ICard;
 
   /**
+   * Input property that applies the class "card-content-premium" when needed on parent component
+   */
+  @Input() premiumStyle = false;
+
+  /**
    * Determines the visibility of the card based on the presence of a router link path.
    * @returns 'visible' if there's a empty path, 'hidden' otherwise.
    */

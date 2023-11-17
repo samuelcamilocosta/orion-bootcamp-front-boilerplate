@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { PasswordRecoveryDialogComponent } from 'src/app/shared/components/password-recovery-dialog/password-recovery-dialog.component';
+import { PremiumModalComponent } from 'src/app/shared/components/premium-modal/premium-modal.component';
 import { TransitionModalComponent } from 'src/app/shared/components/transition-modal/transition-modal.component';
 
 export class BaseMethods {
@@ -23,6 +24,18 @@ export class BaseMethods {
       disableClose: true,
       enterAnimationDuration: 0,
       hasBackdrop: false,
+    });
+  }
+
+  /**
+   * openPremiumModal
+   *
+   * Opens a modal centered in viewport with information about the Premium user
+   */
+  protected openPremiumModal(): void {
+    this.dialog.open(PremiumModalComponent, {
+      maxWidth: '100%',
+      panelClass: 'app-premium-modal-radius',
     });
   }
 

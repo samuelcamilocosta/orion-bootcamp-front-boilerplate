@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { BaseMethods } from 'src/app/api/v1/base-methods';
 import { LogoutService } from 'src/app/api/v1/logout.service';
 
 @Component({
@@ -12,13 +14,16 @@ import { LogoutService } from 'src/app/api/v1/logout.service';
  *
  * a button component that removes the user authentication and redirects him
  */
-export class LogoutComponent {
+export class LogoutComponent extends BaseMethods {
   /**
    * constructor
    *
+   * @param dialog: Instance of BaseMethod class for displaying dialogs.
    * @param logoutService:  service to handle user authentication token removal and redirects him to login page
    */
-  constructor(private logoutService: LogoutService) {}
+  constructor(private logoutService: LogoutService, dialog: MatDialog) {
+    super(dialog);
+  }
 
   /**
    * logout
@@ -28,5 +33,14 @@ export class LogoutComponent {
    */
   logout(): void {
     this.logoutService.removeAuth();
+  }
+
+  /**
+   * openModal
+   *
+   * opens the premium modal when "SEJA PREMIUM" button is clicked
+   */
+  openModal(): void {
+    this.openPremiumModal();
   }
 }

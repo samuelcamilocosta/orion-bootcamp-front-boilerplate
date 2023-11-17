@@ -4,20 +4,25 @@
     src="{{ cardAttributes.cardImage }}"
     alt="{{ cardAttributes.imageAltText }}"
   />
-  <div class="card-content">
+  <div
+    [ngClass]="{ 'card-content-premium': premiumStyle }"
+    class="card-content"
+  >
     <div class="text-card">
-      <div class="card-soon" [style.visibility]="showSoon()">EM BREVE</div>
+      <div class="card-soon card-soon-premium" [style.visibility]="showSoon()">
+        EM BREVE
+      </div>
       <h3>{{ cardAttributes.cardTitle }}</h3>
       <p>{{ cardAttributes.cardSubTitle }}</p>
     </div>
     <div class="button-container">
       <button
-        class="submitBtn"
+        class="submitBtn submitBtn-premium"
         mat-button
         [disabled]="isDisabled()"
         routerLink="{{ cardAttributes.path }}"
       >
-        ENTRAR
+        {{ cardAttributes.btnText }}
       </button>
     </div>
   </div>

@@ -4,4 +4,5 @@ export interface ICard {
   cardTitle: string;
   cardSubTitle: string;
   path: string;
+  btnText: string;
 }

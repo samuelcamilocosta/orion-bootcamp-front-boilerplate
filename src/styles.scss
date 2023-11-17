@@ -21,3 +21,15 @@ h1,
 p {
   color: #fff;
 }
+
+app-premium-modal {
+  display: grid;
+  place-content: center;
+  border-radius: 1.25rem;
+  background: #181818;
+}
+
+.app-premium-modal-radius .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 1.25rem !important;
+  background-color: transparent !important;
+}

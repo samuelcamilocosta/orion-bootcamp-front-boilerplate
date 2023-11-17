@@ -1,0 +1,109 @@
+// @import "../../../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+.premium-modal-container {
+  *:not(app-card) {
+    margin: 0;
+  }
+
+  display: grid;
+  place-content: center;
+  border-radius: 1.25rem;
+
+  background-image: url("/assets/images/background/premium-modal-bg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+
+  .wrapper {
+    width: 67.6875rem;
+    height: 41.625rem;
+    padding: 2.31rem 6.88rem 0.86rem 6.88rem;
+    display: grid;
+    justify-content: space-between;
+  }
+
+  .cards-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: (2.19rem);
+    height: fit-content;
+  }
+
+  .header-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .close-icon {
+      position: absolute;
+      right: -4.563rem;
+      cursor: pointer;
+    }
+    .header-text {
+      position: relative;
+
+      h1 {
+        color: #fff;
+
+        font-size: 2.5rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        span {
+          color: #ffd2b5;
+        }
+      }
+
+      .premium-icon {
+        position: absolute;
+        left: -2.69rem;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+  .main-text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.56rem;
+    margin-block: 1.5rem calc(1.5rem - 0.813rem);
+
+    h1 {
+      color: #ffd2b5;
+
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+    p {
+      color: #fff;
+      text-align: justify;
+
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+
+  .explorer-plan-text {
+    color: #fff;
+    text-align: center;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    align-self: center;
+    margin-top: calc(1.5rem - 1.313rem);
+
+    a {
+      cursor: pointer;
+      color: white;
+      text-underline-offset: 0.35rem;
+    }
+  }
+}
