@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IHeroCard } from 'src/app/interfaces/hero-card-params-interface';
 import { ITempIndicator } from 'src/app/interfaces/itemp-indicator';
 import { ISolesDataInterface } from 'src/app/interfaces/soles-data-interface';
 import { register } from 'swiper/element/bundle';
@@ -18,21 +19,21 @@ register();
  */
 export class MeteorologyPageComponent implements OnInit {
   /**
-   * tempType: represents temperature scale (Celsius or Fahrenheit) string on Hero card
    * carTempType: represents temperature scale (Celsius or Fahrenheit) string on carousel cards
-   * heroCardParams: variable to change hero card params.
    * cards: array of soles params from api request.
    * difTempMax & difTempMin represents the max/min temperature difference between today and yesterday.
-   * maxIndicator & minIndicator: represents the temperature indicator on hero card.
    */
-  tempType = 'C | F';
   carTempType = 'C';
-  heroCardParams?: ISolesDataInterface;
   cards: ISolesDataInterface[] = [];
   difTempMax = 0;
   difTempMin = 0;
-  maxIndicator?: ITempIndicator;
-  minIndicator?: ITempIndicator;
+
+  /**
+   *  heroCardParams: variable to change hero card params.
+   */
+  heroCardParams: IHeroCard = {
+    tempType: 'C | F',
+  } as IHeroCard;
 
   /**
    * Constructor
@@ -58,7 +59,7 @@ export class MeteorologyPageComponent implements OnInit {
   private async loadData(): Promise<void> {
     this.cards = await this.solesService.getData();
 
-    this.heroCardParams = this.cards[0];
+    this.heroCardParams.cardParams = this.cards[0];
 
     this.calculateDifTemp(0);
   }
@@ -98,14 +99,16 @@ export class MeteorologyPageComponent implements OnInit {
     const heroFahrenheit = 'F | C';
     const carouselFahrenheit = 'F';
 
-    if (this.tempType === heroCelsius) {
+    if (this.heroCardParams.tempType === heroCelsius) {
       this.calculateFahrenheit();
     } else {
       this.calculateCelsius();
     }
 
-    this.tempType =
-      this.tempType === heroCelsius ? heroFahrenheit : heroCelsius;
+    this.heroCardParams.tempType =
+      this.heroCardParams.tempType === heroCelsius
+        ? heroFahrenheit
+        : heroCelsius;
     this.carTempType =
       this.carTempType === carouselCelsius
         ? carouselFahrenheit
@@ -120,8 +123,7 @@ export class MeteorologyPageComponent implements OnInit {
    * @param i: index of the carousel card
    */
   protected updateHeroCardParams(i: number): void {
-    this.heroCardParams = this.cards[i];
-
+    this.heroCardParams.cardParams = this.cards[i];
     this.calculateDifTemp(i);
   }
 
@@ -160,8 +162,8 @@ export class MeteorologyPageComponent implements OnInit {
    * verifies which indicator will be implemented by the diffTempMax and diffTemMin
    */
   private tempIndicator(): void {
-    this.maxIndicator = this.getIndicatorValues(this.difTempMax);
-    this.minIndicator = this.getIndicatorValues(this.difTempMin);
+    this.heroCardParams.maxIndicator = this.getIndicatorValues(this.difTempMax);
+    this.heroCardParams.minIndicator = this.getIndicatorValues(this.difTempMin);
   }
 
   /**
