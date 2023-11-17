@@ -27,12 +27,18 @@ export class BaseMethods {
     });
   }
 
+  /**
+   * openPremiumModal
+   *
+   * Opens a modal centered in viewport with information about the Premium user
+   */
   protected openPremiumModal(): void {
     this.dialog.open(PremiumModalComponent, {
       maxWidth: '100%',
       panelClass: 'app-premium-modal-radius',
     });
   }
+
   /**
    * openSuccessesDialog
    *
