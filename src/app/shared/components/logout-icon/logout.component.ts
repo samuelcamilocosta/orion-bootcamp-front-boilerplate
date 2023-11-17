@@ -40,7 +40,7 @@ export class LogoutComponent extends BaseMethods {
    *
    * opens the premium modal when "SEJA PREMIUM" button is clicked
    */
-  openModal() {
+  openModal(): void {
     this.openPremiumModal();
   }
 }

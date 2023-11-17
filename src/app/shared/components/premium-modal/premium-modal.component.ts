@@ -13,7 +13,7 @@ export class PremiumModalComponent {
    *
    * apply "the card-content-premium" class on home-cards component to reuse it
    */
-  premiumStyleActive = true; //
+  premiumStyleActive = true;
 
   constructor(private dialogRef: MatDialogRef<PremiumModalComponent>) {}
 
@@ -22,7 +22,7 @@ export class PremiumModalComponent {
    *
    * closes the PremiumModalComponent dialog
    */
-  closeDialog() {
+  closeDialog(): void {
     this.dialogRef.close();
   }
 
