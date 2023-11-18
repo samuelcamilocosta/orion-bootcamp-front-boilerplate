@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IHeroCard } from 'src/app/interfaces/hero-card-params-interface';
 import { ITempIndicator } from 'src/app/interfaces/itemp-indicator';
 import { ISolesDataInterface } from 'src/app/interfaces/soles-data-interface';
 import { register } from 'swiper/element/bundle';
@@ -18,26 +19,26 @@ register();
  */
 export class MeteorologyPageComponent implements OnInit {
   /**
-   * tempType: represents temperature scale (Celsius or Fahrenheit) string on Hero card
    * carTempType: represents temperature scale (Celsius or Fahrenheit) string on carousel cards
-   * heroCardParams: variable to change hero card params.
    * cards: array of soles params from api request.
    * difTempMax & difTempMin represents the max/min temperature difference between today and yesterday.
-   * maxIndicator & minIndicator: represents the indicator os temperature on hero card.
    */
-  tempType = 'C | F';
   carTempType = 'C';
-  heroCardParams?: ISolesDataInterface;
   cards: ISolesDataInterface[] = [];
   difTempMax = 0;
   difTempMin = 0;
-  maxIndicator?: ITempIndicator;
-  minIndicator?: ITempIndicator;
+
+  /**
+   *  heroCardParams: variable to change hero card params.
+   */
+  heroCardParams: IHeroCard = {
+    tempType: 'C | F',
+  } as IHeroCard;
 
   /**
    * Constructor
    *
-   * initializes the solesService to handle api request
+   * inject the solesService to handle soles api request
    */
   constructor(private solesService: SolesService) {}
 
@@ -58,18 +59,9 @@ export class MeteorologyPageComponent implements OnInit {
   private async loadData(): Promise<void> {
     this.cards = await this.solesService.getData();
 
-    this.heroCardParams = this.cards[0];
+    this.heroCardParams.cardParams = this.cards[0];
 
     this.calculateDifTemp(0);
-    // TODO: trocar formato da data no hero card quando receber o valor correto do endpoint
-    // const date = new Date(this.cards[0].created_at);
-    // console.log(
-    //   date.toLocaleDateString('pt-br', {
-    //     day: 'numeric',
-    //     month: 'long',
-    //     year: 'numeric',
-    //   })
-    // );
   }
 
   /**
@@ -101,20 +93,22 @@ export class MeteorologyPageComponent implements OnInit {
    *
    * calculate and change the temperature type and value of all cards on click
    */
-  protected convertTemp() {
+  protected convertTemp(): void {
     const heroCelsius = 'C | F';
     const carouselCelsius = 'C';
     const heroFahrenheit = 'F | C';
     const carouselFahrenheit = 'F';
 
-    if (this.tempType === heroCelsius) {
+    if (this.heroCardParams.tempType === heroCelsius) {
       this.calculateFahrenheit();
     } else {
       this.calculateCelsius();
     }
 
-    this.tempType =
-      this.tempType === heroCelsius ? heroFahrenheit : heroCelsius;
+    this.heroCardParams.tempType =
+      this.heroCardParams.tempType === heroCelsius
+        ? heroFahrenheit
+        : heroCelsius;
     this.carTempType =
       this.carTempType === carouselCelsius
         ? carouselFahrenheit
@@ -129,8 +123,7 @@ export class MeteorologyPageComponent implements OnInit {
    * @param i: index of the carousel card
    */
   protected updateHeroCardParams(i: number): void {
-    this.heroCardParams = this.cards[i];
-
+    this.heroCardParams.cardParams = this.cards[i];
     this.calculateDifTemp(i);
   }
 
@@ -142,12 +135,17 @@ export class MeteorologyPageComponent implements OnInit {
    * @param i represents the index of cards array
    */
   private calculateDifTemp(i: number): void {
-    const currentDayMax = this.cards[i].maximumTemperature;
-    const yesterdayMax = this.cards[i + 1].maximumTemperature;
-    const currentDayMin = this.cards[i].minimumTemperature;
-    const yesterdayMin = this.cards[i + 1].minimumTemperature;
+    let currentDayMax = 0;
+    let yesterdayMax = 0;
+    let currentDayMin = 0;
+    let yesterdayMin = 0;
 
     if (i !== this.cards.length - 1) {
+      currentDayMax = this.cards[i].maximumTemperature;
+      yesterdayMax = this.cards[i + 1].maximumTemperature;
+      currentDayMin = this.cards[i].minimumTemperature;
+      yesterdayMin = this.cards[i + 1].minimumTemperature;
+
       this.difTempMax = currentDayMax - yesterdayMax;
       this.difTempMin = currentDayMin - yesterdayMin;
     } else {
@@ -164,8 +162,8 @@ export class MeteorologyPageComponent implements OnInit {
    * verifies which indicator will be implemented by the diffTempMax and diffTemMin
    */
   private tempIndicator(): void {
-    this.maxIndicator = this.getIndicatorValues(this.difTempMax);
-    this.minIndicator = this.getIndicatorValues(this.difTempMin);
+    this.heroCardParams.maxIndicator = this.getIndicatorValues(this.difTempMax);
+    this.heroCardParams.minIndicator = this.getIndicatorValues(this.difTempMin);
   }
 
   /**

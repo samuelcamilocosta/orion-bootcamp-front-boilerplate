@@ -8,14 +8,9 @@
         src="assets/images/met-hero-card/calendar-outline 1.svg"
         alt=""
       />
-      <h1>SOL {{ heroCardParams.solNumberMarsDay }}</h1>
-      <!-- TODO: add date from api when possible -->
+      <h1>SOL {{ getSolNumberMarsDay(heroCardParams) }}</h1>
       <p>
-        {{
-          heroCardParams.terrestrialDate === ""
-            ? "11 de Novembro de 2023"
-            : heroCardParams.terrestrialDate
-        }}
+        {{ getTerrestrialDate(heroCardParams) }}
       </p>
     </div>
     <div class="temperature-container">
@@ -28,26 +23,26 @@
         <h1>
           Máx.:
           <span class="temp-span"
-            >{{ heroCardParams.maximumTemperature.toFixed(0) }}°</span
+            >{{ getMaximumTemperature(heroCardParams) }}°</span
           >
           <span class="tempType-span" (click)="changeType()">{{
-            tempType
+            getTempType()
           }}</span>
         </h1>
         <app-max-temp-indicator
           class="max-temp-indicator"
-          [maxIndicator]="maxIndicator"
+          [maxIndicator]="getMaxIndicator()"
         />
       </div>
       <div>
         <p>
-          Mín.: {{ heroCardParams.minimumTemperature.toFixed(0) }}°
-          {{ tempType }}
+          Mín.: {{ getMinimumTemperature(heroCardParams) }}°
+          {{ getTempType() }}
         </p>
 
         <app-min-temp-indicator
           class="min-temp-indicator"
-          [minIndicator]="minIndicator"
+          [minIndicator]="getMinIndicator()"
         />
       </div>
     </div>
