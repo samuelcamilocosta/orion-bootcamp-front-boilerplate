@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ISolesDataInterface } from 'src/app/interfaces/soles-data-interface';
 import { environment } from 'src/environment/environment';
+import { AuthService } from '../../services/auth/auth.service';
 import { BaseMethods } from './base-methods';
 
 @Injectable({
@@ -21,7 +23,12 @@ export class SolesService extends BaseMethods {
    * @param http - The HttpClient service for making HTTP requests.
    * @param dialog - Instance of BaseMethod class for displaying error dialogs.
    */
-  constructor(private http: HttpClient, dialog: MatDialog) {
+  constructor(
+    private authService: AuthService,
+    private http: HttpClient,
+    dialog: MatDialog,
+    private route: Router
+  ) {
     super(dialog);
     this.apiUrl = `${environment.api}/v1/soles`;
   }
@@ -35,29 +42,39 @@ export class SolesService extends BaseMethods {
    */
   async getData(): Promise<ISolesDataInterface[]> {
     return new Promise<ISolesDataInterface[]>((resolve, reject) => {
-      const request = this.http
-        .get<ISolesDataInterface[]>(this.apiUrl)
-        .toPromise();
-      request
-        .then((response) => {
-          if (response) {
-            response.forEach((data) => {
-              data.terrestrialDate = new Date(data.terrestrialDate);
-            });
-            resolve(response);
-          } else {
-            reject(
-              this.openErrorDialog(
-                'Ocorreu algum erro de conexão ou erro interno, resposta recebida como vazia'
-              )
-            );
-          }
-        })
-        .catch((error) => {
-          this.handleError(error);
+      const token = this.authService.getTokenFromStorage();
 
-          reject(error);
+      if (token) {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`,
         });
+
+        const request = this.http
+          .get<ISolesDataInterface[]>(this.apiUrl, { headers })
+          .toPromise();
+        request
+          .then((response) => {
+            if (response) {
+              response.forEach((data) => {
+                data.terrestrialDate = new Date(data.terrestrialDate);
+              });
+              resolve(response);
+            } else {
+              reject(
+                this.openErrorDialog(
+                  'Ocorreu algum erro de conexão ou erro interno, resposta recebida como vazia'
+                )
+              );
+            }
+          })
+          .catch((error) => {
+            this.handleError(error);
+
+            reject(error);
+          });
+      } else {
+        this.route.navigate(['/']);
+      }
     });
   }
 }

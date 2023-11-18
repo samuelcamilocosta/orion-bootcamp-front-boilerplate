@@ -22,4 +22,17 @@ export class AuthService {
     if (tokenLocal || tokenSession) return true;
     return false;
   }
+
+  /**
+   * getTokenFromStorage
+   *
+   * gets the user access token from storage
+   *
+   * @returns user access token from storage
+   */
+  getTokenFromStorage(): string {
+    return localStorage.length === 0
+      ? this.storageService.getSessionItem('token')
+      : this.storageService.getLocalItem('token');
+  }
 }
