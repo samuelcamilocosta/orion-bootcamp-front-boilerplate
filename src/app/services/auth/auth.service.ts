@@ -18,6 +18,7 @@ export class AuthService {
    */
   isAuthenticated(): boolean {
     const token = this.getUser('token');
+    console.log(token);
 
     if (token) return true;
     return false;
@@ -54,7 +55,6 @@ export class AuthService {
     }
 
     const userData = key === 'role' ? user?.role : user?.accessToken;
-
     return userData ? userData : null;
   }
 

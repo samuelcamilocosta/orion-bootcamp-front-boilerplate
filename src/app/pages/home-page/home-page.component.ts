@@ -28,7 +28,7 @@ export class HomePageComponent {
       cardTitle: 'Viagens para Marte',
       cardSubTitle:
         'O calendário 2023 para Marte está fechado! Em breve abriremos novas inscrições para visitações em 2025.',
-      path: '',
+      path: '/page/meteorology',
       btnText: 'ENTRAR',
     },
     {

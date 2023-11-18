@@ -1,11 +1,5 @@
+import { IUser } from './user-interface';
+
 export interface ILoginRespParams {
-  user: {
-    id: string;
-    role: string;
-    email: string;
-    passwordRecoveryToken: string;
-    accessToken: string;
-    created_at: Date;
-    updated_at: Date;
-  };
+  user: IUser;
 }
