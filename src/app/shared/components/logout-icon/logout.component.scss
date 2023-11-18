@@ -12,26 +12,20 @@
 
 .logout-container {
   display: flex;
-  gap: 2.5rem;
   align-items: center;
 
+  .premium-icon {
+    margin-right: 1.56rem;
+  }
+
   button {
-    width: 11.4375rem;
-    height: 2.063rem;
-    border-radius: 3.125rem;
-    border: 1px solid #a42d2d;
-    background: #fff;
-  button {
+    margin-right: 2.5rem;
     width: 11.4375rem;
     height: 2.063rem;
     border-radius: 3.125rem;
     border: 1px solid #a42d2d;
     background: #fff;
 
-    //typography
-    color: #a42d2d;
-    font-weight: 700;
-    text-transform: uppercase;
     //typography
     color: #a42d2d;
     font-weight: 700;
@@ -39,12 +33,11 @@
   }
 
   .logout-btn {
-  .logout-btn {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -75,7 +68,7 @@
     transition-duration: 0.3s;
   }
   /* hover effect on button width */
-  .logout-btn:hover {
+
   .logout-btn:hover {
     width: 125px;
     border-radius: 40px;
@@ -89,7 +82,7 @@
     padding-left: 20px;
   }
   /* hover effect button's text */
-  .logout-btn:hover .text {
+
   .logout-btn:hover .text {
     opacity: 1;
     width: 70%;
@@ -97,7 +90,7 @@
     padding-right: 10px;
   }
   /* button click effect*/
-  .logout-btn:active {
+
   .logout-btn:active {
     transform: translate(2px, 2px);
   }

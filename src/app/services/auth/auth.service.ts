@@ -44,7 +44,7 @@ export class AuthService {
    * @param key parameter to get from the 'user' on local/session storage
    * @returns a string of 'user' role or 'user' accessToken
    */
-  private getUser(key: string): string {
+  private getUser(key: string): string | null {
     let user: IUser;
 
     if (localStorage.length === 0) {
@@ -53,8 +53,8 @@ export class AuthService {
       user = JSON.parse(this.storageService.getLocalItem('user'));
     }
 
-    const userData = key === 'role' ? user.role : user.accessToken;
+    const userData = key === 'role' ? user?.role : user?.accessToken;
 
-    return userData;
+    return userData ? userData : null;
   }
 }
