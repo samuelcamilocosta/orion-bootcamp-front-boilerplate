@@ -1,26 +1,32 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ITempIndicator } from 'src/app/interfaces/itemp-indicator';
-import { ISolesDataInterface } from 'src/app/interfaces/soles-data-interface';
+import { IHeroCard } from 'src/app/interfaces/hero-card-params-interface';
+import { CardParamsMethods } from '../cards/card-params-methods';
 
 @Component({
   selector: 'app-hero-card',
   templateUrl: './meteorology-hero-card.component.html',
   styleUrls: ['./meteorology-hero-card.component.scss'],
 })
-export class MeteorologyHeroCardComponent {
+export class MeteorologyHeroCardComponent extends CardParamsMethods {
   /**
    * heroCardParams
    *
    * Input property that receives card attributes from the parent component.
-   * @type {ISolesDataInterface}
    */
-  @Input() heroCardParams?: ISolesDataInterface;
-  @Input() maxIndicator?: ITempIndicator;
-  @Input() minIndicator?: ITempIndicator;
-  @Input() tempType?: string;
+  @Input() heroCardParams?: IHeroCard;
 
+  /**
+   * spanClick
+   *
+   * Emits the 'spanClick' event to notify parent components.
+   */
   @Output() spanClick: EventEmitter<any> = new EventEmitter();
 
+  /**
+   * changeType
+   *
+   * method that receives the event that will notify the parent component (MeteorologyPageComponent)
+   */
   changeType() {
     this.spanClick.emit();
   }
@@ -34,5 +40,38 @@ export class MeteorologyHeroCardComponent {
    */
   isLoading() {
     return this.heroCardParams ? 'hero-card-params-div' : 'loading-container';
+  }
+
+  /**
+   * getTempType
+   *
+   * method to get tempType param
+   *
+   * @returns tempType as ('C | F' | 'F | C') or ('C | F') as default
+   */
+  protected getTempType(): string {
+    return this.heroCardParams?.tempType ?? 'C | F';
+  }
+
+  /**
+   * getMaxIndicator
+   *
+   * method to the get maxIndicator as ITempIndicator {up : boolean, down : boolean, equal : boolean}
+   *
+   * @returns maxIndicator with one of the keys as true and the others as false
+   */
+  protected getMaxIndicator() {
+    return this.heroCardParams?.maxIndicator;
+  }
+
+  /**
+   * getMinIndicator
+   *
+   * method to the get minIndicator as ITempIndicator {up : boolean, down : boolean, equal : boolean}
+   *
+   * @returns minIndicator with one of the keys as true and the others as false
+   */
+  protected getMinIndicator() {
+    return this.heroCardParams?.minIndicator;
   }
 }
