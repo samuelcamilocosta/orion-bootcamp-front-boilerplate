@@ -2,12 +2,17 @@
 @import "styles/components/am-login-input.scss";
 @import "styles/components/am-login-button.scss";
 @import "styles/themes/custom-theme.scss";
+@import "https://js.arcgis.com/4.28/@arcgis/core/assets/esri/themes/light/main.css";
 
 :root {
   --primary-color: #ba8e73;
   --sup-red: #e38686;
   --sup-green: #9ad698;
   --disabled: #979797;
+}
+
+html {
+  background-color: #0f1217;
 }
 
 * {
