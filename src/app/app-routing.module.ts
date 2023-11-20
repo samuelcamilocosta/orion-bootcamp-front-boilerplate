@@ -5,6 +5,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
+import { PremiumPageComponent } from './pages/premium-page/premium-page.component';
 
 /**
  * The main routing configuration for the application.
@@ -51,12 +52,14 @@ const routes: Routes = [
        * This route displays the meteorology page when accessed.
        */
       { path: 'meteorology', component: MeteorologyPageComponent },
+
+      /**
+       * The premium page.
+       *
+       * This child route displays the mars-map page when accessed.
+       */
+      { path: 'mars-map', component: PremiumPageComponent },
     ],
-  },
-  {
-    path: 'home/meteorology',
-    component: MeteorologyPageComponent,
-    canActivate: [AuthGuard],
   },
 ];
 

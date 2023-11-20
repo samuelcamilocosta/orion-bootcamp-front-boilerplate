@@ -25,6 +25,8 @@ import { PremiumModalComponent } from './shared/components/premium-modal/premium
 import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
 import { ImageSliderModule } from './shared/modules/image-slider.module';
 import { MaterialModule } from './shared/modules/material.module';
+import { MarsMapComponent } from './shared/components/mars-map/mars-map.component';
+import { PremiumPageComponent } from './pages/premium-page/premium-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +45,8 @@ import { MaterialModule } from './shared/modules/material.module';
     MinTempIndicatorComponent,
     TransitionModalComponent,
     PremiumModalComponent,
+    MarsMapComponent,
+    PremiumPageComponent,
   ],
   imports: [
     BrowserModule,
