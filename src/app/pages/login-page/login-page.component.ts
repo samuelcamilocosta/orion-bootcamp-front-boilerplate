@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiV1Service } from 'src/app/api/v1/login.service';
+import { LoginService } from 'src/app/api/v1/login.service';
 import { IFormParams } from 'src/app/interfaces/login-form-params';
 import { ILoginParams } from 'src/app/interfaces/login-params.interface';
 import { AuthService } from '../../services/auth/auth.service';
@@ -29,13 +29,13 @@ export class LoginPageComponent implements OnInit {
   /**
    * Constructor *
    * @param fb - An instance of FormBuilder for form creation.
-   * @param loginService - An instance of the ApiV1Service for login-related API calls.
+   * @param loginService - An instance of the LoginService that handles login http request.
    * @param auth - An instance of the AuthService for authentication.
    * @param route - An instance of the Router for navigation.
    */
   constructor(
     private fb: FormBuilder,
-    private loginService: ApiV1Service,
+    private loginService: LoginService,
     private auth: AuthService,
     private route: Router
   ) {

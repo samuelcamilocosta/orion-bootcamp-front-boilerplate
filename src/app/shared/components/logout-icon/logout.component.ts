@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { BaseMethods } from 'src/app/api/v1/base-methods';
 import { LogoutService } from 'src/app/api/v1/logout.service';
-import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-logout',
@@ -16,27 +14,31 @@ import { AuthService } from '../../../services/auth/auth.service';
  * a button component that removes the user authentication and redirects him
  */
 export class LogoutComponent extends BaseMethods implements OnInit {
-  isPremium?: boolean;
   /**
    * constructor
    *
-   * @param dialog: Instance of BaseMethod class for displaying dialogs.
    * @param logoutService:  service to handle user authentication token removal and redirects him to login page
    */
-  constructor(
-    private logoutService: LogoutService,
-    private authService: AuthService,
-    dialog: MatDialog
-  ) {
-    super(dialog);
+  constructor(private logoutService: LogoutService) {
+    super();
   }
 
+  /**
+   * initializes checkRole method on page init
+   */
   ngOnInit(): void {
     this.checkRole();
   }
 
+  /**
+   * checkRole
+   *
+   * checks user role as "Premium" or not
+   *
+   * @returns 'true' if is "Premium", false otherwise
+   */
   checkRole() {
-    this.isPremium = this.authService.isPremium();
+    return this.authService.isPremium();
   }
 
   /**

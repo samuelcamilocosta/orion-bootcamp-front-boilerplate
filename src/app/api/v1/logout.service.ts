@@ -1,14 +1,7 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { StorageService } from 'src/app/services/storage/storage.service';
-import { environment } from 'src/environment/environment';
-import { IUser } from '../../interfaces/user-interface';
+import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { BaseMethods } from './base-methods';
 
 @Injectable({
@@ -21,46 +14,25 @@ import { BaseMethods } from './base-methods';
  * service that handles the user authentication removal
  */
 export class LogoutService extends BaseMethods {
-  private readonly apiURL: string;
-
   /**
    * constructor
    *
-   * @param storageService Service that handles the local/session storage methods
-   * @param dialog - Instance of BaseMethod class for displaying error dialogs.
    * @param route - The Router service for navigation.
-   * @param http - The HttpClient service for making HTTP requests.
    */
-  constructor(
-    private storageService: StorageService,
-    private http: HttpClient,
-    private route: Router,
-    dialog: MatDialog
-  ) {
-    /**
-     * Initializes the apiURL and the dialog
-     */
-    super(dialog);
-
-    this.apiURL = `${environment.api}/v1/logout`;
+  constructor(private route: Router) {
+    super();
   }
 
   /**
    * removeAuth
    *
-   * handles the http PATCH request response and error from API
+   * handles the http PATCH request/response from logout endpoint
    */
   async removeAuth(): Promise<void> {
     try {
-      const token = this.getTokenFromStorage();
+      await this.HttpRequest(HttpMethod.PATCH, 'v1/logout', {});
 
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-      });
-
-      await this.http.patch(this.apiURL, {}, { headers }).toPromise();
-
-      this.storageService.removeItem('user');
+      this.authService.removeItem('user');
 
       this.route.navigate(['/']);
     } catch (error) {
@@ -70,31 +42,5 @@ export class LogoutService extends BaseMethods {
         throw error;
       }
     }
-  }
-
-  /**
-   * getTokenFromStorage
-   *
-   * method to get a token from local/session storage
-   *
-   * @returns an user authentication token from local or session storage
-   */
-
-  private getTokenFromStorage(): string {
-    let user: IUser;
-
-    let token: string;
-
-    if (localStorage.length === 0) {
-      user = JSON.parse(this.storageService.getSessionItem('user'));
-
-      token = user.accessToken;
-    } else {
-      user = JSON.parse(this.storageService.getLocalItem('user'));
-
-      token = user.accessToken;
-    }
-
-    return token;
   }
 }
