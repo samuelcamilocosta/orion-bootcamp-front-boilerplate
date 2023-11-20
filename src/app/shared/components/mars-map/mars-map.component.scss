@@ -1,0 +1,22 @@
+::ng-deep .esri-view-surface {
+  border-radius: 1.25rem;
+}
+::ng-deep .esri-ui {
+  border-radius: 1.25rem;
+}
+::ng-deep .esri-ui-corner * {
+  border-radius: 1.25rem;
+}
+
+.map-container {
+  width: 77.5625rem;
+  height: calc(22.9375rem + 7.0625rem);
+
+  .esri-view-surface .esri-view-surface--touch-none {
+    border-radius: 1.25rem;
+  }
+
+  .esri-ui .calcite-mode-light {
+    border-radius: 1.25rem;
+  }
+}
