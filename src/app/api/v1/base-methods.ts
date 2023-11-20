@@ -1,17 +1,109 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
+import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { HttpMethod } from 'src/app/enum/http-method.enum';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { PasswordRecoveryDialogComponent } from 'src/app/shared/components/password-recovery-dialog/password-recovery-dialog.component';
 import { PremiumModalComponent } from 'src/app/shared/components/premium-modal/premium-modal.component';
 import { TransitionModalComponent } from 'src/app/shared/components/transition-modal/transition-modal.component';
+import { environment } from 'src/environment/environment';
 
 export class BaseMethods {
   /**
-   * Constructor
-   *
-   * @param dialog - The MatDialog service for displaying error dialogs.
+   * apiUrl: represents the base API path
    */
-  constructor(protected dialog: MatDialog) {}
+  private readonly apiUrl = environment.api;
+
+  /**
+   * dialog:  Injected instance of MatDialog for displaying dialogs.
+   */
+  dialog = inject(MatDialog);
+
+  /**
+   * http: Injected instance of HttpClient for making HTTP requests.
+   */
+  http = inject(HttpClient);
+
+  /**
+   * authService: Injected instance of AuthService for handling authentication.
+   */
+  authService = inject(AuthService);
+
+  /**
+   * getHeaders
+   *
+   * method to handle api authorization API requests
+   *
+   * @returns an instance of HttpHeaders with Authorization Bearer Token
+   */
+  private getHeaders(): HttpHeaders {
+    const token = this.authService.getUserToken();
+
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+  }
+
+  /**
+   * getFullUrl
+   *
+   * method to get dynamic complete endpoints path
+   *
+   * @param endpoint: endpoint parameter to be added to the base path
+   * @returns a complete path to the endpoint given
+   */
+  private getFullUrl(endpoint: string): string {
+    return `${this.apiUrl}/${endpoint}`;
+  }
+
+  /**
+   * HttpRequest
+   *
+   * generic method to handle various http requests.
+   *
+   * @param method Represents the HTTP method to be used (GET,POST,PUT,PATCH,DELETE) as an enum HttpMethod
+   * @param endpoint String of the endpoint to apply the methods
+   * @param body - The request body (if applicable).
+   * @param params - The query parameters for the request (if applicable).
+   *
+   * @returns A Promise that resolves with the result of the HTTP request.
+   */
+  protected HttpRequest<T>(
+    method: HttpMethod,
+    endpoint: string,
+    body?: any,
+    params?: HttpParams
+  ) {
+    const url = this.getFullUrl(endpoint);
+
+    const headers = this.getHeaders();
+
+    switch (method) {
+      case HttpMethod.GET:
+        return this.http.get<T>(url, { headers, params }).toPromise();
+      // }
+      case HttpMethod.POST:
+        return this.http.post<T>(url, body, { headers }).toPromise();
+      // }
+      case HttpMethod.PUT:
+        return this.http.put<T>(url, body, { headers }).toPromise();
+      // }
+      case HttpMethod.PATCH:
+        return this.http.patch<T>(url, body, { headers }).toPromise();
+      // }
+      case HttpMethod.DELETE:
+        return this.http.delete<T>(url, { headers }).toPromise();
+      // }
+      default:
+        throw new Error('Invalid HTTP method');
+    }
+  }
 
   /**
    * openTransitionModal
