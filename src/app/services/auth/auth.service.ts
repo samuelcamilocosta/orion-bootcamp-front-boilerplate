@@ -1,24 +1,36 @@
 import { Injectable } from '@angular/core';
 import { IUser } from 'src/app/interfaces/user-interface';
-import { StorageService } from '../storage/storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 /**
- * A service responsible for managing user authentication and storage of access tokens.
+ * A service responsible for managing user authentication through local/session storage.
  */
 export class AuthService {
-  constructor(private storageService: StorageService) {}
+  private localStorage: Storage;
+  private sessionStorage: Storage;
+
   /**
+   * constructor
+   *
+   * initializes local and session storage.
+   */
+  constructor() {
+    this.localStorage = window.localStorage;
+    this.sessionStorage = window.sessionStorage;
+  }
+
+  /**
+   * isAuthenticated
+   *
    * Checks if the user is authenticated by checking for the presence of an access token
    * in either local or session storage.
    *
    * @returns `true` if the user is authenticated; otherwise, `false`.
    */
   isAuthenticated(): boolean {
-    const token = this.getUser('token');
-    console.log(token);
+    const token = this.getUserData('token');
 
     if (token) return true;
     return false;
@@ -27,31 +39,31 @@ export class AuthService {
   /**
    * isPremium
    *
-   * checks the user type to limits his access to application
+   * checks the user role to limits his access to application
    *
-   * @returns 'true' if it's a "Premium" user, 'false' otherwise
+   * @returns 'true' if is "Premium", false otherwise
    */
   isPremium() {
-    const role = this.getUser('role');
+    const role = this.getUserData('role');
 
     return role === 'Premium';
   }
 
   /**
-   * getUser
+   * getUserData
    *
-   * gets the user data from local/session storage
+   * gets the 'user' value from local/session storage
    *
    * @param key parameter to get from the 'user' on local/session storage
    * @returns a string of 'user' role or 'user' accessToken
    */
-  private getUser(key: string): string | null {
+  private getUserData(key: string): string | null {
     let user: IUser;
 
     if (localStorage.length === 0) {
-      user = JSON.parse(this.storageService.getSessionItem('user'));
+      user = JSON.parse(this.getSessionItem('user'));
     } else {
-      user = JSON.parse(this.storageService.getLocalItem('user'));
+      user = JSON.parse(this.getLocalItem('user'));
     }
 
     const userData = key === 'role' ? user?.role : user?.accessToken;
@@ -59,15 +71,92 @@ export class AuthService {
   }
 
   /**
-   * getTokenFromStorage
+   * getUserToken
    *
-   * gets the user access token from storage
+   * method to retrieve user authorization token from local/session storage
    *
-   * @returns user access token from storage
+   * @returns user 'token' as string
    */
-  getTokenFromStorage(): string {
-    return localStorage.length === 0
-      ? this.storageService.getSessionItem('token')
-      : this.storageService.getLocalItem('token');
+  getUserToken() {
+    return this.getUserData('token');
+  }
+
+  /**
+   * getUserRole
+   *
+   * method to retrieve user 'role' from local/session storage
+   *
+   * @returns user 'role' as string
+   */
+  getUserRole() {
+    return this.getUserData('role');
+  }
+
+  /**
+   * Sets an access token in local storage.
+   *
+   * @param key - The key to store the access token under.
+   * @param value - The access token to store.
+   * @returns `true` if the access token was successfully stored; otherwise, `false`.
+   */
+  setLocalItem(key: string, value: any): boolean {
+    if (this.localStorage) {
+      this.localStorage.setItem(key, value);
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Sets an access token in session storage.
+   *
+   * @param key - The key to store the access token under.
+   * @param value - The access token to store.
+   * @returns `true` if the access token was successfully stored; otherwise, `false`.
+   */
+  setSessionItem(key: string, value: any): boolean {
+    if (this.sessionStorage) {
+      this.sessionStorage.setItem(key, value);
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Retrieves an item from local storage.
+   *
+   * @param key - The key to retrieve from local storage.
+   * @returns The stored value associated with the key, or `null` if not found.
+   */
+  getLocalItem(key: string): any {
+    if (this.localStorage) {
+      return this.localStorage.getItem(key);
+    }
+    return null;
+  }
+
+  /**
+   * Retrieves an item from session storage.
+   *
+   * @param key - The key to retrieve from session storage.
+   * @returns The stored value associated with the key, or `null` if not found.
+   */
+  getSessionItem(key: string): any {
+    if (this.sessionStorage) {
+      return this.sessionStorage.getItem(key);
+    }
+    return null;
+  }
+
+  /**
+   * Removes an item from both local and session storage.
+   *
+   * @param key - The key to remove from storage.
+   */
+  removeItem(key: string) {
+    this.localStorage.removeItem(key);
+    this.sessionStorage.removeItem(key);
   }
 }
