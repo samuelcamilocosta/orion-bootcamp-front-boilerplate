@@ -1,12 +1,57 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ICard } from 'src/app/interfaces/home-card-params';
+import Swiper from 'swiper';
+import { Navigation } from 'swiper/modules';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent {
+
+/**
+ * HomePageComponent
+ *
+ * component that works as a navigation menu
+ */
+export class HomePageComponent implements AfterViewInit {
+  /**
+   * Swiper instance for a specific component.
+   */
+  swiper?: Swiper;
+
+  /**
+   * Lifecycle hook that is called after Angular has fully initialized a component's view.
+   */
+  ngAfterViewInit(): void {
+    this.swiperInit();
+  }
+
+  /**
+   *  Initializes the Swiper instance for the specified container with the given configuration options.
+   */
+  private swiperInit(): void {
+    this.swiper = new Swiper('.swiper-container', {
+      modules: [Navigation],
+
+      // Base parameters
+      direction: 'horizontal',
+      slidesPerView: 3,
+      spaceBetween: 35,
+      grabCursor: true,
+
+      // Navigation
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      mousewheel: true,
+      keyboard: {
+        enabled: true,
+      },
+    });
+  }
+
   /**
    * An array of cards containing information about each card.
    */

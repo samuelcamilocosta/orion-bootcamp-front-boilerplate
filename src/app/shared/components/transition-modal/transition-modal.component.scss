@@ -1,10 +1,3 @@
-// .modal.fade .modal-dialog,
-// .modal.in .modal-dialog {
-//   -webkit-transform: translate(0, 0);
-//   -ms-transform: translate(0, 0);
-//   transform: translate(0, 0);
-// }
-
 .transition-modal-container {
   position: fixed;
   top: 0;
@@ -12,65 +5,86 @@
   width: 100%;
   height: 100%;
 
+  // background
   background-color: #0f1217;
   background-image: url("/assets/images/background/Epic-Sky-03 2.png");
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   //typography and position of elements
   text-align: center;
   padding: 5rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+
   align-items: center;
   gap: 5.5rem;
 
-  .header-container {
+  .transition-modal-subcontainer {
     display: grid;
-    place-items: center;
-    gap: 2rem;
+    height: 100%;
 
-    img {
-      animation: fadeIn 1.1s infinite alternate;
-      animation-delay: 1.1s;
+    .header-container {
+      display: flex;
+      grid-gap: 2rem;
+      place-items: center;
+      flex-direction: column;
+      align-self: flex-end;
+      grid-row: span 2;
+
+      h1 {
+        margin: 0;
+      }
+
+      img {
+        animation: fadeIn 1.1s infinite alternate;
+        animation-delay: 1.1s;
+      }
+    }
+
+    .out-swiper-container {
+      position: relative;
+      max-width: 33.75rem;
+      max-height: 7.0625rem;
+      align-self: flex-end;
+
+      .swiper-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+
+        .swiper-pagination {
+          --swiper-pagination-bottom: 0;
+          --swiper-pagination-color: #ffd2b5;
+        }
+
+        h3 {
+          margin: 0;
+          color: #fff;
+          font-size: 1.5rem;
+          font-weight: 700;
+          line-height: normal;
+          letter-spacing: 0.01875rem;
+        }
+        p {
+          margin-block: 0.94rem 2rem;
+          color: #928e8b;
+          font-size: 1rem;
+          text-align: center;
+          line-height: normal;
+        }
+      }
     }
   }
+}
 
-  .swiper-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    width: 33.75rem;
-    height: 7.0625rem;
-
-    swiper-slide {
-      animation: fadeIn 0.3s;
-      animation-delay: 2.17s;
-    }
-
-    &::part(bullet) {
-      background-color: #ffffff40;
-    }
-    &::part(bullet-active) {
-      background-color: #ffd2b5;
-    }
-
-    h3 {
-      margin: 0;
-      color: #fff;
-      font-size: 1.5rem;
-      font-weight: 700;
-      line-height: normal;
-      letter-spacing: 0.01875rem;
-    }
-    p {
-      margin-block: 0.94rem 2rem;
-      color: #928e8b;
-      font-size: 1rem;
-      text-align: center;
-      line-height: normal;
-    }
+@media only screen and (min-width: 1367px) {
+  .transition-modal-container .transition-modal-subcontainer .header-container {
+    grid-row: span 1;
   }
 }
 

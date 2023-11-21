@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { SolesService } from 'src/app/api/v1/soles.service';
 import { IHeroCard } from 'src/app/interfaces/hero-card-params-interface';
 import { ITempIndicator } from 'src/app/interfaces/itemp-indicator';
 import { ISolesDataInterface } from 'src/app/interfaces/soles-data-interface';
-import { register } from 'swiper/element/bundle';
-import { SolesService } from '../../api/v1/soles.service';
+import Swiper from 'swiper';
+import { Navigation } from 'swiper/modules';
 
-register();
 @Component({
   selector: 'app-meteorology-page',
   templateUrl: './meteorology-page.component.html',
@@ -17,7 +17,45 @@ register();
  *
  * meteorology page that includes data from mars weather.
  */
-export class MeteorologyPageComponent implements OnInit {
+export class MeteorologyPageComponent implements OnInit, AfterViewInit {
+  /**
+   * Swiper instance for a MeteorologyPageComponent.
+   */
+  swiper?: Swiper;
+
+  /**
+   * Lifecycle hook that is called after Angular has fully initialized the view.
+   */
+  ngAfterViewInit(): void {
+    this.swiperInit();
+  }
+
+  /**
+   *  Initializes the Swiper instance for the specified container with the given configuration options.
+   */
+  private swiperInit(): void {
+    this.swiper = new Swiper('.swiper-container', {
+      modules: [Navigation],
+
+      // Base parameters
+      direction: 'horizontal',
+      // loop: true,
+      slidesPerView: 7,
+      spaceBetween: 32,
+      grabCursor: true,
+
+      // Navigation
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      mousewheel: true,
+      keyboard: {
+        enabled: true,
+      },
+    });
+  }
+
   /**
    * carTempType: represents temperature scale (Celsius or Fahrenheit) string on carousel cards
    * cards: array of soles params from api request.
@@ -40,7 +78,10 @@ export class MeteorologyPageComponent implements OnInit {
    *
    * inject the solesService to handle soles api request
    */
-  constructor(private solesService: SolesService) {}
+  constructor(
+    private solesService: SolesService,
+    private elementRef: ElementRef
+  ) {}
 
   /**
    * ngOnInit

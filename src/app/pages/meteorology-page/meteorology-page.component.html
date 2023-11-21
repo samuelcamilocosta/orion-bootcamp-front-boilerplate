@@ -25,23 +25,23 @@
     </div>
 
     <!-- carousel of cards -->
-    <swiper-container
-      class="swiper-container"
-      slides-per-view="7"
-      navigation="true"
-      space-between="24"
-      grab-cursor="true"
-      keyboard="true"
-      mousewheel="true"
-      hidden-class="swiper-button-hidden"
-    >
-      <swiper-slide *ngFor="let card of cards; let i = index">
-        <app-carousel-card
-          [carTempType]="carTempType"
-          [carouselCardParams]="card"
-          (click)="updateHeroCardParams(i)"
-        />
-      </swiper-slide>
-    </swiper-container>
+    <div class="out-swiper-container">
+      <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide" *ngFor="let card of cards; let i = index">
+            <app-carousel-card
+              [carTempType]="carTempType"
+              [carouselCardParams]="card"
+              (click)="updateHeroCardParams(i)"
+            />
+          </div>
+        </div>
+        <!-- navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
   </div>
 </section>
