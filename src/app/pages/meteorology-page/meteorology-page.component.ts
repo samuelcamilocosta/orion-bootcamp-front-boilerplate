@@ -41,7 +41,7 @@ export class MeteorologyPageComponent implements OnInit, AfterViewInit {
       direction: 'horizontal',
       // loop: true,
       slidesPerView: 7,
-      spaceBetween: 32,
+      spaceBetween: 24,
       grabCursor: true,
 
       // Navigation
