@@ -5,7 +5,6 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
-import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
 
 /**
  * The main routing configuration for the application.
@@ -18,7 +17,6 @@ const routes: Routes = [
    *
    * This route displays the login page by default.
    */
-  { path: 'transition', component: TransitionModalComponent },
   { path: '', component: LoginPageComponent },
 
   /**
