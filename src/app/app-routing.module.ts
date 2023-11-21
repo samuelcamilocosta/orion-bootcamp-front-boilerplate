@@ -6,6 +6,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
 import { PremiumPageComponent } from './pages/premium-page/premium-page.component';
+import { CarouselComponent } from './shared/components/carousel/carousel.component';
 
 /**
  * The main routing configuration for the application.
@@ -18,6 +19,7 @@ const routes: Routes = [
    *
    * This route displays the login page by default.
    */
+  { path: 'carousel', component: CarouselComponent },
   { path: '', component: LoginPageComponent },
 
   /**

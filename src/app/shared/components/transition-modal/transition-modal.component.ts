@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { register } from 'swiper/element';
 
-register();
+// register();
 
 @Component({
   selector: 'app-transition-modal',

@@ -24,24 +24,39 @@
       />
     </div>
 
+    <!-- <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngFor="let card of cards; let i = index">
+          <app-carousel-card
+            [carTempType]="carTempType"
+            [carouselCardParams]="card"
+            (click)="updateHeroCardParams(i)"
+          />
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div> -->
+
     <!-- carousel of cards -->
-    <swiper-container
-      class="swiper-container"
-      slides-per-view="7"
-      navigation="true"
-      space-between="24"
-      grab-cursor="true"
-      keyboard="true"
-      mousewheel="true"
-      hidden-class="swiper-button-hidden"
-    >
-      <swiper-slide *ngFor="let card of cards; let i = index">
-        <app-carousel-card
-          [carTempType]="carTempType"
-          [carouselCardParams]="card"
-          (click)="updateHeroCardParams(i)"
-        />
-      </swiper-slide>
-    </swiper-container>
+    <!-- Slider main container -->
+    <div class="swiper-container">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide" *ngFor="let card of cards; let i = index">
+          <app-carousel-card
+            [carTempType]="carTempType"
+            [carouselCardParams]="card"
+            (click)="updateHeroCardParams(i)"
+          />
+        </div>
+      </div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
   </div>
 </section>
