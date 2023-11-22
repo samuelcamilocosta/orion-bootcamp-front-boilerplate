@@ -1,17 +1,18 @@
 section {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
+  align-items: center;
 
   .home-page-container {
-    padding: 5.04rem 5rem;
-
     display: flex;
     flex-direction: column;
     gap: 3.81rem;
+    width: 85.375rem;
+    height: 48rem;
 
     .home-page-header {
+      padding: 5rem 5rem 0 5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -39,11 +40,55 @@ section {
     p {
       font-size: 1rem;
     }
+  }
+}
 
-    .cards-container {
-      display: flex;
-      gap: 2.19rem;
+.cards-container {
+  max-width: 85.375rem;
+  max-height: 24.6875rem;
+  position: relative;
+
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      cursor: pointer;
+      color: #ffd2b5;
+      font-weight: bolder;
+      --swiper-navigation-sides-offset: -2rem;
+      --swiper-navigation-size: 1.75rem;
     }
+
+    .swiper-wrapper {
+      padding-inline: 5rem;
+
+      .swiper-slide {
+        width: 379px !important;
+
+        app-card {
+          user-select: none;
+        }
+      }
+    }
+  }
+
+  .swiper-container::before,
+  .swiper-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 5rem;
+    height: 100%;
+    background: rgba(16, 19, 24, 0.5);
+    z-index: 2;
+  }
+
+  .swiper-container::after {
+    right: 0;
+    left: auto;
   }
 }
 
@@ -51,25 +96,4 @@ section {
 .disabled-card {
   pointer-events: none;
   user-select: none;
-}
-
-/**
- * Trying to make it responsive
- */
-@media (max-width: 1300px) {
-  .cards-container {
-    flex-wrap: wrap;
-  }
-}
-@media (max-width: 953px) {
-  .home-page-header {
-    flex-direction: column-reverse;
-    gap: 2rem;
-  }
-
-  .cards-container {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
 }

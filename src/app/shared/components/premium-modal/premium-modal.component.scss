@@ -36,10 +36,11 @@
     justify-content: space-between;
     align-items: center;
 
-    .close-icon {
+    .close-icon-button {
       position: absolute;
       right: -4.563rem;
-      cursor: pointer;
+      // cursor: pointer;
+      background: none;
     }
     .header-text {
       position: relative;

@@ -25,6 +25,7 @@ import { PremiumModalComponent } from './shared/components/premium-modal/premium
 import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
 import { ImageSliderModule } from './shared/modules/image-slider.module';
 import { MaterialModule } from './shared/modules/material.module';
+
 @NgModule({
   declarations: [
     AppComponent,

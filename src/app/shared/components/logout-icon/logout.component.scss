@@ -5,12 +5,21 @@
   --mdc-plain-tooltip-supporting-text-font: "Roboto" !important;
 }
 
+// change tooltip text area width
+::ng-deep .mdc-tooltip__surface {
+  max-width: 300px !important;
+}
+
 .logout-container {
   display: flex;
-  gap: 2.5rem;
   align-items: center;
 
+  .premium-icon {
+    margin-right: 1.56rem;
+  }
+
   button {
+    margin-right: 2.5rem;
     width: 11.4375rem;
     height: 2.063rem;
     border-radius: 3.125rem;
@@ -27,8 +36,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -39,7 +48,7 @@
   }
 
   /* plus logout */
-  .logout-div img {
+  .logout-svg {
     width: 100%;
     transition-duration: 0.3s;
     display: flex;
@@ -59,6 +68,7 @@
     transition-duration: 0.3s;
   }
   /* hover effect on button width */
+
   .logout-btn:hover {
     width: 125px;
     border-radius: 40px;
@@ -66,12 +76,13 @@
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
   }
 
-  .logout-btn:hover .logout-div img {
-    width: 75%;
+  .logout-btn:hover .logout-svg {
+    width: 30%;
     transition-duration: 0.3s;
     padding-left: 20px;
   }
   /* hover effect button's text */
+
   .logout-btn:hover .text {
     opacity: 1;
     width: 70%;
@@ -79,6 +90,7 @@
     padding-right: 10px;
   }
   /* button click effect*/
+
   .logout-btn:active {
     transform: translate(2px, 2px);
   }
