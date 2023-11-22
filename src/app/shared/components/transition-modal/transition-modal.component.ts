@@ -1,6 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
 
 @Component({
   selector: 'app-transition-modal',
@@ -29,7 +29,7 @@ export class TransitionModalComponent implements AfterViewInit {
    */
   private swiperInit(): void {
     this.swiper = new Swiper('.swiper-container', {
-      modules: [Navigation, Pagination],
+      modules: [Navigation, Pagination, EffectFade, Autoplay],
 
       // Base parameters
       direction: 'horizontal',

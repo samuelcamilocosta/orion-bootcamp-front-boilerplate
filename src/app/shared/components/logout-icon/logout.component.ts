@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseMethods } from 'src/app/api/v1/base-methods';
 import { LogoutService } from 'src/app/api/v1/logout.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-logout',
@@ -18,8 +19,12 @@ export class LogoutComponent extends BaseMethods implements OnInit {
    * constructor
    *
    * @param logoutService:  service to handle user authentication token removal and redirects him to login page
+   * @param authService:  service to handle user authentication (token and role)
    */
-  constructor(private logoutService: LogoutService) {
+  constructor(
+    private logoutService: LogoutService,
+    private authService: AuthService
+  ) {
     super();
   }
 

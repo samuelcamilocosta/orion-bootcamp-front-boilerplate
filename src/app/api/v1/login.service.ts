@@ -53,8 +53,11 @@ export class LoginService extends BaseMethods {
             };
 
             remember
-              ? this.authService.setLocalItem('user', JSON.stringify(userAuth))
-              : this.authService.setSessionItem(
+              ? this.storageService.setLocalItem(
+                  'user',
+                  JSON.stringify(userAuth)
+                )
+              : this.storageService.setSessionItem(
                   'user',
                   JSON.stringify(userAuth)
                 );

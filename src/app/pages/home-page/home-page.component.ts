@@ -1,7 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { ICard } from 'src/app/interfaces/home-card-params';
 import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
+import { Keyboard, Mousewheel, Navigation } from 'swiper/modules';
 
 @Component({
   selector: 'app-home-page',
@@ -32,7 +32,7 @@ export class HomePageComponent implements AfterViewInit {
    */
   private swiperInit(): void {
     this.swiper = new Swiper('.swiper-container', {
-      modules: [Navigation],
+      modules: [Navigation, Keyboard, Mousewheel],
 
       // Base parameters
       direction: 'horizontal',

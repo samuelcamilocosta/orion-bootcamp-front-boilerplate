@@ -7,7 +7,7 @@ import {
 import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { PasswordRecoveryDialogComponent } from 'src/app/shared/components/password-recovery-dialog/password-recovery-dialog.component';
 import { PremiumModalComponent } from 'src/app/shared/components/premium-modal/premium-modal.component';
@@ -31,9 +31,9 @@ export class BaseMethods {
   http = inject(HttpClient);
 
   /**
-   * authService: Injected instance of AuthService for handling authentication.
+   * storageService: Injected instance of StorageService for handling local/session stored data.
    */
-  authService = inject(AuthService);
+  storageService = inject(StorageService);
 
   /**
    * getHeaders
@@ -43,7 +43,7 @@ export class BaseMethods {
    * @returns an instance of HttpHeaders with Authorization Bearer Token
    */
   private getHeaders(): HttpHeaders {
-    const token = this.authService.getUserToken();
+    const token = this.storageService.getUserToken();
 
     return new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -87,19 +87,19 @@ export class BaseMethods {
     switch (method) {
       case HttpMethod.GET:
         return this.http.get<T>(url, { headers, params }).toPromise();
-      // }
+
       case HttpMethod.POST:
         return this.http.post<T>(url, body, { headers }).toPromise();
-      // }
+
       case HttpMethod.PUT:
         return this.http.put<T>(url, body, { headers }).toPromise();
-      // }
+
       case HttpMethod.PATCH:
         return this.http.patch<T>(url, body, { headers }).toPromise();
-      // }
+
       case HttpMethod.DELETE:
         return this.http.delete<T>(url, { headers }).toPromise();
-      // }
+
       default:
         throw new Error('Invalid HTTP method');
     }

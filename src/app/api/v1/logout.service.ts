@@ -32,7 +32,7 @@ export class LogoutService extends BaseMethods {
     try {
       await this.HttpRequest(HttpMethod.PATCH, 'v1/logout', {});
 
-      this.authService.removeItem('user');
+      this.storageService.removeItem('user');
 
       this.route.navigate(['/']);
     } catch (error) {
