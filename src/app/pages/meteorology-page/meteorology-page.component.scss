@@ -1,22 +1,3 @@
-// TODO: mudar a seta de diferença de temperatura
-@import "swiper/swiper-bundle.css";
-
-// .swiper-container {
-//   padding-inline: 5rem;
-//   width: 75.4375rem;
-// }
-
-// .swiper-slide {
-//   text-align: center;
-//   font-size: 18px;
-//   background: #fff;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   height: 200px;
-// }
-
 section {
   width: 100vw;
   height: 100vh;
@@ -61,36 +42,26 @@ section {
     }
 
     // carousel styles
-    .swiper-container {
-      width: 75.4375rem;
-      overflow: hidden;
-      // display: flex;
-      // gap: 1.5rem;
+    .out-swiper-container {
+      position: relative;
 
-      .swiper-button-next,
-      .swiper-button-prev {
-        color: #ffd2b5;
+      .swiper-container {
+        width: 75.4375rem;
+        overflow: hidden;
+
+        app-carousel-card {
+          user-select: none;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+          cursor: pointer;
+          color: #ffd2b5;
+          font-weight: bolder;
+          --swiper-navigation-sides-offset: -2rem;
+          --swiper-navigation-size: 1.25rem;
+        }
       }
-
-      --swiper-navigation-sides-offset: 2rem;
-
-      // &::part(button-next) {
-      //   width: 1.75rem;
-      //   height: 1.75rem;
-      //   color: #ffd2b5;
-      //   position: fixed;
-      //   top: 36rem;
-      //   right: 3rem;
-      // }
-
-      // &::part(button-prev) {
-      //   width: 1.75rem;
-      //   height: 1.75rem;
-      //   color: #ffd2b5;
-      //   position: fixed;
-      //   top: 36rem;
-      //   left: 3rem;
-      // }
     }
 
     h1,
@@ -107,31 +78,5 @@ section {
       font-size: 1rem;
       font-weight: 400;
     }
-  }
-}
-
-/**
- * Trying to make it responsive
- */
-@media (min-width: 2500px) {
-  .swiper-container::part(button-next) {
-    top: 36rem;
-    right: calc(25%) !important;
-  }
-
-  .swiper-container::part(button-prev) {
-    top: 36rem;
-    left: 25% !important;
-  }
-}
-@media (min-width: 2600px) {
-  .swiper-container::part(button-next) {
-    top: 36rem;
-    right: calc(27%) !important;
-  }
-
-  .swiper-container::part(button-prev) {
-    top: 36rem;
-    left: 27% !important;
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { IUser } from 'src/app/interfaces/user-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,49 @@ export class StorageService {
   constructor() {
     this.localStorage = window.localStorage;
     this.sessionStorage = window.sessionStorage;
+  }
+
+  /**
+   * getUserData
+   *
+   * gets the 'user' value from local/session storage
+   *
+   * @param key parameter to get from the 'user' on local/session storage
+   * @returns a string of 'user' role or 'user' accessToken
+   */
+  private getUserData(key: string): string | null {
+    let user: IUser;
+
+    if (localStorage.length === 0) {
+      user = JSON.parse(this.getSessionItem('user'));
+    } else {
+      user = JSON.parse(this.getLocalItem('user'));
+    }
+
+    const userData = key === 'role' ? user?.role : user?.accessToken;
+    return userData ? userData : null;
+  }
+
+  /**
+   * getUserToken
+   *
+   * method to retrieve user authorization token from local/session storage
+   *
+   * @returns user 'token' as string
+   */
+  getUserToken() {
+    return this.getUserData('token');
+  }
+
+  /**
+   * getUserRole
+   *
+   * method to retrieve user 'role' from local/session storage
+   *
+   * @returns user 'role' as string
+   */
+  getUserRole() {
+    return this.getUserData('role');
   }
 
   /**

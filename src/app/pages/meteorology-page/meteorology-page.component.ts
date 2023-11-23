@@ -1,13 +1,10 @@
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { SolesService } from 'src/app/api/v1/soles.service';
 import { IHeroCard } from 'src/app/interfaces/hero-card-params-interface';
 import { ITempIndicator } from 'src/app/interfaces/itemp-indicator';
 import { ISolesDataInterface } from 'src/app/interfaces/soles-data-interface';
 import Swiper from 'swiper';
-import { register } from 'swiper/element/bundle';
-import { Navigation } from 'swiper/modules';
-
-register();
+import { Keyboard, Mousewheel, Navigation } from 'swiper/modules';
 
 @Component({
   selector: 'app-meteorology-page',
@@ -20,30 +17,42 @@ register();
  *
  * meteorology page that includes data from mars weather.
  */
-export class MeteorologyPageComponent implements AfterViewInit, OnInit {
+export class MeteorologyPageComponent implements OnInit, AfterViewInit {
+  /**
+   * Swiper instance for a MeteorologyPageComponent.
+   */
   swiper?: Swiper;
 
+  /**
+   * Lifecycle hook that is called after Angular has fully initialized the view.
+   */
   ngAfterViewInit(): void {
-    this.swiper = new Swiper(
-      this.elementRef.nativeElement.querySelector('.swiper-container'),
-      {
-        modules: [Navigation],
+    this.swiperInit();
+  }
 
-        // Optional parameters
+  /**
+   *  Initializes the Swiper instance for the specified container with the given configuration options.
+   */
+  private swiperInit(): void {
+    this.swiper = new Swiper('.swiper-container', {
+      modules: [Navigation, Keyboard, Mousewheel],
 
-        direction: 'horizontal',
-        // loop: true,
-        slidesPerView: 7,
-        spaceBetween: 32,
-        grabCursor: true,
+      // Base parameters
+      direction: 'horizontal',
+      slidesPerView: 7,
+      spaceBetween: 24,
+      grabCursor: true,
 
-        // Navigation arrows
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-      }
-    );
+      // Navigation
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      mousewheel: true,
+      keyboard: {
+        enabled: true,
+      },
+    });
   }
 
   /**
@@ -68,10 +77,7 @@ export class MeteorologyPageComponent implements AfterViewInit, OnInit {
    *
    * inject the solesService to handle soles api request
    */
-  constructor(
-    private solesService: SolesService,
-    private elementRef: ElementRef
-  ) {}
+  constructor(private solesService: SolesService) {}
 
   /**
    * ngOnInit

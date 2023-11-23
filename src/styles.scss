@@ -3,6 +3,7 @@
 @import "styles/components/am-login-button.scss";
 @import "styles/themes/custom-theme.scss";
 @import "https://js.arcgis.com/4.28/@arcgis/core/assets/esri/themes/light/main.css";
+@import "swiper/swiper-bundle.css";
 
 :root {
   --primary-color: #ba8e73;
@@ -37,4 +38,8 @@ app-premium-modal {
 .app-premium-modal-radius .mat-mdc-dialog-container .mdc-dialog__surface {
   border-radius: 1.25rem !important;
   background-color: transparent !important;
+}
+
+html {
+  overflow: hidden;
 }

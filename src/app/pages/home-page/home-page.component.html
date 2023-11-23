@@ -7,12 +7,24 @@
       </div>
       <app-logout></app-logout>
     </div>
+    <!-- carousel container -->
     <div class="cards-container">
-      <app-card
-        *ngFor="let card of cards"
-        [class.disabled-card]="card.path === ''"
-        [cardAttributes]="card"
-      ></app-card>
+      <!-- swiper -->
+      <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide" *ngFor="let card of cards; let i = index">
+            <app-card
+              [class.disabled-card]="card.path === ''"
+              [cardAttributes]="card"
+            ></app-card>
+          </div>
+        </div>
+        <!-- navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
     </div>
   </div>
 </section>

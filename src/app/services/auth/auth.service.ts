@@ -5,34 +5,41 @@ import { StorageService } from '../storage/storage.service';
   providedIn: 'root',
 })
 /**
- * A service responsible for managing user authentication and storage of access tokens.
+ * A service responsible for verifying user authentication through local/session storage user data.
  */
 export class AuthService {
-  constructor(private storageService: StorageService) {}
   /**
+   * constructor
+   *
+   * initializes local and session storage.
+   */
+  constructor(private storageService: StorageService) {}
+
+  /**
+   * isAuthenticated
+   *
    * Checks if the user is authenticated by checking for the presence of an access token
    * in either local or session storage.
    *
    * @returns `true` if the user is authenticated; otherwise, `false`.
    */
   isAuthenticated(): boolean {
-    const tokenLocal = this.storageService.getLocalItem('token');
-    const tokenSession = this.storageService.getSessionItem('token');
+    const token = this.storageService.getUserToken();
 
-    if (tokenLocal || tokenSession) return true;
+    if (token) return true;
     return false;
   }
 
   /**
-   * getTokenFromStorage
+   * isPremium
    *
-   * gets the user access token from storage
+   * checks the user role to limits his access to application
    *
-   * @returns user access token from storage
+   * @returns 'true' if is "Premium", false otherwise
    */
-  getTokenFromStorage(): string {
-    return localStorage.length === 0
-      ? this.storageService.getSessionItem('token')
-      : this.storageService.getLocalItem('token');
+  isPremium() {
+    const role = this.storageService.getUserRole();
+
+    return role === 'Premium';
   }
 }
