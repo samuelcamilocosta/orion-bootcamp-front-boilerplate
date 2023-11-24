@@ -1,8 +1,8 @@
 export interface ICard {
   cardImage: string;
-  imageAltText: string;
+  cardAltText: string;
   cardTitle: string;
-  cardSubTitle: string;
+  cardDescription: string;
+  cardButtonText: string;
   path: string;
-  btnText: string;
 }
