@@ -1,6 +1,8 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { IQuote } from 'src/app/interfaces/quotes-interface';
 import Swiper from 'swiper';
 import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
+import { TransitionQuotesService } from '../../../api/v1/transition-quotes.service';
 
 @Component({
   selector: 'app-transition-modal',
@@ -11,17 +13,28 @@ import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
 /**
  * Transition Componente to be used after login authentication before loading the home-page
  */
-export class TransitionModalComponent implements AfterViewInit {
+export class TransitionModalComponent implements AfterViewInit, OnInit {
   /**
    * Swiper instance for TransitionModalComponent.
    */
   swiper?: Swiper;
+  quotes?: IQuote[];
+
+  constructor(private transitionQuotesService: TransitionQuotesService) {}
 
   /**
    * Lifecycle hook that is called after Angular has fully initialized the view.
    */
   ngAfterViewInit(): void {
     this.swiperInit();
+  }
+
+  ngOnInit(): void {
+    this.fetchQuotes();
+  }
+
+  async fetchQuotes() {
+    this.quotes = await this.transitionQuotesService.getQuotes();
   }
 
   /**
@@ -34,7 +47,7 @@ export class TransitionModalComponent implements AfterViewInit {
       // Base parameters
       direction: 'horizontal',
       slidesPerView: 1,
-      speed: 1100,
+      speed: 550,
       autoplay: { delay: 2200 },
       effect: 'fade',
       fadeEffect: {

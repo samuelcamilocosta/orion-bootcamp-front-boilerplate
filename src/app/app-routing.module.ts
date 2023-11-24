@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { PremiumGuard } from './guards/premium.guard';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
@@ -58,7 +59,11 @@ const routes: Routes = [
        *
        * This child route displays the mars-map page when accessed.
        */
-      { path: 'mars-map', component: PremiumPageComponent },
+      {
+        path: 'mars-map',
+        component: PremiumPageComponent,
+        canActivate: [PremiumGuard],
+      },
     ],
   },
 ];

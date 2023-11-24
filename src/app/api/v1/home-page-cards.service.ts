@@ -26,17 +26,11 @@ export class HomePageCardsService extends BaseMethods {
       request
         .then((response) => {
           if (response) {
-            const newResponse: ICard[] = response.map((card, index) => {
-              return {
-                cardImage: card.image,
-                cardAltText: '',
-                cardTitle: card.title,
-                cardDescription: card.description,
-                cardButtonText: card.access,
-                path: paths[index],
-              };
+            response.forEach((resp, index) => {
+              return (resp.path = paths[index]);
             });
-            resolve(newResponse);
+
+            resolve(response);
           } else {
             reject(
               this.openErrorDialog(

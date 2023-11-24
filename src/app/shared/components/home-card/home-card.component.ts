@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ICard } from 'src/app/interfaces/home-card-params';
+import { ICard } from 'src/app/interfaces/card-params-interface';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-card',
@@ -14,19 +15,21 @@ export class HomeCardComponent {
    * Input property that receives card attributes from the parent component.
    * @type {ICard}
    */
-  @Input() cardAttributes!: ICard;
+  @Input() cardAttributes?: ICard;
 
   /**
    * Input property that applies the class "card-content-premium" when needed on parent component
    */
   @Input() premiumStyle = false;
 
+  constructor(private authService: AuthService) {}
+
   /**
    * Determines the visibility of the card based on the presence of a router link path.
    * @returns 'visible' if there's a empty path, 'hidden' otherwise.
    */
   showSoon(): string {
-    return this.cardAttributes.path === '' ? 'visible' : 'hidden';
+    return this.cardAttributes?.path === '' ? 'visible' : 'hidden';
   }
 
   /**
@@ -34,7 +37,7 @@ export class HomeCardComponent {
    * @returns 'grayscale(1)' if there's a empty path, 'none' otherwise.
    */
   filterImg(): string {
-    return this.cardAttributes.path === '' ? 'grayscale(1)' : 'none';
+    return this.cardAttributes?.path === '' ? 'grayscale(1)' : 'none';
   }
 
   /**
@@ -42,6 +45,13 @@ export class HomeCardComponent {
    * @returns `true` if there's  a empty path, `false` otherwise.
    */
   isDisabled(): boolean {
-    return this.cardAttributes.path === '' ? true : false;
+    return this.cardAttributes?.path === '' ? true : false;
+  }
+
+  checkRole() {
+    return (
+      this.authService.isPremium() &&
+      this.cardAttributes?.path === '/page/mars-map'
+    );
   }
 }

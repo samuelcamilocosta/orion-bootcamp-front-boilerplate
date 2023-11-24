@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseMethods } from 'src/app/api/v1/base-methods';
+import { BaseService } from 'src/app/api/v1/base.service';
 import { LogoutService } from 'src/app/api/v1/logout.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -14,13 +14,14 @@ import { AuthService } from 'src/app/services/auth/auth.service';
  *
  * a button component that removes the user authentication and redirects him
  */
-export class LogoutComponent extends BaseMethods implements OnInit {
+export class LogoutComponent extends BaseService implements OnInit {
   /**
    * constructor
    *
    * @param logoutService:  service to handle user authentication token removal and redirects him to login page
    * @param authService:  service to handle user authentication (token and role)
    */
+
   constructor(
     private logoutService: LogoutService,
     private authService: AuthService

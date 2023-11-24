@@ -23,20 +23,16 @@ export class StorageService {
    *
    * gets the 'user' value from local/session storage
    *
-   * @param key parameter to get from the 'user' on local/session storage
-   * @returns a string of 'user' role or 'user' accessToken
+   * @returns an user object of type IUser or null
    */
-  private getUserData(key: string): string | null {
-    let user: IUser;
 
-    if (localStorage.length === 0) {
-      user = JSON.parse(this.getSessionItem('user'));
-    } else {
-      user = JSON.parse(this.getLocalItem('user'));
-    }
+  private getUserData(): IUser | null {
+    const user =
+      localStorage.length === 0
+        ? this.getSessionItem('user')
+        : this.getLocalItem('user');
 
-    const userData = key === 'role' ? user?.role : user?.accessToken;
-    return userData ? userData : null;
+    return user ? JSON.parse(user) : null;
   }
 
   /**
@@ -44,10 +40,10 @@ export class StorageService {
    *
    * method to retrieve user authorization token from local/session storage
    *
-   * @returns user 'token' as string
+   * @returns user 'accessToken' as string
    */
-  getUserToken() {
-    return this.getUserData('token');
+  getUserToken(): string | undefined {
+    return this.getUserData()?.accessToken;
   }
 
   /**
@@ -57,8 +53,8 @@ export class StorageService {
    *
    * @returns user 'role' as string
    */
-  getUserRole() {
-    return this.getUserData('role');
+  getUserRole(): string | undefined {
+    return this.getUserData()?.role;
   }
 
   /**

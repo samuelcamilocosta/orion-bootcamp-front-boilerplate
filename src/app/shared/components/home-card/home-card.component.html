@@ -1,9 +1,14 @@
 <section class="card-component-container">
   <img
     [style.filter]="filterImg()"
-    src="{{ cardAttributes.cardImage }}"
-    alt="{{ cardAttributes.imageAltText }}"
+    src="{{ cardAttributes?.cardImage }}"
+    alt="{{ cardAttributes?.cardImageDescription }}"
+    loading="lazy"
   />
+  <!-- <img
+    src="https://drive.google.com/file/d/1k-wTXR6GFm7W6Xi02xijACngsBsDcjUJ/view?usp=drive_link"
+    alt=""
+  /> -->
   <div
     [ngClass]="{ 'card-content-premium': premiumStyle }"
     class="card-content"
@@ -12,18 +17,27 @@
       <div class="card-soon card-soon-premium" [style.visibility]="showSoon()">
         EM BREVE
       </div>
-      <h3>{{ cardAttributes.cardTitle }}</h3>
-      <p>{{ cardAttributes.cardSubTitle }}</p>
+      <h3>{{ cardAttributes?.cardTitle }}</h3>
+      <p>
+        {{ cardAttributes?.cardDescription }}
+      </p>
     </div>
     <div class="button-container">
       <button
-        class="submitBtn submitBtn-premium"
+        *ngIf="!checkRole(); else blocked"
         mat-button
+        class="submitBtn submitBtn-premium"
         [disabled]="isDisabled()"
-        routerLink="{{ cardAttributes.path }}"
+        routerLink="{{ cardAttributes?.path }}"
       >
-        {{ cardAttributes.btnText }}
+        {{ cardAttributes?.cardButtonText }}
       </button>
+      <ng-template #blocked>
+        <button class="blocked-access">
+          <span>SEJA PREMIUM</span>
+          <img src="/assets/images/premium/locker.svg" alt="" />
+        </button>
+      </ng-template>
     </div>
   </div>
 </section>

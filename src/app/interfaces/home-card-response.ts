@@ -1,9 +1,3 @@
-export interface HomeCardResponse {
-  id: number;
-  title: string;
-  image: string;
-  description: string;
-  access: string;
-  created_at: string;
-  updated_at: string;
-}
+import { ICard } from './card-params-interface';
+
+export type HomeCardResponse = ICard;

@@ -14,7 +14,7 @@ import { PremiumModalComponent } from 'src/app/shared/components/premium-modal/p
 import { TransitionModalComponent } from 'src/app/shared/components/transition-modal/transition-modal.component';
 import { environment } from 'src/environment/environment';
 
-export class BaseMethods {
+export class BaseService {
   /**
    * apiUrl: represents the base API path
    */
@@ -74,7 +74,7 @@ export class BaseMethods {
    *
    * @returns A Promise that resolves with the result of the HTTP request.
    */
-  HttpRequest<T>(
+  protected HttpRequest<T>(
     method: HttpMethod,
     endpoint: string,
     body?: any,

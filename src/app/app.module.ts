@@ -5,9 +5,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule, NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TransitionQuotesService } from './api/v1/transition-quotes.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PremiumGuard } from './guards/premium.guard';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
@@ -26,7 +28,6 @@ import { MinTempIndicatorComponent } from './shared/components/min-temp-indicato
 import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
 import { PremiumModalComponent } from './shared/components/premium-modal/premium-modal.component';
 import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
-import { ImageSliderModule } from './shared/modules/image-slider.module';
 import { MaterialModule } from './shared/modules/material.module';
 
 @NgModule({
@@ -59,10 +60,9 @@ import { MaterialModule } from './shared/modules/material.module';
     ReactiveFormsModule,
     NgIf,
     HttpClientModule,
-    ImageSliderModule,
     CommonModule,
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, PremiumGuard, TransitionQuotesService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

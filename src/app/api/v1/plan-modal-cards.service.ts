@@ -22,14 +22,13 @@ export class PlanModalCardsService extends BaseMethods {
             const newResponse: ICard[] = response.map((card, index) => {
               return {
                 cardImage: card.planCardImage,
-                cardAltText: '',
+                cardImageDescription: '',
                 cardTitle: card.planCardTitle,
                 cardDescription: card.planCardDescription,
                 cardButtonText: card.planCardButtonText,
                 path: paths[index],
               };
             });
-
             resolve(newResponse);
           } else {
             reject(

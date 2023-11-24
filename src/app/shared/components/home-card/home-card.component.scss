@@ -88,6 +88,7 @@
     }
   }
 }
+// style change for free user blocked access
 
 // style change for premium-modal
 .card-content-premium {
@@ -148,5 +149,19 @@
 
   button:hover:not(:disabled) {
     filter: brightness(1.1);
+  }
+}
+
+.blocked-access {
+  border: 1px solid #a42d2d;
+  background: rgba(151, 151, 151, 0.2) !important;
+  color: #a42d2d !important;
+  pointer-events: none;
+  user-select: none;
+  height: 3.5rem;
+  display: flex;
+  img {
+    width: 1.125rem;
+    height: 1.3125rem;
   }
 }
