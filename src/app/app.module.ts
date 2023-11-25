@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule, NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TransitionQuotesService } from './api/v1/transition-quotes.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -62,7 +61,7 @@ import { MaterialModule } from './shared/modules/material.module';
     HttpClientModule,
     CommonModule,
   ],
-  providers: [AuthGuard, PremiumGuard, TransitionQuotesService],
+  providers: [AuthGuard, PremiumGuard],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

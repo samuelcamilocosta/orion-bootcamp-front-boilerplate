@@ -40,6 +40,22 @@
         font-weight: 700;
         letter-spacing: 0.00988rem;
       }
+      .card-soon-premium {
+        display: flex;
+        align-self: flex-start;
+        align-items: center;
+        justify-content: center;
+        height: 1.26088rem;
+        padding: 0rem calc(0.15763rem + 0.31519rem);
+        border-radius: 0.63044rem;
+        background: #f9d6c7;
+
+        // typography
+        color: #b0683b;
+        font-size: 0.55163rem;
+        font-weight: 700;
+        letter-spacing: 0.00988rem;
+      }
 
       h3,
       p {
@@ -96,9 +112,9 @@
   display: flex !important;
   justify-content: space-between;
 
-  .card-soon-premium {
-    display: none !important;
-  }
+  // .card-soon-premium {
+  //   display: none !important;
+  // }
 
   .submitBtn-premium {
     background-color: #a42d2d !important;
@@ -160,6 +176,10 @@
   user-select: none;
   height: 3.5rem;
   display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+
   img {
     width: 1.125rem;
     height: 1.3125rem;

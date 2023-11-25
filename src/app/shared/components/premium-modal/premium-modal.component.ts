@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { PlanModalCardsService } from 'src/app/api/v1/plan-modal-cards.service';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ICard } from 'src/app/interfaces/card-params-interface';
 
 @Component({
@@ -8,8 +7,20 @@ import { ICard } from 'src/app/interfaces/card-params-interface';
   templateUrl: './premium-modal.component.html',
   styleUrls: ['./premium-modal.component.scss'],
 })
-export class PremiumModalComponent implements OnInit {
+export class PremiumModalComponent {
+  isLoading = false; // Inicialmente, estamos carregando
+
   planCards: ICard[] = [];
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) private data: { planCards: ICard[] },
+    private dialogRef: MatDialogRef<PremiumModalComponent>
+  ) {
+    // setTimeout(() => {
+    //   this.isLoading = false; // Os dados foram carregados
+    // }, 2000);
+    this.planCards = data.planCards;
+  }
 
   /**
    * premiumStyleActive
@@ -18,11 +29,6 @@ export class PremiumModalComponent implements OnInit {
    */
   premiumStyleActive = true;
 
-  constructor(
-    private planModalCardsService: PlanModalCardsService,
-    private dialogRef: MatDialogRef<PremiumModalComponent>
-  ) {}
-
   /**
    * closeDialog
    *
@@ -30,13 +36,5 @@ export class PremiumModalComponent implements OnInit {
    */
   closeDialog(): void {
     this.dialogRef.close();
-  }
-
-  ngOnInit(): void {
-    this.loadData();
-  }
-
-  async loadData() {
-    this.planCards = await this.planModalCardsService.getPlanCardsData();
   }
 }

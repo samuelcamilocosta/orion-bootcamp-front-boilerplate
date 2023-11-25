@@ -2,7 +2,15 @@
   <div class="home-page-container">
     <div class="home-page-header">
       <div>
-        <h1>Olá, <span>explorador(a) Orion!</span></h1>
+        <h1>
+          Olá,
+          <span *ngIf="checkRole(); else templateName">
+            pesquisador(a) Orion!
+          </span>
+          <ng-template #templateName>
+            <span> explorador(a) Orion! </span>
+          </ng-template>
+        </h1>
         <p>Seja bem vindo(a)! O que veremos hoje?</p>
       </div>
       <app-logout></app-logout>

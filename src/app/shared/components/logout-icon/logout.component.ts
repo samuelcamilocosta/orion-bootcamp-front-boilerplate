@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { BaseService } from 'src/app/api/v1/base.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { BaseMethods } from 'src/app/api/v1/base-methods';
 import { LogoutService } from 'src/app/api/v1/logout.service';
+import { PlanModalCardsService } from 'src/app/api/v1/plan-modal-cards.service';
+import { ICard } from 'src/app/interfaces/card-params-interface';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { PremiumModalComponent } from '../premium-modal/premium-modal.component';
 
 @Component({
   selector: 'app-logout',
@@ -14,7 +17,9 @@ import { AuthService } from 'src/app/services/auth/auth.service';
  *
  * a button component that removes the user authentication and redirects him
  */
-export class LogoutComponent extends BaseService implements OnInit {
+export class LogoutComponent extends BaseMethods implements OnInit {
+  planCards: ICard[] = [];
+
   /**
    * constructor
    *
@@ -24,7 +29,8 @@ export class LogoutComponent extends BaseService implements OnInit {
 
   constructor(
     private logoutService: LogoutService,
-    private authService: AuthService
+    private authService: AuthService,
+    private planModalCardsService: PlanModalCardsService
   ) {
     super();
   }
@@ -62,7 +68,18 @@ export class LogoutComponent extends BaseService implements OnInit {
    *
    * opens the premium modal when "SEJA PREMIUM" button is clicked
    */
-  openModal(): void {
-    this.openPremiumModal();
+
+  protected openPremiumModal(): void {
+    console.log('modal aberto');
+    this.planModalCardsService.getPlanCardsData().then((data) => {
+      this.dadosCompartilhados.emit(data as ICard[]);
+
+      this.dialog.open(PremiumModalComponent, {
+        panelClass: 'app-premium-modal-radius',
+        data: { planCards: data },
+      });
+    });
   }
+
+  @Output() dadosCompartilhados = new EventEmitter<any>();
 }

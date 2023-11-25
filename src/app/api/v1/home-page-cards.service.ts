@@ -16,8 +16,8 @@ export class HomePageCardsService extends BaseMethods {
       );
       const paths: string[] = [
         '/page/meteorology',
-        '/page/viagens-marte',
-        '/page/noticias-marte',
+        '',
+        '',
         '/page/mars-map',
         '',
         '',

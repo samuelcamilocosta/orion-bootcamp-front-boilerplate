@@ -10,8 +10,6 @@ import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { PasswordRecoveryDialogComponent } from 'src/app/shared/components/password-recovery-dialog/password-recovery-dialog.component';
-import { PremiumModalComponent } from 'src/app/shared/components/premium-modal/premium-modal.component';
-import { TransitionModalComponent } from 'src/app/shared/components/transition-modal/transition-modal.component';
 import { environment } from 'src/environment/environment';
 
 export class BaseMethods {
@@ -110,26 +108,14 @@ export class BaseMethods {
    *
    * Opens a 100% viewport transition modal after login authentication
    */
-  protected openTransitionModal(): void {
-    this.dialog.open(TransitionModalComponent, {
-      delayFocusTrap: false,
-      disableClose: true,
-      enterAnimationDuration: 0,
-      hasBackdrop: false,
-    });
-  }
-
-  /**
-   * openPremiumModal
-   *
-   * Opens a modal centered in viewport with information about the Premium user
-   */
-  protected openPremiumModal(): void {
-    this.dialog.open(PremiumModalComponent, {
-      maxWidth: '100%',
-      panelClass: 'app-premium-modal-radius',
-    });
-  }
+  // protected openTransitionModal(): void {
+  //   this.dialog.open(TransitionModalComponent, {
+  //     delayFocusTrap: false,
+  //     disableClose: true,
+  //     enterAnimationDuration: 0,
+  //     hasBackdrop: false,
+  //   });
+  // }
 
   /**
    * openSuccessesDialog

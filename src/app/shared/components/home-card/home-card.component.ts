@@ -29,7 +29,17 @@ export class HomeCardComponent {
    * @returns 'visible' if there's a empty path, 'hidden' otherwise.
    */
   showSoon(): string {
-    return this.cardAttributes?.path === '' ? 'visible' : 'hidden';
+    return this.cardAttributes?.path === '' ? 'block' : 'none';
+  }
+
+  showNews() {
+    return this.cardAttributes?.path === '/page/mars-map'
+      ? 'visible'
+      : 'hidden';
+  }
+
+  isNews() {
+    return this.cardAttributes?.path === '/page/mars-map';
   }
 
   /**
@@ -50,7 +60,7 @@ export class HomeCardComponent {
 
   checkRole() {
     return (
-      this.authService.isPremium() &&
+      !this.authService.isPremium() &&
       this.cardAttributes?.path === '/page/mars-map'
     );
   }

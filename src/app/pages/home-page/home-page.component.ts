@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ICard } from 'src/app/interfaces/card-params-interface';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import Swiper from 'swiper';
 import { Keyboard, Mousewheel, Navigation } from 'swiper/modules';
 import { HomePageCardsService } from '../../api/v1/home-page-cards.service';
@@ -22,7 +23,10 @@ export class HomePageComponent implements AfterViewInit, OnInit {
   swiper?: Swiper;
   cards: ICard[] = [];
 
-  constructor(private homePageCardsService: HomePageCardsService) {}
+  constructor(
+    private homePageCardsService: HomePageCardsService,
+    private authService: AuthService
+  ) {}
 
   /**
    * Lifecycle hook that is called after Angular has fully initialized a component's view.
@@ -62,5 +66,9 @@ export class HomePageComponent implements AfterViewInit, OnInit {
 
   async loadData() {
     this.cards = await this.homePageCardsService.getHomeCardsData();
+  }
+
+  checkRole() {
+    return this.authService.isPremium();
   }
 }
