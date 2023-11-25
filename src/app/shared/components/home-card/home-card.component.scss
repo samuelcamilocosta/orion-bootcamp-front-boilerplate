@@ -172,13 +172,12 @@
   border: 1px solid #a42d2d;
   background: rgba(151, 151, 151, 0.2) !important;
   color: #a42d2d !important;
-  pointer-events: none;
-  user-select: none;
   height: 3.5rem;
   display: flex;
   gap: 1rem;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 
   img {
     width: 1.125rem;

@@ -5,10 +5,6 @@
     alt="{{ cardAttributes?.cardImageDescription }}"
     loading="lazy"
   />
-  <!-- <img
-    src="https://drive.google.com/file/d/1k-wTXR6GFm7W6Xi02xijACngsBsDcjUJ/view?usp=drive_link"
-    alt=""
-  /> -->
   <div
     [ngClass]="{ 'card-content-premium': premiumStyle }"
     class="card-content"
@@ -17,7 +13,7 @@
       <div
         *ngIf="!isNews(); else templateName"
         class="card-soon"
-        [style.display]="showSoon()"
+        [style.visibility]="showSoon()"
       >
         EM BREVE
       </div>
@@ -41,7 +37,7 @@
         {{ cardAttributes?.cardButtonText }}
       </button>
       <ng-template #blocked>
-        <button class="blocked-access">
+        <button class="blocked-access" (click)="openPremiumModal()">
           <span>SEJA PREMIUM</span>
           <img src="/assets/images/premium/locker.svg" alt="" />
         </button>

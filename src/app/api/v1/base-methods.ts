@@ -148,7 +148,7 @@ export class BaseMethods {
   protected handleError(error: HttpErrorResponse): void {
     switch (error.status) {
       case 400:
-        this.openErrorDialog(error.error);
+        this.openErrorDialog('E-mail e/ou senha inválidos');
         break;
 
       case 401:

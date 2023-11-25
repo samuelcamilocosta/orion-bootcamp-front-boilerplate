@@ -1,6 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PlanModalCardsService } from 'src/app/api/v1/plan-modal-cards.service';
 import { ICard } from 'src/app/interfaces/card-params-interface';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { PremiumModalComponent } from '../premium-modal/premium-modal.component';
 
 @Component({
   selector: 'app-card',
@@ -22,14 +25,18 @@ export class HomeCardComponent {
    */
   @Input() premiumStyle = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private planModalCardsService: PlanModalCardsService,
+    private dialog: MatDialog
+  ) {}
 
   /**
    * Determines the visibility of the card based on the presence of a router link path.
    * @returns 'visible' if there's a empty path, 'hidden' otherwise.
    */
   showSoon(): string {
-    return this.cardAttributes?.path === '' ? 'block' : 'none';
+    return this.cardAttributes?.path === '' ? 'visible' : 'hidden';
   }
 
   showNews() {
@@ -63,5 +70,17 @@ export class HomeCardComponent {
       !this.authService.isPremium() &&
       this.cardAttributes?.path === '/page/mars-map'
     );
+  }
+  @Output() dataToSend = new EventEmitter<any>();
+
+  protected openPremiumModal(): void {
+    this.planModalCardsService.getPlanCardsData().then((data) => {
+      this.dataToSend.emit(data as ICard[]);
+
+      this.dialog.open(PremiumModalComponent, {
+        panelClass: 'app-premium-modal-radius',
+        data: { planCards: data },
+      });
+    });
   }
 }

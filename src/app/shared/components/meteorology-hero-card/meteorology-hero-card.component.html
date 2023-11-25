@@ -25,9 +25,15 @@
           <span class="temp-span"
             >{{ getMaximumTemperature(heroCardParams) }}°</span
           >
-          <span class="tempType-span" (click)="changeType()">{{
-            getTempType()
-          }}</span>
+          <span
+            matTooltipClass="custom-tooltip"
+            matTooltipPosition="above"
+            matTooltip="Clique para trocar para Fahrenheit"
+            aria-label="Button that displays a tooltip when focused or hovered over"
+            class="tempType-span"
+            (click)="changeType()"
+            >{{ getTempType() }}</span
+          >
         </h1>
         <app-max-temp-indicator
           class="max-temp-indicator"

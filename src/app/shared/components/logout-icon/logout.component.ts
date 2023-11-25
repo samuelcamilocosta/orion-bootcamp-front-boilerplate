@@ -18,6 +18,8 @@ import { PremiumModalComponent } from '../premium-modal/premium-modal.component'
  * a button component that removes the user authentication and redirects him
  */
 export class LogoutComponent extends BaseMethods implements OnInit {
+  @Output() dataToSend = new EventEmitter<any>();
+
   planCards: ICard[] = [];
 
   /**
@@ -72,7 +74,7 @@ export class LogoutComponent extends BaseMethods implements OnInit {
   protected openPremiumModal(): void {
     console.log('modal aberto');
     this.planModalCardsService.getPlanCardsData().then((data) => {
-      this.dadosCompartilhados.emit(data as ICard[]);
+      this.dataToSend.emit(data as ICard[]);
 
       this.dialog.open(PremiumModalComponent, {
         panelClass: 'app-premium-modal-radius',
@@ -80,6 +82,4 @@ export class LogoutComponent extends BaseMethods implements OnInit {
       });
     });
   }
-
-  @Output() dadosCompartilhados = new EventEmitter<any>();
 }

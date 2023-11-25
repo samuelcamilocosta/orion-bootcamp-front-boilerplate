@@ -8,7 +8,7 @@ import { ICard } from 'src/app/interfaces/card-params-interface';
   styleUrls: ['./premium-modal.component.scss'],
 })
 export class PremiumModalComponent {
-  isLoading = false; // Inicialmente, estamos carregando
+  isLoading = true; // Inicialmente, estamos carregando
 
   planCards: ICard[] = [];
 
@@ -16,9 +16,9 @@ export class PremiumModalComponent {
     @Inject(MAT_DIALOG_DATA) private data: { planCards: ICard[] },
     private dialogRef: MatDialogRef<PremiumModalComponent>
   ) {
-    // setTimeout(() => {
-    //   this.isLoading = false; // Os dados foram carregados
-    // }, 2000);
+    setTimeout(() => {
+      this.isLoading = false; // Os dados foram carregados
+    }, 1000);
     this.planCards = data.planCards;
   }
 

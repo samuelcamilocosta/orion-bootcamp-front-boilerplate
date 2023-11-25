@@ -18,7 +18,13 @@
   width: 67.6875rem;
   height: 41.625rem;
   display: flex;
+  place-content: center;
   border-radius: 1.25rem;
+
+  .mat-loading-spinner {
+    display: flex;
+    align-self: center;
+  }
 
   *:not(app-card) {
     margin: 0;
