@@ -21,8 +21,18 @@ export class HomePageComponent implements AfterViewInit, OnInit {
    * Swiper instance for a specific component.
    */
   swiper?: Swiper;
+
+  /**
+   * cards: represents an array of @type {ICard}
+   */
   cards: ICard[] = [];
 
+  /**
+   * constructor
+   *
+   * @param homePageCardsService: service that handles HTTP GET request on Home-page
+   * @param authService: A service responsible for verifying user authentication through local/session storage user data.
+   */
   constructor(
     private homePageCardsService: HomePageCardsService,
     private authService: AuthService
@@ -60,15 +70,32 @@ export class HomePageComponent implements AfterViewInit, OnInit {
     });
   }
 
+  /**
+   * ngOnInit
+   *
+   * apply loadData method when page initializes
+   */
   ngOnInit(): void {
     this.loadData();
   }
 
-  async loadData() {
+  /**
+   * loadData
+   *
+   * fetches home-card data and apply those data to the cards on page
+   */
+  private async loadData(): Promise<void> {
     this.cards = await this.homePageCardsService.getHomeCardsData();
   }
 
-  checkRole() {
+  /**
+   * checkRole
+   *
+   * checks user role
+   *
+   * @returns true if is "Premium", false otherwise
+   */
+  checkRole(): boolean {
     return this.authService.isPremium();
   }
 }

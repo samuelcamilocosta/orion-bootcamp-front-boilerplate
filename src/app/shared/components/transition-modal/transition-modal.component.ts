@@ -18,8 +18,17 @@ export class TransitionModalComponent implements AfterViewInit, OnInit {
    * Swiper instance for TransitionModalComponent.
    */
   swiper?: Swiper;
+
+  /**
+   * quotes: represents an array of @type {IQuote}
+   */
   quotes?: IQuote[];
 
+  /**
+   * constructor
+   *
+   * @param transitionQuotesService: injected service that handles the HTTP GET request from api for TransitionModalComponent
+   */
   constructor(private transitionQuotesService: TransitionQuotesService) {}
 
   /**
@@ -29,11 +38,21 @@ export class TransitionModalComponent implements AfterViewInit, OnInit {
     this.swiperInit();
   }
 
+  /**
+   * ngOnInit
+   *
+   * apply fetchQuotes method when page initializes
+   */
   ngOnInit(): void {
     this.fetchQuotes();
   }
 
-  async fetchQuotes() {
+  /**
+   * fetchQuotes
+   *
+   * fetches random "quotes" from api to be used on transition-modal
+   */
+  async fetchQuotes(): Promise<void> {
     this.quotes = await this.transitionQuotesService.getQuotes();
   }
 

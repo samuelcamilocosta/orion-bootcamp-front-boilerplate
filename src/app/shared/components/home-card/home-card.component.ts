@@ -25,6 +25,14 @@ export class HomeCardComponent {
    */
   @Input() premiumStyle = false;
 
+  /**
+   * constructor
+   *
+   * @param authService: service responsible for verifying user authentication through local/session storage user data.
+   * @param planModalCardsService: service that handles HTTP GET request on PremiumModalComponent.
+   * @param dialog: Injected instance of MatDialog for displaying dialogs.
+   */
+
   constructor(
     private authService: AuthService,
     private planModalCardsService: PlanModalCardsService,
@@ -32,19 +40,23 @@ export class HomeCardComponent {
   ) {}
 
   /**
+   * showSoon
+   *
    * Determines the visibility of the card based on the presence of a router link path.
+   *
    * @returns 'visible' if there's a empty path, 'hidden' otherwise.
    */
   showSoon(): string {
     return this.cardAttributes?.path === '' ? 'visible' : 'hidden';
   }
 
-  showNews() {
-    return this.cardAttributes?.path === '/page/mars-map'
-      ? 'visible'
-      : 'hidden';
-  }
-
+  /**
+   * isNews
+   *
+   * checks the existence of path '/page/mars-map'
+   *
+   * @returns true if exists, false otherwise
+   */
   isNews() {
     return this.cardAttributes?.path === '/page/mars-map';
   }
@@ -65,12 +77,20 @@ export class HomeCardComponent {
     return this.cardAttributes?.path === '' ? true : false;
   }
 
-  checkRole() {
+  /**
+   * checkRole
+   *
+   * checks user role and the components path
+   *
+   * @returns true if condition is met, false otherwise
+   */
+  checkRole(): boolean {
     return (
       !this.authService.isPremium() &&
       this.cardAttributes?.path === '/page/mars-map'
     );
   }
+
   @Output() dataToSend = new EventEmitter<any>();
 
   protected openPremiumModal(): void {

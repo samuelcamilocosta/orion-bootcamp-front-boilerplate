@@ -7,13 +7,28 @@ import { BaseMethods } from './base-methods';
 @Injectable({
   providedIn: 'root',
 })
+
+/**
+ * HomePageCardsService
+ *
+ * service that handles HTTP GET request on Home-page
+ */
 export class HomePageCardsService extends BaseMethods {
+  /**
+   * getHomeCardsData
+   *
+   * method to handle HTTP GET request from api
+   *
+   * @returns A promise that resolves to an array of @type {ICard}
+   */
   async getHomeCardsData(): Promise<ICard[]> {
     return new Promise<ICard[]>((resolve, reject) => {
       const request = this.HttpRequest<HomeCardResponse[]>(
         HttpMethod.GET,
         'v1/get-home-page-cards'
       );
+
+      // array of path to be parsed on the fetched data.
       const paths: string[] = [
         '/page/meteorology',
         '',

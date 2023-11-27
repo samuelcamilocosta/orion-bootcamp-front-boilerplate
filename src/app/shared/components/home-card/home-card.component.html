@@ -28,18 +28,21 @@
     </div>
     <div class="button-container">
       <button
-        *ngIf="!checkRole(); else blocked"
-        mat-button
-        class="submitBtn submitBtn-premium"
-        [disabled]="isDisabled()"
-        routerLink="{{ cardAttributes?.path }}"
+        *ngIf="checkRole(); else blocked"
+        class="blocked-access"
+        (click)="openPremiumModal()"
       >
-        {{ cardAttributes?.cardButtonText }}
+        <span>SEJA PREMIUM</span>
+        <img src="/assets/images/premium/locker.svg" alt="" />
       </button>
       <ng-template #blocked>
-        <button class="blocked-access" (click)="openPremiumModal()">
-          <span>SEJA PREMIUM</span>
-          <img src="/assets/images/premium/locker.svg" alt="" />
+        <button
+          mat-button
+          class="submitBtn submitBtn-premium"
+          [disabled]="isDisabled()"
+          routerLink="{{ cardAttributes?.path }}"
+        >
+          {{ cardAttributes?.cardButtonText }}
         </button>
       </ng-template>
     </div>

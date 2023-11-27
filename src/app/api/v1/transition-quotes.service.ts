@@ -7,6 +7,14 @@ import { BaseMethods } from './base-methods';
 @Injectable({
   providedIn: 'root',
 })
+
+/**
+ * TransitionQuotesService
+ *
+ * service that handles the HTTP GET request from api for TransitionModalComponent
+ *
+ * @returns A promise that resolves to an array of @type {Promise<QuotesResponse[]>}
+ */
 export class TransitionQuotesService extends BaseMethods {
   async getQuotes(): Promise<QuotesResponse[]> {
     return new Promise<QuotesResponse[]>((resolve, reject) => {

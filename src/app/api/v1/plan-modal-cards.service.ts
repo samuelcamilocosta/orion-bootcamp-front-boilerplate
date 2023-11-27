@@ -7,6 +7,12 @@ import { BaseMethods } from './base-methods';
 @Injectable({
   providedIn: 'root',
 })
+
+/**
+ * PlanModalCardsService
+ *
+ * service that handles HTTP GET request on PremiumModalComponent
+ */
 export class PlanModalCardsService extends BaseMethods {
   async getPlanCardsData(): Promise<ICard[]> {
     return new Promise<ICard[]>((resolve, reject) => {
@@ -15,10 +21,13 @@ export class PlanModalCardsService extends BaseMethods {
         'v1/plan-cards'
       );
 
+      // array of path to be parsed on fetched data
       const paths: string[] = ['plano_pesquisador', ''];
+
       request
         .then((response) => {
           if (response) {
+            //placeholder until the fetched data is of the correctly type.
             const newResponse: ICard[] = response.map((card, index) => {
               return {
                 cardImage: card.planCardImage,

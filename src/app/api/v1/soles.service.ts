@@ -15,7 +15,7 @@ export class SolesService extends BaseMethods {
    * constructor
    *
    * @param http - The HttpClient service for making HTTP requests.
-   * @param dialog - Instance of BaseMethod class for displaying error dialogs.
+   * @param dialog - Injected instance of MatDialog for displaying dialogs from BaseMethods class.
    */
   constructor() {
     super();
