@@ -28,6 +28,7 @@ import { PremiumModalComponent } from './shared/components/premium-modal/premium
 import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
 import { ImageSliderModule } from './shared/modules/image-slider.module';
 import { MaterialModule } from './shared/modules/material.module';
+import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { MaterialModule } from './shared/modules/material.module';
     MarsMapComponent,
     PremiumPageComponent,
     CarouselComponent,
+    SignUpPageComponent,
   ],
   imports: [
     BrowserModule,
