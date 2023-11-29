@@ -6,6 +6,7 @@ import {
 } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
@@ -32,6 +33,11 @@ export class BaseMethods {
    * storageService: Injected instance of StorageService for handling local/session stored data.
    */
   storageService = inject(StorageService);
+
+  /**
+   * route: Injected instance of Router.
+   */
+  route = inject(Router);
 
   /**
    * getHeaders
@@ -69,6 +75,7 @@ export class BaseMethods {
    * @param endpoint String of the endpoint to apply the methods
    * @param body - The request body (if applicable).
    * @param params - The query parameters for the request (if applicable).
+   *
    *
    * @returns A Promise that resolves with the result of the HTTP request.
    */
@@ -141,6 +148,9 @@ export class BaseMethods {
         this.openErrorDialog(
           'Não autorizado. Credenciais de autenticação ausentes ou incorretas.'
         );
+
+        this.storageService.removeItem('user');
+        this.route.navigate(['/']);
         break;
 
       case 403:

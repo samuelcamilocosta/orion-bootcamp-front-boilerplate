@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { ILoginParams } from 'src/app/interfaces/login-params.interface';
 import { ILoginRespParams } from 'src/app/interfaces/login-resp-params-interface';
@@ -15,16 +14,6 @@ import { BaseMethods } from './base-methods';
  * Service for handling API requests with the v1 endpoint.
  */
 export class LoginService extends BaseMethods {
-  /**
-   * Constructor
-   *
-   * @param route - The Router service for navigation.
-   */
-
-  constructor(private route: Router) {
-    super();
-  }
-
   /**
    * openTransitionModal
    *
