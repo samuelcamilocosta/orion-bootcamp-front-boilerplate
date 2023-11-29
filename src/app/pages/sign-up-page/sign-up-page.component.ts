@@ -110,7 +110,7 @@ export class SignUpPageComponent {
    * method to apply display style 'none' or 'flex' based on condition met
    * @returns 'none' if true, 'flex' otherwise
    */
-  showCheck() {
+  showCheck(): string {
     return this.signUpFormGroup.get('password')?.value.length === 0
       ? 'none'
       : 'flex';
@@ -122,11 +122,11 @@ export class SignUpPageComponent {
    * method to dynamically apply class based on condition
    * @returns 'validPassword' if true, 'invalidPassword' otherwise
    */
-  lengthCheck() {
+  lengthCheck(): string | undefined {
     const passwordLength = this.signUpFormGroup.get('password')?.value.length;
 
     if (passwordLength === 0) {
-      return null;
+      return undefined;
     } else {
       return passwordLength >= 8 ? 'validPassword' : 'invalidPassword';
     }
@@ -140,9 +140,13 @@ export class SignUpPageComponent {
    * @param regex parameter @type {RegExp} to be received
    * @returns 'validPassword' if true, 'invalidPassword' otherwise
    */
-  checkPattern(regex: RegExp) {
+  checkPattern(regex: RegExp): string | undefined {
     const passwordValue = this.signUpFormGroup.get('password')?.value;
-    return regex.test(passwordValue) ? 'validPassword' : 'invalidPassword';
+
+    if (passwordValue.length > 0) {
+      return regex.test(passwordValue) ? 'validPassword' : 'invalidPassword';
+    }
+    return undefined;
   }
 
   /**
@@ -151,10 +155,16 @@ export class SignUpPageComponent {
    * method to dynamically apply class based on condition
    * @returns 'validPassword' if true, 'invalidPassword' otherwise
    */
-  letterCheck() {
-    return this.checkPattern(/[A-Z]/) === this.checkPattern(/[a-z]/)
-      ? 'validPassword'
-      : 'invalidPassword';
+  letterCheck(): string | undefined {
+    const passwordLength = this.signUpFormGroup.get('password')?.value.length;
+
+    if (passwordLength > 0) {
+      const hasUpperCase = this.checkPattern(/[A-Z]/) === 'validPassword';
+      const hasLowerCase = this.checkPattern(/[a-z]/) === 'validPassword';
+
+      return hasUpperCase && hasLowerCase ? 'validPassword' : 'invalidPassword';
+    }
+    return undefined;
   }
 
   /**
@@ -163,8 +173,8 @@ export class SignUpPageComponent {
    * method to dynamically apply class based on condition
    * @returns 'validPassword' if true, 'invalidPassword' otherwise
    */
-  numberCheck() {
-    return this.checkPattern(/\d/g);
+  numberCheck(): string | undefined {
+    return this.checkPattern(/\d/);
   }
 
   /**
@@ -173,7 +183,7 @@ export class SignUpPageComponent {
    * method to dynamically apply class based on condition
    * @returns 'validPassword' if true, 'invalidPassword' otherwise
    */
-  specialCharacterCheck() {
-    return this.checkPattern(/[!@#$%^&*()_+]/);
+  specialCharacterCheck(): string | undefined {
+    return this.checkPattern(/[!@#$%&]/);
   }
 }

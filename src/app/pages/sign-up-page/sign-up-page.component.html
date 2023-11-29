@@ -57,8 +57,8 @@
       </mat-icon>
     </mat-form-field>
 
-    <div class="validator-container">
-      <div [style.display]="showCheck()" [ngClass]="lengthCheck()">
+    <div class="validator-container" [style.display]="showCheck()">
+      <div [ngClass]="lengthCheck()">
         <svg
           width="22"
           height="21"
@@ -80,9 +80,8 @@
 
         <p>A senha deve conter, no mínimo, 8 caracteres;</p>
       </div>
-      <div [style.display]="showCheck()" [ngClass]="letterCheck()">
+      <div [ngClass]="letterCheck()">
         <svg
-          class="correct wrong"
           width="22"
           height="21"
           viewBox="0 0 22 21"
@@ -103,9 +102,8 @@
 
         <p>Deve ter 1 letra maiúscula e minuscula;</p>
       </div>
-      <div [style.display]="showCheck()" [ngClass]="numberCheck()">
+      <div [ngClass]="numberCheck()">
         <svg
-          class="correct wrong"
           width="22"
           height="21"
           viewBox="0 0 22 21"
@@ -126,9 +124,8 @@
 
         <p>Deve ter 1 número;</p>
       </div>
-      <div [style.display]="showCheck()" [ngClass]="specialCharacterCheck()">
+      <div [ngClass]="specialCharacterCheck()">
         <svg
-          class="correct wrong"
           width="22"
           height="21"
           viewBox="0 0 22 21"

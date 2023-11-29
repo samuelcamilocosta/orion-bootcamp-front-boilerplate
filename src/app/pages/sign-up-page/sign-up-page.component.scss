@@ -68,6 +68,10 @@
         display: inherit;
         align-items: center;
         gap: 0.5rem;
+
+        svg {
+          fill: #fff;
+        }
       }
 
       .validPassword {
