@@ -104,20 +104,6 @@ export class BaseMethods {
   }
 
   /**
-   * openTransitionModal
-   *
-   * Opens a 100% viewport transition modal after login authentication
-   */
-  // protected openTransitionModal(): void {
-  //   this.dialog.open(TransitionModalComponent, {
-  //     delayFocusTrap: false,
-  //     disableClose: true,
-  //     enterAnimationDuration: 0,
-  //     hasBackdrop: false,
-  //   });
-  // }
-
-  /**
    * openSuccessesDialog
    *
    * opens a successes dialog after submit email on recovery page

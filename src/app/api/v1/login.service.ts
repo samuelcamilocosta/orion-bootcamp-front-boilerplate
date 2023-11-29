@@ -25,6 +25,11 @@ export class LoginService extends BaseMethods {
     super();
   }
 
+  /**
+   * openTransitionModal
+   *
+   * Opens a 100% viewport transition modal after login authentication
+   */
   private openTransitionModal(): void {
     this.dialog.open(TransitionModalComponent, {
       delayFocusTrap: false,
