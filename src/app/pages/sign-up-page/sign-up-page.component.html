@@ -7,7 +7,11 @@
     <mat-form-field class="login-mat-form-field">
       <mat-label>Digite seu nome</mat-label>
       <input type="name" matInput formControlName="name" placeholder="" />
+      <mat-error *ngIf="signUpFormGroup.get('name')?.hasError('required')">
+        Nome é obrigatório
+      </mat-error>
     </mat-form-field>
+
     <mat-form-field class="login-mat-form-field">
       <mat-label>E-mail</mat-label>
       <input
@@ -16,6 +20,18 @@
         formControlName="email"
         placeholder="Ex. pat@example.com"
       />
+      <mat-error
+        *ngIf="
+          signUpFormGroup.get('email')?.hasError('pattern') ||
+          (signUpFormGroup.get('email')?.hasError('email') &&
+            !signUpFormGroup.get('email')?.hasError('required'))
+        "
+      >
+        Por favor digite um email valido
+      </mat-error>
+      <mat-error *ngIf="signUpFormGroup.get('email')?.hasError('required')">
+        Email é obrigatório
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="login-mat-form-field">
@@ -25,6 +41,17 @@
         [type]="hide ? 'password' : 'text'"
         formControlName="password"
       />
+      <mat-error
+        *ngIf="
+          signUpFormGroup.get('password')?.hasError('pattern') &&
+          !signUpFormGroup.get('password')?.hasError('required')
+        "
+      >
+        Senha com padrões incorretos!
+      </mat-error>
+      <mat-error *ngIf="signUpFormGroup.get('password')?.hasError('required')">
+        Senha é obrigatória
+      </mat-error>
 
       <mat-icon
         matSuffix
@@ -34,6 +61,7 @@
         >{{ hide ? "visibility_off" : "visibility" }}
       </mat-icon>
     </mat-form-field>
+
     <mat-form-field class="login-mat-form-field">
       <mat-label>Digite novamente sua senha</mat-label>
       <input
@@ -181,5 +209,6 @@
       ENTRAR
     </button>
   </form>
+
   <p>Já tem uma conta? <a routerLink="/">Faça login</a></p>
 </section>
