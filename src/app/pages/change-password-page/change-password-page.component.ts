@@ -6,6 +6,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { ChangePasswordService } from 'src/app/api/v1/change-password.service';
 
 @Component({
   selector: 'app-change-password-page',
@@ -29,8 +30,11 @@ export class ChangePasswordPageComponent {
    *
    * @param fb - An instance of FormBuilder for form creation.
    */
-  constructor(private fb: FormBuilder) {
-    // Initialize the formGroup with email, password, and checkbox fields.
+  constructor(
+    private fb: FormBuilder,
+    private changePasswordService: ChangePasswordService
+  ) {
+    // Initialize the changePasswordForm with password and confirmPassword
     this.changePasswordForm = this.fb.group(
       {
         password: [
@@ -49,17 +53,12 @@ export class ChangePasswordPageComponent {
   }
 
   /**
-   * Handles form submission by sending data to the login service.
+   * Handles form submission by sending a new password to the user database.
    */
   async onSubmit() {
-    const formData = this.changePasswordForm.value;
-    const dataToSend = {
-      name: formData.name,
-      email: formData.email,
-      password: formData.password,
-    };
+    const password = this.changePasswordForm.get('password');
 
-    // await this.changePasswordService.sendData(dataToSend);
+    await this.changePasswordService.changePassword();
   }
 
   /**

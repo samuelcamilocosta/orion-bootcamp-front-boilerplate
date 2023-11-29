@@ -7,9 +7,10 @@ import {
 import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
+import { ConfirmationModalParams } from 'src/app/interfaces/confirmation-modal-params';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
-import { PasswordRecoveryDialogComponent } from 'src/app/shared/components/password-recovery-dialog/password-recovery-dialog.component';
 import { PremiumModalComponent } from 'src/app/shared/components/premium-modal/premium-modal.component';
 import { TransitionModalComponent } from 'src/app/shared/components/transition-modal/transition-modal.component';
 import { environment } from 'src/environment/environment';
@@ -134,11 +135,10 @@ export class BaseMethods {
   /**
    * openSuccessesDialog
    *
-   * opens a successes dialog after submit email on recovery page
-   * for better user experience.
+   * opens a successes dialog for better user experience.
    */
-  protected openSuccessesDialog(): void {
-    this.dialog.open(PasswordRecoveryDialogComponent);
+  protected openSuccessesDialog(params: ConfirmationModalParams): void {
+    this.dialog.open(ConfirmationModalComponent, { data: params });
   }
 
   /**

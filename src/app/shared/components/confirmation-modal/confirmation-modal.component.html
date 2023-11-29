@@ -6,15 +6,13 @@
 
     <img
       class="modal-check-circle"
-      src="assets/images/action/check_circle_outline_24px.svg"
+      src="{{ data?.icon }}"
       alt="check circle outline svg"
     />
-    <h1>Sucesso!</h1>
+    <h1>{{ data?.title }}</h1>
     <div>
-      <p>
-        E-mail de recuperação enviado com sucesso! <br />
-        Siga as instruções enviadas em seu e-mail.
-      </p>
+      <p>{{ data?.paragraphA }}</p>
+      <p>{{ data?.paragraphB }}</p>
     </div>
 
     <button class="finalizeBtn" (click)="closeDialog()">FINALIZAR</button>
