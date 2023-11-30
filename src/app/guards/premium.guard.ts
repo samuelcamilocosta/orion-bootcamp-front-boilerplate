@@ -1,14 +1,18 @@
+// premium.guard.ts
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 
+@Injectable({
+  providedIn: 'root',
+})
+
 /**
- * AuthGuard
+ * PremiumGuard
  *
- * Guard class that implements CanActivate to check if a user has token access.
+ * class that implements CanActivate to check if a user has premium access.
  */
-@Injectable()
-export class AuthGuard implements CanActivate {
+export class PremiumGuard implements CanActivate {
   /**
    * constructor
    *
@@ -22,14 +26,14 @@ export class AuthGuard implements CanActivate {
    *
    * method to determine if the route can be activated.
    *
-   * @returns 'true' if the user has token access, otherwise navigates to the login page
+   * @returns 'true' if the user has premium access, otherwise navigates to the home page
    * and returns 'false'.
    */
   canActivate(): boolean {
-    if (this.authService.isAuthenticated()) {
+    if (this.authService.isPremium()) {
       return true;
     } else {
-      this.router.navigate(['']);
+      this.router.navigate(['/page/home']);
       return false;
     }
   }

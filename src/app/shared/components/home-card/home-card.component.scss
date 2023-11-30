@@ -40,6 +40,22 @@
         font-weight: 700;
         letter-spacing: 0.00988rem;
       }
+      .card-soon-premium {
+        display: flex;
+        align-self: flex-start;
+        align-items: center;
+        justify-content: center;
+        height: 1.26088rem;
+        padding: 0rem calc(0.15763rem + 0.31519rem);
+        border-radius: 0.63044rem;
+        background: #f9d6c7;
+
+        // typography
+        color: #b0683b;
+        font-size: 0.55163rem;
+        font-weight: 700;
+        letter-spacing: 0.00988rem;
+      }
 
       h3,
       p {
@@ -88,6 +104,7 @@
     }
   }
 }
+// style change for free user blocked access
 
 // style change for premium-modal
 .card-content-premium {
@@ -95,9 +112,9 @@
   display: flex !important;
   justify-content: space-between;
 
-  .card-soon-premium {
-    display: none !important;
-  }
+  // .card-soon-premium {
+  //   display: none !important;
+  // }
 
   .submitBtn-premium {
     background-color: #a42d2d !important;
@@ -148,5 +165,22 @@
 
   button:hover:not(:disabled) {
     filter: brightness(1.1);
+  }
+}
+
+.blocked-access {
+  border: 1px solid #a42d2d;
+  background: rgba(151, 151, 151, 0.2) !important;
+  color: #a42d2d !important;
+  height: 3.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  img {
+    width: 1.125rem;
+    height: 1.3125rem;
   }
 }

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { ICard } from 'src/app/interfaces/home-card-params';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ICard } from 'src/app/interfaces/card-params-interface';
 
 @Component({
   selector: 'app-premium-modal',
@@ -8,14 +8,36 @@ import { ICard } from 'src/app/interfaces/home-card-params';
   styleUrls: ['./premium-modal.component.scss'],
 })
 export class PremiumModalComponent {
+  isLoading = true; // Inicialmente, estamos carregando
+
+  /**
+   * planCards: represents an array of @type {ICard}
+   */
+  planCards: ICard[] = [];
+
+  /**
+   * constructor
+   *
+   * @param data - The injected data, containing an array of plan cards of @type {ICard}.
+   * @param dialogRef - Reference to the MatDialog for the component.
+   */
+  constructor(
+    @Inject(MAT_DIALOG_DATA) private data: { planCards: ICard[] },
+    private dialogRef: MatDialogRef<PremiumModalComponent>
+  ) {
+    if (data.planCards) {
+      this.isLoading = false;
+
+      this.planCards = data.planCards;
+    }
+  }
+
   /**
    * premiumStyleActive
    *
    * apply "the card-content-premium" class on home-cards component to reuse it
    */
   premiumStyleActive = true;
-
-  constructor(private dialogRef: MatDialogRef<PremiumModalComponent>) {}
 
   /**
    * closeDialog
@@ -25,30 +47,4 @@ export class PremiumModalComponent {
   closeDialog(): void {
     this.dialogRef.close();
   }
-
-  /**
-   * Placeholder until the api integration
-   */
-  cards: ICard[] = [
-    {
-      cardImage: 'assets/images/home/mars-terrain.jpeg',
-      imageAltText:
-        'Martian landscape with scattered small rocks and sand dunes.',
-      cardTitle: 'Plano Pesquisador (Premium)',
-      cardSubTitle:
-        'Desbloqueie acesso total às maravilhas de Marte com o Plano Explorador (Premium) do Orion Marte.',
-      path: '/page/meteorology',
-      btnText: 'VEJA COMO SE TORNAR UM PESQUISADOR',
-    },
-    {
-      cardImage: 'assets/images/home/rocket.jpeg',
-      imageAltText:
-        'Rocket launching into the sky with plumes of smoke and fire.',
-      cardTitle: 'Plano Astronauta (Enterprise)',
-      cardSubTitle:
-        'Maximize seu potencial explorador com o Plano Astronauta: soluções personalizadas, acesso exclusivo e suporte premium.',
-      path: '',
-      btnText: 'VEJA COMO SE TORNAR UM ASTRONAUTA',
-    },
-  ];
 }

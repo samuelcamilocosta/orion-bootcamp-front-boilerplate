@@ -1,5 +1,9 @@
-<section class="premium-modal-container">
-  <div class="wrapper">
+<section class="premium-modal-container" #templateName>
+  <div *ngIf="isLoading" class="mat-loading-spinner">
+    <mat-spinner diameter="150"></mat-spinner>
+  </div>
+
+  <div *ngIf="!isLoading" class="wrapper">
     <div class="header-container">
       <div class="header-text">
         <img
@@ -9,7 +13,15 @@
         />
         <h1>SEJA <span>PREMIUM!</span></h1>
       </div>
-      <button mat-fab class="close-icon-button" (click)="closeDialog()">
+      <button
+        mat-fab
+        class="close-icon-button"
+        (click)="closeDialog()"
+        matTooltipClass="custom-tooltip"
+        matTooltipPosition="above"
+        matTooltip="Fechar"
+        aria-label="Button that displays a tooltip when focused or hovered over"
+      >
         <img
           class="close-icon"
           src="/assets/images/premium/close-icon.svg"
@@ -24,9 +36,9 @@
         sem limites, offline, sem anúncios. Acesso ilimitado a todas as áreas.
       </p>
     </div>
-    <div class="cards-container">
+    <div class="cards-container cards-container-premium">
       <app-card
-        *ngFor="let card of cards"
+        *ngFor="let card of planCards"
         [cardAttributes]="card"
         [premiumStyle]="premiumStyleActive"
       />
