@@ -130,6 +130,7 @@ export class BaseMethods {
       data: {
         errorMessage: _error,
       },
+      disableClose: true,
     });
   }
 
@@ -150,7 +151,7 @@ export class BaseMethods {
         );
 
         this.storageService.removeItem('user');
-        this.route.navigate(['/']);
+
         break;
 
       case 403:

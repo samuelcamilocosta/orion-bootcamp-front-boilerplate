@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-error-dialog',
@@ -23,7 +24,8 @@ export class ErrorDialogComponent {
    */
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<ErrorDialogComponent>
+    private dialogRef: MatDialogRef<ErrorDialogComponent>,
+    private route: Router
   ) {
     this.errorMessage = data.errorMessage;
   }
@@ -33,5 +35,12 @@ export class ErrorDialogComponent {
    */
   closeDialog(): void {
     this.dialogRef.close();
+
+    if (
+      this.errorMessage ===
+      'Não autorizado. Credenciais de autenticação ausentes ou incorretas.'
+    ) {
+      this.route.navigate(['/']);
+    }
   }
 }
