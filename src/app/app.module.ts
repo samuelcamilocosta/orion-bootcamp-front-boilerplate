@@ -28,6 +28,8 @@ import { PasswordRecoveryDialogComponent } from './shared/components/password-re
 import { PremiumModalComponent } from './shared/components/premium-modal/premium-modal.component';
 import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
 import { MaterialModule } from './shared/modules/material.module';
+import { ResearcherPlanPageComponent } from './pages/researcher-plan-page/researcher-plan-page.component';
+import { SubscriptionCardComponent } from './shared/components/subscription-card/subscription-card.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { MaterialModule } from './shared/modules/material.module';
     MarsMapComponent,
     PremiumPageComponent,
     CarouselComponent,
+    ResearcherPlanPageComponent,
+    SubscriptionCardComponent,
   ],
   imports: [
     BrowserModule,

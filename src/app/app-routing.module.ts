@@ -7,6 +7,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
 import { PremiumPageComponent } from './pages/premium-page/premium-page.component';
+import { ResearcherPlanPageComponent } from './pages/researcher-plan-page/researcher-plan-page.component';
 
 /**
  * The main routing configuration for the application.
@@ -19,6 +20,7 @@ const routes: Routes = [
    *
    * This route displays the login page by default.
    */
+  { path: 'plan/:1', component: ResearcherPlanPageComponent },
   { path: '', component: LoginPageComponent },
 
   /**

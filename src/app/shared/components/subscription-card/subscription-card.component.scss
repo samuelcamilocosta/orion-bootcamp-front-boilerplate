@@ -1,0 +1,44 @@
+.subscription-container {
+  display: grid;
+  width: 18.09875rem;
+  height: 23.72706rem;
+  padding: 1rem;
+  gap: 2.45rem;
+  align-content: center;
+  justify-items: center;
+  border-radius: 0.625rem;
+  background: #fff6f1;
+
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 2px 1px 0px rgba(0, 0, 0, 0.12), 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
+
+  h1 {
+    color: #a42d2d;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    span {
+      font-size: 1.5rem;
+    }
+  }
+
+  p {
+    color: #000;
+    font-size: 1.5rem;
+    line-height: normal;
+  }
+
+  button {
+    background: #a42d2d;
+    display: flex;
+    height: 3.5rem;
+    width: 100%;
+
+    //typography
+    color: #fff6f1;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.07813rem;
+  }
+}
