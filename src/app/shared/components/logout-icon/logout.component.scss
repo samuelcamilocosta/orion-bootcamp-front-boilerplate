@@ -13,13 +13,31 @@
 .logout-container {
   display: flex;
   align-items: center;
+  gap: 2.5rem;
 
   .premium-icon {
     margin-right: 1.56rem;
   }
 
+  .tablet-button {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    padding: 10px 8px;
+
+    border-radius: 50px;
+    border: 1px solid #a42d2d;
+    background: #fff;
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
   button {
-    margin-right: 2.5rem;
     width: 11.4375rem;
     height: 2.063rem;
     border-radius: 3.125rem;
@@ -47,7 +65,6 @@
     background-color: transparent;
   }
 
-  /* plus logout */
   .logout-svg {
     width: 100%;
     transition-duration: 0.3s;
@@ -56,7 +73,6 @@
     justify-content: flex-end;
   }
 
-  /* text */
   .text {
     position: absolute;
     right: 0%;
@@ -67,8 +83,8 @@
     font-weight: 600;
     transition-duration: 0.3s;
   }
-  /* hover effect on button width */
 
+  /* hover effect on button width */
   .logout-btn:hover {
     width: 125px;
     border-radius: 40px;
@@ -81,17 +97,51 @@
     transition-duration: 0.3s;
     padding-left: 20px;
   }
-  /* hover effect button's text */
 
+  /* hover effect button's text */
   .logout-btn:hover .text {
     opacity: 1;
     width: 70%;
     transition-duration: 0.3s;
     padding-right: 10px;
   }
-  /* button click effect*/
 
+  /* button click effect*/
   .logout-btn:active {
     transform: translate(2px, 2px);
+  }
+}
+
+@media (max-width: 500px) {
+  .logout-container {
+    .logout-btn,
+    .logout-btn:hover,
+    .logout-btn:active {
+      width: 35px;
+      border-radius: 0;
+      transition-duration: 0s;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .logout-btn:hover .logout-svg,
+    .logout-btn:hover .text {
+      width: 35px;
+      padding: 0;
+    }
+    .logout-btn:hover .text {
+      display: none;
+    }
+
+    .logout-btn:active {
+      transform: none;
+    }
+  }
+}
+
+.custom-tooltip {
+  display: none !important;
+  div {
+    display: none !important;
   }
 }

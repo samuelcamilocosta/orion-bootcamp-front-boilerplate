@@ -12,6 +12,7 @@
   />
   <ng-template #templateFree>
     <button
+      class="d-none d-xl-block"
       (click)="openPremiumModal()"
       mat-stroked-button
       matTooltipClass="custom-tooltip"
@@ -20,6 +21,17 @@
       aria-label="Button that displays a tooltip when focused or hovered over"
     >
       SEJA PREMIUM
+    </button>
+    <button
+      class="tablet-button d-lg-block d-xl-none"
+      (click)="openPremiumModal()"
+      mat-fab
+      matTooltipClass="custom-tooltip"
+      matTooltipPosition="above"
+      matTooltip="Acesse e seja Premium"
+      aria-label="Button that displays a tooltip when focused or hovered over"
+    >
+      <img src="/assets/images/premium/premium-button-mobile.svg" alt="" />
     </button>
   </ng-template>
   <button (click)="logout()" class="logout-btn">

@@ -150,3 +150,22 @@
     filter: brightness(1.1);
   }
 }
+
+@media (max-width: 1199px) {
+  .card-component-container {
+    width: 19.8125rem;
+    height: 24.6875rem;
+
+    .card-content {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      padding: 0;
+      justify-content: space-between !important;
+
+      .text-card {
+        padding: 0 1rem 0 1rem;
+      }
+    }
+  }
+}
