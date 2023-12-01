@@ -8,7 +8,10 @@ import { ICard } from 'src/app/interfaces/card-params-interface';
   styleUrls: ['./premium-modal.component.scss'],
 })
 export class PremiumModalComponent {
-  isLoading = true; // Inicialmente, estamos carregando
+  /**
+   * isLoading: represents the loading spinner. It starts true an change to false when planCards exists
+   */
+  isLoading = true;
 
   /**
    * planCards: represents an array of @type {ICard}

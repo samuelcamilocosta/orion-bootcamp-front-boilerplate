@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { ICard } from 'src/app/interfaces/card-params-interface';
-import { PlanCardResponse } from 'src/app/interfaces/plan-card-response';
 import { BaseMethods } from './base-methods';
 
 @Injectable({
@@ -16,29 +15,19 @@ import { BaseMethods } from './base-methods';
 export class PlanModalCardsService extends BaseMethods {
   async getPlanCardsData(): Promise<ICard[]> {
     return new Promise<ICard[]>((resolve, reject) => {
-      const request = this.HttpRequest<PlanCardResponse[]>(
+      const request = this.HttpRequest<ICard[]>(
         HttpMethod.GET,
         'v1/plan-cards'
       );
 
-      // array of path to be parsed on fetched data
-      const paths: string[] = ['plano_pesquisador', ''];
-
       request
         .then((response) => {
           if (response) {
-            //placeholder until the fetched data is of the correctly type.
-            const newResponse: ICard[] = response.map((card, index) => {
-              return {
-                cardImage: card.planCardImage,
-                cardImageDescription: '',
-                cardTitle: card.planCardTitle,
-                cardDescription: card.planCardDescription,
-                cardButtonText: card.planCardButtonText,
-                path: paths[index],
-              };
+            response.forEach((resp, index) => {
+              return (resp.path = `plan/:${index + 1}`);
             });
-            resolve(newResponse);
+
+            resolve(response);
           } else {
             reject(
               this.openErrorDialog(

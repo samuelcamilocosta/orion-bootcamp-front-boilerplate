@@ -41,6 +41,7 @@ export class HomePageCardsService extends BaseMethods {
       request
         .then((response) => {
           if (response) {
+            // TODO: remover forEach quando receber os paths da home na response
             response.forEach((resp, index) => {
               return (resp.path = paths[index]);
             });

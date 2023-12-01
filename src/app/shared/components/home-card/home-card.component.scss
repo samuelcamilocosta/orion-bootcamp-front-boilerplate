@@ -104,17 +104,12 @@
     }
   }
 }
-// style change for free user blocked access
 
 // style change for premium-modal
 .card-content-premium {
   height: 100%;
   display: flex !important;
   justify-content: space-between;
-
-  // .card-soon-premium {
-  //   display: none !important;
-  // }
 
   .submitBtn-premium {
     background-color: #a42d2d !important;
@@ -168,6 +163,7 @@
   }
 }
 
+// style change for free user blocked access
 .blocked-access {
   border: 1px solid #a42d2d;
   background: rgba(151, 151, 151, 0.2) !important;
