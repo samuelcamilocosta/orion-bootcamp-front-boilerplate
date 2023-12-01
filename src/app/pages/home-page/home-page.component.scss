@@ -5,14 +5,16 @@ section {
   .home-page-container {
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
+    padding-top: 5.04rem;
     gap: 3.81rem;
     width: 85.375rem;
-    height: 48rem;
 
     .home-page-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding-left: 5rem;
 
       div {
         display: inherit;
@@ -121,6 +123,7 @@ section {
 @media (max-width: 1199px) {
   .home-page-header {
     justify-content: space-around !important;
+    padding-left: 0 !important;
   }
   .newCards {
     padding-bottom: 4.12rem;
