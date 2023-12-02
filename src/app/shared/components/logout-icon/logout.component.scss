@@ -9,32 +9,32 @@
 ::ng-deep .mdc-tooltip__surface {
   max-width: 300px !important;
 }
+::ng-deep .mdc-button__label {
+  width: 100%;
+}
 
 .logout-container {
   display: flex;
   align-items: center;
   gap: 1rem;
 
-  .premium-icon {
-    margin-right: 1.56rem;
-  }
-
-  .tablet-button {
-    position: relative;
-    width: 36px;
-    height: 36px;
-    padding: 10px 8px;
-
-    border-radius: 50px;
-    border: 1px solid #a42d2d;
-    background: #fff;
+  .button-content {
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
 
     img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      scale: 1.3;
     }
+
+    p {
+      margin: 0;
+      color: #a42d2d;
+    }
+  }
+
+  .premium-icon {
+    margin-right: 1.56rem;
   }
 
   button {

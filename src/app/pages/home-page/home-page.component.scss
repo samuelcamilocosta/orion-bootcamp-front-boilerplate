@@ -118,17 +118,16 @@ section {
   }
 }
 
-@media (max-width: 767px) {
-  .home-page-header {
-    flex-wrap: wrap-reverse;
-    gap: 1rem;
-  }
-}
-
 @media (max-width: 1199px) {
+  ::ng-deep .home-page-header .logout-container {
+    width: 90vw;
+    justify-content: space-around;
+  }
   .home-page-header {
     justify-content: space-around !important;
     padding-left: 0 !important;
+    gap: 2.85rem !important;
+    flex-wrap: wrap-reverse;
   }
   .newCards {
     padding-bottom: 4.12rem;
