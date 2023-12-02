@@ -14,6 +14,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
 import { PremiumPageComponent } from './pages/premium-page/premium-page.component';
+import { ResearcherPlanPageComponent } from './pages/researcher-plan-page/researcher-plan-page.component';
 import { CarouselComponent } from './shared/components/carousel/carousel.component';
 import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
 import { HomeCardComponent } from './shared/components/home-card/home-card.component';
@@ -26,10 +27,9 @@ import { MeteorologyHeroCardComponent } from './shared/components/meteorology-he
 import { MinTempIndicatorComponent } from './shared/components/min-temp-indicator/min-temp-indicator.component';
 import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
 import { PremiumModalComponent } from './shared/components/premium-modal/premium-modal.component';
+import { SubscriptionCardComponent } from './shared/components/subscription-card/subscription-card.component';
 import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
 import { MaterialModule } from './shared/modules/material.module';
-import { ResearcherPlanPageComponent } from './pages/researcher-plan-page/researcher-plan-page.component';
-import { SubscriptionCardComponent } from './shared/components/subscription-card/subscription-card.component';
 
 @NgModule({
   declarations: [

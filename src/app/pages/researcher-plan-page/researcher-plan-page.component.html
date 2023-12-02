@@ -51,7 +51,7 @@
         <!-- First Container End-->
 
         <!-- Subscription Container Start -->
-        <div class="reseacher-subscription-container">
+        <div class="researcher-subscription-container">
           <app-subscription-card></app-subscription-card>
           <p class="weight-500">
             Assine sem compromissos. Cancele antes de [Dez 20, 2023] para que
@@ -70,10 +70,137 @@
           >
         </div>
 
-        <form>
-          <div>
-            <mat-checkbox class="custom-checkbox" formControlName="checkbox" />
+        <!-- TODO -->
+        <form class="container" [formGroup]="subscribeForm">
+          <!-- Payment card inputs -->
+          <div class="payment-card-container">
+            <!-- <div class="row"> -->
+            <div class="payment-wrapper">
+              <div class="d-flex flex-column">
+                <p>Número do cartão</p>
+                <mat-form-field
+                  class="payment-mat-form-field card-number"
+                  appearance="outline"
+                >
+                  <input
+                    matInput
+                    formControlName="cardNumber"
+                    placeholder="Credit Card Number"
+                    maxlength="16"
+                  />
+                </mat-form-field>
+              </div>
+              <!-- Cardholder Name -->
 
+              <div class="d-flex flex-column">
+                <p>Nome do titular</p>
+                <mat-form-field
+                  class="payment-mat-form-field"
+                  appearance="outline"
+                >
+                  <input
+                    matInput
+                    formControlName="cardholderName"
+                    placeholder="Nome como está no cartão"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="expiration-ccv-container d-flex">
+                <!-- Expiration Date -->
+                <div class="d-flex flex-column expiration-date">
+                  <p>Validade</p>
+                  <mat-form-field
+                    class="payment-mat-form-field"
+                    appearance="outline"
+                  >
+                    <input
+                      matInput
+                      formControlName="expirationDate"
+                      placeholder="Expiration Date"
+                      maxlength="4"
+                    />
+                  </mat-form-field>
+                </div>
+
+                <!-- CCV -->
+                <div class="d-flex flex-column ccv">
+                  <div class="ccv-header">
+                    <p>CCV</p>
+                    <img
+                      src="/assets/images/subscription/Question.svg"
+                      alt=""
+                      matTooltipClass="custom-tooltip"
+                      matTooltipPosition="above"
+                      matTooltip="Placeholder"
+                      aria-label="Button that displays a tooltip when focused or hovered over"
+                    />
+                  </div>
+                  <mat-form-field
+                    class="payment-mat-form-field"
+                    appearance="outline"
+                  >
+                    <input
+                      matInput
+                      formControlName="ccv"
+                      placeholder="CCV"
+                      maxlength="3"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="card-simulation-container">
+              <div class="wrapper">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <img
+                      src="/assets/images/subscription/Bandeiras cartão.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      src="/assets/images/subscription/ContactlessPayment.svg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <input
+                  [disabled]="forceDisabled()"
+                  class="card-number-input"
+                  placeholder="4716 8039 02** ****"
+                  value="{{ this.subscribeForm.get('cardNumber')?.value }}"
+                />
+
+                <div class="d-flex justify-content-between">
+                  <input
+                    [disabled]="forceDisabled()"
+                    class="holder-name-input"
+                    placeholder="seu nome aqui"
+                    value="{{
+                      this.subscribeForm.get('cardholderName')?.value
+                    }}"
+                  />
+                  <input
+                    [disabled]="forceDisabled()"
+                    class="card-expiration-input"
+                    placeholder="**/**"
+                    value="{{ test() }}"
+                  />
+                </div>
+              </div>
+              <div class="protected-data-text">
+                <img src="/assets/images/subscription/ShieldCheck.svg" alt="" />
+                <p>Seus dados estão seguros</p>
+              </div>
+            </div>
+            <!-- </div> -->
+          </div>
+          <!-- end -->
+
+          <!-- Agreement Checkboxes Start -->
+          <div>
+            <mat-checkbox class="custom-checkbox" formControlName="checkbox1" />
             <p class="weight-500">
               O ORION MARTE vai fazer a cobrança do valor da assinatura
               automaticamente conforme mencionado acima no início de cada
@@ -83,8 +210,7 @@
             </p>
           </div>
           <div>
-            <mat-checkbox class="custom-checkbox" formControlName="checkbox" />
-
+            <mat-checkbox class="custom-checkbox" formControlName="checkbox2" />
             <p class="weight-500">
               Você será cobrado na moeda nacional (Real). Seu banco irá
               processar a conversões das moedas necessárias e taxa adicionais
@@ -93,7 +219,14 @@
               <a href="#">Política de Privacidade</a>.
             </p>
           </div>
-          <button class="charge-btn" mat-raised-button>
+          <!-- Agreement Checkboxes end -->
+
+          <button
+            [disabled]="this.subscribeForm.invalid"
+            (click)="onSubmit()"
+            class="charge-btn"
+            mat-raised-button
+          >
             Realizar a cobrança
           </button>
         </form>

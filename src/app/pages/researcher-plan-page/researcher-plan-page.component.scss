@@ -4,6 +4,14 @@
   }
 }
 
+::ng-deep .mat-mdc-form-field-infix {
+  width: fit-content;
+}
+
+.ccv {
+  width: fit-content;
+}
+
 section {
   width: 100%;
   height: 100%;
@@ -32,7 +40,6 @@ section {
     padding-block: 6.44rem;
     display: flex;
     max-width: 120rem;
-    min-width: 67.6875rem;
     flex-direction: column;
     gap: 3.81rem;
 
@@ -73,7 +80,7 @@ section {
 
     .researcher-main-wrapper {
       padding: 4rem 5.44rem 6.88rem 5.44rem;
-      height: 122.25rem;
+      min-height: 122.25rem;
       background: #fff;
       border-radius: 1.25rem;
       box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -93,11 +100,16 @@ section {
         }
 
         .researcher-banner {
-          height: fit-content;
+          width: 100%;
+          // height: fit-content;
           border-radius: 0.625rem;
           box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
             0px 2px 1px 0px rgba(0, 0, 0, 0.12),
             0px 1px 1px 0px rgba(0, 0, 0, 0.14);
+
+          img {
+            width: 100%;
+          }
 
           div {
             display: flex;
@@ -118,7 +130,7 @@ section {
           }
         }
 
-        .reseacher-subscription-container {
+        .researcher-subscription-container {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -137,6 +149,7 @@ section {
             font-weight: 700;
             line-height: normal;
           }
+
           p {
             color: #000;
             text-align: justify;
@@ -150,44 +163,219 @@ section {
         form {
           display: flex;
           flex-direction: column;
-          gap: 2.24rem;
+          gap: 1rem;
+
+          .payment-card-container {
+            display: flex;
+
+            align-self: center;
+            align-items: flex-start;
+            max-width: 46rem;
+            width: 100%;
+            height: 21.1875rem;
+            padding: 2rem;
+            gap: 3rem;
+            flex-shrink: 0;
+            margin-bottom: 0.5rem;
+
+            border-radius: 0.5rem;
+            border: 1px solid #a42d2d;
+            background: var(--foundation-gray-scale-white, #fff);
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+            input::placeholder {
+              color: #8a8888;
+            }
+
+            * {
+              font-family: Source Sans Pro;
+            }
+
+            p {
+              margin-bottom: 0.25rem;
+              color: #8a8888;
+
+              // typography
+              font-weight: 600;
+              line-height: 1rem;
+            }
+
+            .payment-mat-form-field {
+              // change inputs border-color
+              --mdc-outlined-text-field-outline-color: initial;
+
+              // change inputs border-color on focus
+              --mdc-outlined-text-field-focus-outline-color: var(
+                --primary-color
+              );
+
+              // change label color on focus
+              --mdc-outlined-text-field-focus-label-text-color: initial;
+
+              //change color of hover effect from login inputs
+              --mdc-outlined-text-field-hover-outline-color: initial;
+
+              //change login inputs caret color
+              --mdc-outlined-text-field-caret-color: initial;
+
+              //change color of inputs placeholder
+              --mdc-outlined-text-field-input-text-placeholder-color: initial;
+
+              // change typing text color
+              --mdc-outlined-text-field-input-text-color: initial;
+
+              //change label text color
+              --mdc-outlined-text-field-label-text-color: initial;
+            }
+
+            .expiration-ccv-container {
+              gap: 1rem;
+
+              .expiration-date {
+                max-width: 11.375rem;
+                width: 100%;
+              }
+
+              .ccv {
+                ::ng-deep .mat-mdc-form-field-infix {
+                  width: fit-content;
+                }
+
+                .ccv-header {
+                  display: flex;
+                  align-items: center;
+                  gap: 0.25rem;
+
+                  img {
+                    margin-bottom: 0.25rem;
+                  }
+                }
+              }
+            }
+
+            .payment-wrapper {
+              flex: 1;
+              width: 50%;
+            }
+
+            .card-simulation-container {
+              flex: 1;
+              width: 50%;
+              display: flex;
+              align-items: flex-end;
+              flex-direction: column;
+              gap: 2rem;
+
+              justify-content: flex-end;
+              margin-top: 1rem;
+
+              .protected-data-text {
+                display: flex;
+                align-self: center;
+                align-items: center;
+                gap: 0.5rem;
+
+                p {
+                  margin: 0;
+                  font-size: 0.85rem;
+                  color: #000;
+                }
+              }
+
+              .wrapper {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                max-width: 17.5rem;
+                width: 100%;
+                height: 10.5rem;
+                padding: 1rem 1.5rem 1.5rem;
+                background: #b95d5d;
+                backdrop-filter: blur(24px);
+
+                border-radius: 1rem;
+                border: 1px solid #242323;
+                box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.25);
+
+                p {
+                  color: #fff;
+                }
+
+                input {
+                  border: none;
+                  background: none;
+                  color: #fff;
+
+                  &::placeholder {
+                    color: #fff;
+                  }
+                }
+
+                :last-child {
+                  letter-spacing: 0.25rem;
+                }
+
+                .card-number-input {
+                  width: 100%;
+                  margin-top: 2.5rem;
+                  font-size: 1rem;
+                  font-weight: 600;
+                  letter-spacing: 0.25rem;
+                  color: #fff;
+                }
+
+                .holder-name-input {
+                  margin-top: 0.25rem;
+                }
+
+                .card-expiration-input,
+                .holder-name-input {
+                  font-size: 0.875rem;
+                }
+
+                div:has(.holder-name-input) {
+                }
+              }
+            }
+          }
 
           a {
             color: #000;
             font-weight: 700;
-            text-decoration-line: underline;
           }
-          div {
+
+          div:has(.custom-checkbox) {
             display: flex;
             gap: 0.5rem;
 
             .custom-checkbox {
               --mdc-checkbox-selected-checkmark-color: #fff;
             }
-          }
-          p {
-            color: #000;
-            text-align: justify;
 
-            /* Sizes/Medium/m */
-            font-size: 1rem;
-            font-style: normal;
-            font-weight: 500;
-            line-height: normal;
+            p {
+              color: #000;
+              text-align: justify;
+            }
           }
+        }
 
-          .charge-btn {
-            align-self: flex-end;
-            height: 3.5rem;
-            width: 25.0625rem;
-            background: #b95d5d;
+        .charge-btn {
+          align-self: flex-end;
+          height: 3.5rem;
+          width: 25.0625rem;
+          background: #b95d5d;
 
-            //typography
-            color: #fff;
-            font-size: 1.25rem;
-            font-weight: 700;
-            text-transform: uppercase;
-          }
+          //typography
+          color: #fff;
+          font-size: 1.25rem;
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+        .charge-btn:disabled {
+          background: #979797;
+          color: #171717;
+          opacity: 0.3;
+          font-weight: 700;
         }
       }
     }
