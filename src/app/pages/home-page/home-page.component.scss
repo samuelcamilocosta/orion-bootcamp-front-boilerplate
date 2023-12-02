@@ -107,19 +107,13 @@ section {
 }
 
 @media (max-width: 500px) {
-  // ::ng-deep .home-page-header .logout-container {
-  //   gap: 3rem !important;
-  // }
-  .home-page-header {
-    // flex-wrap: wrap-reverse;
-    // gap: 1rem;
-
-    h1 {
-      font-size: 30px !important;
+  .home-page-container {
+    gap: 2.5rem !important;
+    .home-page-header {
+      h1 {
+        font-size: 30px !important;
+      }
     }
-    // p {
-    //   font-size: 12px !important;
-    // }
   }
 }
 
