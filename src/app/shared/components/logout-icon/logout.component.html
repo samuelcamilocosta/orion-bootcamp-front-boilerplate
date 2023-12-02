@@ -1,5 +1,5 @@
 <!-- logout with animation -->
-<section class="logout-container">
+<section class="logout-container sticky-top">
   <img
     *ngIf="checkRole(); else templateFree"
     class="premium-icon"
@@ -23,7 +23,7 @@
       SEJA PREMIUM
     </button>
     <button
-      class="tablet-button d-lg-block d-xl-none"
+      class="tablet-button d-lg-block d-xl-none sticky-top"
       (click)="openPremiumModal()"
       mat-fab
       matTooltipClass="custom-tooltip"

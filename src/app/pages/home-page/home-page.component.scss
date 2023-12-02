@@ -92,8 +92,11 @@ section {
   }
 
   .swiper-container::after {
-    right: 0;
+    right: -1px;
     left: auto;
+  }
+  .swiper-container::before {
+    left: -1px;
   }
 }
 
@@ -104,19 +107,30 @@ section {
 }
 
 @media (max-width: 500px) {
+  // ::ng-deep .home-page-header .logout-container {
+  //   gap: 3rem !important;
+  // }
   .home-page-header {
+    // flex-wrap: wrap-reverse;
+    // gap: 1rem;
+
     h1 {
-      font-size: 24px !important;
+      font-size: 30px !important;
     }
-    p {
-      font-size: 12px !important;
-    }
+    // p {
+    //   font-size: 12px !important;
+    // }
   }
 }
 
 @media (max-width: 767px) {
   ::ng-deep .home-page-header .logout-container {
-    gap: 1.12rem !important;
+    gap: 3rem !important;
+  }
+
+  .home-page-header {
+    flex-wrap: wrap-reverse;
+    gap: 1rem;
   }
 }
 

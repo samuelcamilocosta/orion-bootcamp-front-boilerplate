@@ -111,37 +111,3 @@
     transform: translate(2px, 2px);
   }
 }
-
-@media (max-width: 500px) {
-  .logout-container {
-    .logout-btn,
-    .logout-btn:hover,
-    .logout-btn:active {
-      width: 35px;
-      border-radius: 0;
-      transition-duration: 0s;
-      box-shadow: none;
-      transform: none;
-    }
-
-    .logout-btn:hover .logout-svg,
-    .logout-btn:hover .text {
-      width: 35px;
-      padding: 0;
-    }
-    .logout-btn:hover .text {
-      display: none;
-    }
-
-    .logout-btn:active {
-      transform: none;
-    }
-  }
-}
-
-.custom-tooltip {
-  display: none !important;
-  div {
-    display: none !important;
-  }
-}
