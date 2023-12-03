@@ -2,6 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { ConfirmationModalParams } from 'src/app/interfaces/confirmation-modal-params';
+import { ConfirmationToken } from 'src/app/interfaces/confirmation-token';
 import { BaseMethods } from './base-methods';
 
 @Injectable({
@@ -28,15 +29,15 @@ export class UserConfirmationService extends BaseMethods {
    *
    * method Http Post request to send the confirmationToken to the database for user validation
    *
-   * @param confirmToken: token @type {string} to be sent to the database
+   * @param token: token @type {ConfirmationToken} to be sent to the database
    * @returns a Promise @type {HttpResponse<any>}
    */
-  async confirmUser(confirmToken: any): Promise<HttpResponse<any>> {
+  async confirmUser(token: ConfirmationToken): Promise<HttpResponse<any>> {
     return new Promise<HttpResponse<any>>((resolve, reject) => {
       const request = this.HttpRequest(
         HttpMethod.POST,
         'v1/user-confirmation',
-        confirmToken
+        token
       );
 
       request

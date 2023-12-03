@@ -93,15 +93,15 @@ export class LoginPageComponent implements OnInit {
    * Initializes the component. If the user is already authenticated, it navigates to the home page.
    */
   ngOnInit(): void {
-    const confirmationToken =
+    if (this.auth.isAuthenticated()) {
+      this.route.navigate(['/page/home']);
+    }
+
+    const confirmationToken: string =
       this.activatedRoute.snapshot.queryParams['confirmationToken'];
 
     if (confirmationToken !== undefined) {
       this.userConfirmationService.confirmUser({ confirmationToken });
-    }
-
-    if (this.auth.isAuthenticated()) {
-      this.route.navigate(['/page/home']);
     }
   }
 }
