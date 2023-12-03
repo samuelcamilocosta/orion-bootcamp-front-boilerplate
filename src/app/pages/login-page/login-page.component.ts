@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/api/v1/login.service';
 import { IFormParams } from 'src/app/interfaces/login-form-params';
 import { ILoginParams } from 'src/app/interfaces/login-params.interface';
+import { UserConfirmationService } from '../../api/v1/user-confirmation.service';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -37,7 +38,9 @@ export class LoginPageComponent implements OnInit {
     private fb: FormBuilder,
     private loginService: LoginService,
     private auth: AuthService,
-    private route: Router
+    private route: Router,
+    private activatedRoute: ActivatedRoute,
+    private userConfirmationService: UserConfirmationService
   ) {
     // Initialize the formGroup with email, password, and checkbox fields.
     this.formGroup = this.fb.group({
@@ -90,6 +93,13 @@ export class LoginPageComponent implements OnInit {
    * Initializes the component. If the user is already authenticated, it navigates to the home page.
    */
   ngOnInit(): void {
+    const confirmationToken =
+      this.activatedRoute.snapshot.queryParams['confirmationToken'];
+
+    if (confirmationToken !== undefined) {
+      this.userConfirmationService.confirmUser({ confirmationToken });
+    }
+
     if (this.auth.isAuthenticated()) {
       this.route.navigate(['/page/home']);
     }

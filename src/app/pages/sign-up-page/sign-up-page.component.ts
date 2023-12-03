@@ -6,6 +6,8 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { RegistrationData } from 'src/app/interfaces/registration-data';
+import { UserRegistrationService } from '../../api/v1/user-registration.service';
 
 @Component({
   selector: 'app-sign-up-page',
@@ -29,7 +31,10 @@ export class SignUpPageComponent {
    *
    * @param fb - An instance of FormBuilder for form creation.
    */
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private registrationService: UserRegistrationService
+  ) {
     // Initialize the formGroup with email, password, and checkbox fields.
     this.signUpFormGroup = this.fb.group(
       {
@@ -65,13 +70,13 @@ export class SignUpPageComponent {
    */
   async onSubmit() {
     const formData = this.signUpFormGroup.value;
-    const dataToSend = {
+    const dataToSend: RegistrationData = {
       name: formData.name,
       email: formData.email,
       password: formData.password,
     };
 
-    // await this.signupService.sendData(dataToSend);
+    await this.registrationService.createUser(dataToSend);
   }
 
   /**
