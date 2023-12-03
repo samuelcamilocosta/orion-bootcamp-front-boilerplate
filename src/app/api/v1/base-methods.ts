@@ -86,19 +86,29 @@ export class BaseMethods {
 
     switch (method) {
       case HttpMethod.GET:
-        return this.http.get<T>(url, { headers, params }).toPromise();
+        return this.http
+          .get<T>(url, { headers, params, observe: 'response' })
+          .toPromise();
 
       case HttpMethod.POST:
-        return this.http.post<T>(url, body, { headers }).toPromise();
+        return this.http
+          .post<T>(url, body, { headers, observe: 'response' })
+          .toPromise();
 
       case HttpMethod.PUT:
-        return this.http.put<T>(url, body, { headers }).toPromise();
+        return this.http
+          .put<T>(url, body, { headers, observe: 'response' })
+          .toPromise();
 
       case HttpMethod.PATCH:
-        return this.http.patch<T>(url, body, { headers }).toPromise();
+        return this.http
+          .patch<T>(url, body, { headers, observe: 'response' })
+          .toPromise();
 
       case HttpMethod.DELETE:
-        return this.http.delete<T>(url, { headers }).toPromise();
+        return this.http
+          .delete<T>(url, { headers, observe: 'response' })
+          .toPromise();
 
       default:
         throw new Error('Invalid HTTP method');
@@ -162,7 +172,7 @@ export class BaseMethods {
   protected handleError(error: HttpErrorResponse): void {
     switch (error.status) {
       case 400:
-        this.openErrorDialog(error.error);
+        this.openErrorDialog(error.error.error);
         break;
 
       case 401:
