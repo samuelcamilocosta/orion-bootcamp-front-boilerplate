@@ -7,6 +7,7 @@ import { BaseMethods } from './base-methods';
 @Injectable({
   providedIn: 'root',
 })
+
 /**
  * UserConfirmationService
  *
@@ -21,6 +22,7 @@ export class UserConfirmationService extends BaseMethods {
     paragraphA: 'Usuário confirmado com sucesso!',
     icon: 'assets/images/action/check_circle_outline_24px.svg',
   };
+
   /**
    * confirmUser
    *

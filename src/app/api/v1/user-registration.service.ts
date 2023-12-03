@@ -25,6 +25,7 @@ export class UserRegistrationService extends BaseMethods {
       'A confirmação deve ser realizada em até 24 horas, siga as instruções enviadas em seu e-mail.',
     icon: 'assets/images/action/check_circle_outline_24px.svg',
   };
+
   /**
    * createUser
    *

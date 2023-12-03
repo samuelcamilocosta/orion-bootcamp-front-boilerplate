@@ -12,7 +12,9 @@ import { BaseMethods } from './base-methods';
 })
 
 /**
- * Service for handling API requests with the v1 endpoint.
+ * LoginService
+ *
+ * Service that handles the login request.
  */
 export class LoginService extends BaseMethods {
   /**
