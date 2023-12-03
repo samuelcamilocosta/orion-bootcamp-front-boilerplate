@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
+import { ConfirmationModalParams } from 'src/app/interfaces/confirmation-modal-params';
 import { RegistrationData } from 'src/app/interfaces/registration-data';
 import { BaseMethods } from './base-methods';
 
@@ -14,6 +15,16 @@ import { BaseMethods } from './base-methods';
  * service that handles the user registration
  */
 export class UserRegistrationService extends BaseMethods {
+  /**
+   * userRegistration: success modal params
+   */
+  userRegistration: ConfirmationModalParams = {
+    title: 'Sucesso!',
+    paragraphA: 'Usuário cadastrado com sucesso!',
+    paragraphB:
+      'A confirmação deve ser realizada em até 24 horas, siga as instruções enviadas em seu e-mail.',
+    icon: 'assets/images/action/check_circle_outline_24px.svg',
+  };
   /**
    * createUser
    *
@@ -33,7 +44,7 @@ export class UserRegistrationService extends BaseMethods {
       request
         .then((response: HttpResponse<any> | undefined) => {
           if (response && response.status === 201) {
-            this.openSuccessesDialog();
+            this.openSuccessesDialog(this.userRegistration);
             resolve(response);
           } else {
             reject(

@@ -13,7 +13,9 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
 import { PremiumPageComponent } from './pages/premium-page/premium-page.component';
+import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { CarouselComponent } from './shared/components/carousel/carousel.component';
+import { ConfirmationModalComponent } from './shared/components/confirmation-modal/confirmation-modal.component';
 import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
 import { HomeCardComponent } from './shared/components/home-card/home-card.component';
 import { LoadingComponent } from './shared/components/loading/loading.component';
@@ -23,19 +25,16 @@ import { MaxTempIndicatorComponent } from './shared/components/max-temp-indicato
 import { MeteorologyCarouselCardComponent } from './shared/components/meteorology-carousel-card/meteorology-carousel-card.component';
 import { MeteorologyHeroCardComponent } from './shared/components/meteorology-hero-card/meteorology-hero-card.component';
 import { MinTempIndicatorComponent } from './shared/components/min-temp-indicator/min-temp-indicator.component';
-import { PasswordRecoveryDialogComponent } from './shared/components/password-recovery-dialog/password-recovery-dialog.component';
 import { PremiumModalComponent } from './shared/components/premium-modal/premium-modal.component';
 import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
 import { ImageSliderModule } from './shared/modules/image-slider.module';
 import { MaterialModule } from './shared/modules/material.module';
-import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     PasswordRecoveryPageComponent,
-    PasswordRecoveryDialogComponent,
     ErrorDialogComponent,
     HomeCardComponent,
     HomePageComponent,
@@ -52,6 +51,7 @@ import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component
     PremiumPageComponent,
     CarouselComponent,
     SignUpPageComponent,
+    ConfirmationModalComponent,
   ],
   imports: [
     BrowserModule,

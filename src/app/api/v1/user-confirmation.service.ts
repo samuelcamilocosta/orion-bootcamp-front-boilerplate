@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
+import { ConfirmationModalParams } from 'src/app/interfaces/confirmation-modal-params';
 import { BaseMethods } from './base-methods';
 
 @Injectable({
@@ -12,6 +13,14 @@ import { BaseMethods } from './base-methods';
  * service that handles the user confirmationToken received from url
  */
 export class UserConfirmationService extends BaseMethods {
+  /**
+   * userConfirmation: success modal params
+   */
+  userConfirmation: ConfirmationModalParams = {
+    title: 'Sucesso!',
+    paragraphA: 'Usuário confirmado com sucesso!',
+    icon: 'assets/images/action/check_circle_outline_24px.svg',
+  };
   /**
    * confirmUser
    *
@@ -31,7 +40,7 @@ export class UserConfirmationService extends BaseMethods {
       request
         .then((response: HttpResponse<any> | undefined) => {
           if (response && response.status === 201) {
-            this.openSuccessesDialog();
+            this.openSuccessesDialog(this.userConfirmation);
             resolve(response);
           } else {
             reject(
