@@ -91,7 +91,7 @@ export class MeteorologyPageComponent implements OnInit, AfterViewInit {
   /**
    * loadData
    *
-   * fetches cards data and apply those data to the cards on page
+   * fetches meteorology cards data and apply those data to the cards on page
    */
   private async loadData(): Promise<void> {
     this.cards = await this.solesService.getData();

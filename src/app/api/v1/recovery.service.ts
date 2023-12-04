@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { ConfirmationModalParams } from 'src/app/interfaces/confirmation-modal-params';
 import { IEmail } from 'src/app/interfaces/recovery-params';

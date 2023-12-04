@@ -1,21 +1,20 @@
 section {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: 100vh;
 
   .home-page-container {
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
+    padding-top: 5.04rem;
     gap: 3.81rem;
     width: 85.375rem;
-    height: 48rem;
 
     .home-page-header {
-      padding: 5rem 5rem 0 5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding-left: 5rem;
 
       div {
         display: inherit;
@@ -39,6 +38,12 @@ section {
     }
     p {
       font-size: 1rem;
+    }
+
+    .newCards {
+      .row {
+        gap: 1.25rem 2.06rem;
+      }
     }
   }
 }
@@ -87,8 +92,11 @@ section {
   }
 
   .swiper-container::after {
-    right: 0;
+    right: -1px;
     left: auto;
+  }
+  .swiper-container::before {
+    left: -1px;
   }
 }
 
@@ -96,4 +104,32 @@ section {
 .disabled-card {
   pointer-events: none;
   user-select: none;
+}
+
+@media (max-width: 500px) {
+  .home-page-container {
+    gap: 2.85rem !important;
+
+    .home-page-header {
+      h1 {
+        font-size: 30px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  ::ng-deep .home-page-header .logout-container {
+    width: 90vw;
+    justify-content: space-around;
+  }
+  .home-page-header {
+    justify-content: space-around !important;
+    padding-left: 0 !important;
+    gap: 2.85rem !important;
+    flex-wrap: wrap-reverse;
+  }
+  .newCards {
+    padding-bottom: 4.12rem;
+  }
 }

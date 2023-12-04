@@ -6,6 +6,7 @@ import {
 } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { ConfirmationModalParams } from 'src/app/interfaces/confirmation-modal-params';
 import { StorageService } from 'src/app/services/storage/storage.service';
@@ -35,6 +36,11 @@ export class BaseMethods {
    * storageService: Injected instance of StorageService for handling local/session stored data.
    */
   storageService = inject(StorageService);
+
+  /**
+   * route: Injected instance of Router.
+   */
+  route = inject(Router);
 
   /**
    * getHeaders
@@ -73,9 +79,10 @@ export class BaseMethods {
    * @param body - The request body (if applicable).
    * @param params - The query parameters for the request (if applicable).
    *
+   *
    * @returns A Promise that resolves with the result of the HTTP request.
    */
-  protected HttpRequest<T>(
+  HttpRequest<T>(
     method: HttpMethod,
     endpoint: string,
     body?: any,
@@ -117,32 +124,6 @@ export class BaseMethods {
   }
 
   /**
-   * openTransitionModal
-   *
-   * Opens a 100% viewport transition modal after login authentication
-   */
-  protected openTransitionModal(): void {
-    this.dialog.open(TransitionModalComponent, {
-      delayFocusTrap: false,
-      disableClose: true,
-      enterAnimationDuration: 0,
-      hasBackdrop: false,
-    });
-  }
-
-  /**
-   * openPremiumModal
-   *
-   * Opens a modal centered in viewport with information about the Premium user
-   */
-  protected openPremiumModal(): void {
-    this.dialog.open(PremiumModalComponent, {
-      maxWidth: '100%',
-      panelClass: 'app-premium-modal-radius',
-    });
-  }
-
-  /**
    * openSuccessesDialog
    *
    * opens a successes dialog for better user experience.
@@ -161,6 +142,7 @@ export class BaseMethods {
       data: {
         errorMessage: _error,
       },
+      disableClose: true,
     });
   }
 
@@ -173,12 +155,16 @@ export class BaseMethods {
     switch (error.status) {
       case 400:
         this.openErrorDialog(error.error.error);
+
         break;
 
       case 401:
         this.openErrorDialog(
           'Não autorizado. Credenciais de autenticação ausentes ou incorretas.'
         );
+
+        this.storageService.removeItem('user');
+
         break;
 
       case 403:
