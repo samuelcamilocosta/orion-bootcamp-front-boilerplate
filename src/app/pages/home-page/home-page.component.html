@@ -1,4 +1,4 @@
-<section>
+<section class="container d-flex justify-content-center align-items-center">
   <div class="home-page-container">
     <div class="home-page-header">
       <div>
@@ -16,7 +16,7 @@
       <app-logout></app-logout>
     </div>
     <!-- carousel container -->
-    <div class="cards-container">
+    <div class="d-none d-xl-flex cards-container">
       <!-- swiper -->
       <div class="swiper-container">
         <!-- Additional required wrapper -->
@@ -32,6 +32,20 @@
         <!-- navigation buttons -->
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
+      </div>
+    </div>
+    <!-- responsive cards -->
+    <div class="container d-block d-xl-none newCards">
+      <div class="row justify-content-center">
+        <div
+          class="custom-card col-auto m-0 p-0"
+          *ngFor="let card of cards; let i = index"
+        >
+          <app-card
+            [class.disabled-card]="card.path === ''"
+            [cardAttributes]="card"
+          />
+        </div>
       </div>
     </div>
   </div>

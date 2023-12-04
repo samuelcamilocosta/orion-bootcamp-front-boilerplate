@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/api/v1/login.service';
 import { IFormParams } from 'src/app/interfaces/login-form-params';
 import { ILoginParams } from 'src/app/interfaces/login-params.interface';
+import { StorageService } from 'src/app/services/storage/storage.service';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -37,7 +38,8 @@ export class LoginPageComponent implements OnInit {
     private fb: FormBuilder,
     private loginService: LoginService,
     private auth: AuthService,
-    private route: Router
+    private route: Router,
+    private storageService: StorageService
   ) {
     // Initialize the formGroup with email, password, and checkbox fields.
     this.formGroup = this.fb.group({
@@ -92,6 +94,8 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
     if (this.auth.isAuthenticated()) {
       this.route.navigate(['/page/home']);
+    } else {
+      this.storageService.removeItem('user');
     }
   }
 }
