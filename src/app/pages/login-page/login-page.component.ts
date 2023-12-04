@@ -41,7 +41,6 @@ export class LoginPageComponent implements OnInit {
     private route: Router,
     private activatedRoute: ActivatedRoute,
     private userConfirmationService: UserConfirmationService
-
   ) {
     // Initialize the formGroup with email, password, and checkbox fields.
     this.formGroup = this.fb.group({
@@ -92,12 +91,13 @@ export class LoginPageComponent implements OnInit {
 
   /**
    * Initializes the component. If the user is already authenticated, it navigates to the home page.
+   *
+   * Case user is not authenticated, it checks for a confirmation token in URL.
+   * If token exists, it does an api request to authenticate the new user.
    */
   ngOnInit(): void {
     if (this.auth.isAuthenticated()) {
       this.route.navigate(['/page/home']);
-    } else {
-      this.storageService.removeItem('user');
     }
 
     const confirmationToken: string =

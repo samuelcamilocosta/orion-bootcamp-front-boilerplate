@@ -26,9 +26,9 @@ export class PlanModalCardsService extends BaseMethods {
 
       request
         .then((response) => {
-          if (response) {
+          if (response && response.body) {
             //placeholder until the fetched data is of the correctly type.
-            const newResponse: ICard[] = response.map((card, index) => {
+            const newResponse: ICard[] = response.body.map((card, index) => {
               return {
                 cardImage: card.planCardImage,
                 cardImageDescription: '',

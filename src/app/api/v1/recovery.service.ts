@@ -23,15 +23,6 @@ export class RecoveryService extends BaseMethods {
   };
 
   /**
-   * Constructor
-   *
-   * @param route - An instance of the Router for navigation.
-   */
-  constructor(private route: Router) {
-    super();
-  }
-
-  /**
    * sendEmail
    *
    * Sends email recovery data to the API and handles the response.

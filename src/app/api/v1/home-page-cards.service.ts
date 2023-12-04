@@ -40,12 +40,12 @@ export class HomePageCardsService extends BaseMethods {
 
       request
         .then((response) => {
-          if (response) {
-            response.forEach((resp, index) => {
+          if (response && response.body) {
+            response.body.forEach((resp, index) => {
               return (resp.path = paths[index]);
             });
 
-            resolve(response);
+            resolve(response.body);
           } else {
             reject(
               this.openErrorDialog(
