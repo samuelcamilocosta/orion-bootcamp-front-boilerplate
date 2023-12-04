@@ -6,12 +6,11 @@ import {
 } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { PasswordRecoveryDialogComponent } from 'src/app/shared/components/password-recovery-dialog/password-recovery-dialog.component';
-import { PremiumModalComponent } from 'src/app/shared/components/premium-modal/premium-modal.component';
-import { TransitionModalComponent } from 'src/app/shared/components/transition-modal/transition-modal.component';
 import { environment } from 'src/environment/environment';
 
 export class BaseMethods {
@@ -34,6 +33,11 @@ export class BaseMethods {
    * storageService: Injected instance of StorageService for handling local/session stored data.
    */
   storageService = inject(StorageService);
+
+  /**
+   * route: Injected instance of Router.
+   */
+  route = inject(Router);
 
   /**
    * getHeaders
@@ -72,9 +76,10 @@ export class BaseMethods {
    * @param body - The request body (if applicable).
    * @param params - The query parameters for the request (if applicable).
    *
+   *
    * @returns A Promise that resolves with the result of the HTTP request.
    */
-  protected HttpRequest<T>(
+  HttpRequest<T>(
     method: HttpMethod,
     endpoint: string,
     body?: any,
@@ -106,32 +111,6 @@ export class BaseMethods {
   }
 
   /**
-   * openTransitionModal
-   *
-   * Opens a 100% viewport transition modal after login authentication
-   */
-  protected openTransitionModal(): void {
-    this.dialog.open(TransitionModalComponent, {
-      delayFocusTrap: false,
-      disableClose: true,
-      enterAnimationDuration: 0,
-      hasBackdrop: false,
-    });
-  }
-
-  /**
-   * openPremiumModal
-   *
-   * Opens a modal centered in viewport with information about the Premium user
-   */
-  protected openPremiumModal(): void {
-    this.dialog.open(PremiumModalComponent, {
-      maxWidth: '100%',
-      panelClass: 'app-premium-modal-radius',
-    });
-  }
-
-  /**
    * openSuccessesDialog
    *
    * opens a successes dialog after submit email on recovery page
@@ -151,6 +130,7 @@ export class BaseMethods {
       data: {
         errorMessage: _error,
       },
+      disableClose: true,
     });
   }
 
@@ -162,13 +142,16 @@ export class BaseMethods {
   protected handleError(error: HttpErrorResponse): void {
     switch (error.status) {
       case 400:
-        this.openErrorDialog(error.error);
+        this.openErrorDialog('E-mail e/ou senha inválidos');
         break;
 
       case 401:
         this.openErrorDialog(
           'Não autorizado. Credenciais de autenticação ausentes ou incorretas.'
         );
+
+        this.storageService.removeItem('user');
+
         break;
 
       case 403:

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { ILoginParams } from 'src/app/interfaces/login-params.interface';
 import { ILoginRespParams } from 'src/app/interfaces/login-resp-params-interface';
 import { IUser } from 'src/app/interfaces/user-interface';
+import { TransitionModalComponent } from 'src/app/shared/components/transition-modal/transition-modal.component';
 import { BaseMethods } from './base-methods';
 
 @Injectable({
@@ -15,13 +15,17 @@ import { BaseMethods } from './base-methods';
  */
 export class LoginService extends BaseMethods {
   /**
-   * Constructor
+   * openTransitionModal
    *
-   * @param route - The Router service for navigation.
+   * Opens a 100% viewport transition modal after login authentication
    */
-
-  constructor(private route: Router) {
-    super();
+  private openTransitionModal(): void {
+    this.dialog.open(TransitionModalComponent, {
+      delayFocusTrap: false,
+      disableClose: true,
+      enterAnimationDuration: 0,
+      hasBackdrop: false,
+    });
   }
 
   /**

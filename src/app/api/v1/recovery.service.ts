@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { IEmail } from 'src/app/interfaces/recovery-params';
 import { BaseMethods } from './base-methods';
@@ -12,15 +11,6 @@ import { BaseMethods } from './base-methods';
  * Service that handles the recovery page API request
  */
 export class RecoveryService extends BaseMethods {
-  /**
-   * Constructor
-   *
-   * @param route - An instance of the Router for navigation.
-   */
-  constructor(private route: Router) {
-    super();
-  }
-
   /**
    * sendEmail
    *

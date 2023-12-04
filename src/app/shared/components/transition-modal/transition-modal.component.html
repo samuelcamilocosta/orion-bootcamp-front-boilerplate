@@ -11,21 +11,9 @@
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
           <!-- Slides -->
-          <div class="swiper-slide first-slide">
-            <h3>Margaret Hamilton</h3>
-            <p>
-              “Se o código de segurança não estivesse lá, a nave inteira
-              entraria em pane, e talvez não fosse dessa vez que alguém teria
-              pousado na lua.”
-            </p>
-          </div>
-          <div class="swiper-slide second-slide">
-            <h3>lorem ipsum</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
-              fugit nobis dolorum quia sequi eos a mollitia illo nesciunt
-              repudiandae vero itaque
-            </p>
+          <div class="swiper-slide" *ngFor="let text of quotes">
+            <h3>{{ text.author }}</h3>
+            <p>"{{ text.quote }}"</p>
           </div>
         </div>
         <!-- extras (navigation, pagination...) -->

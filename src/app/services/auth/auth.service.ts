@@ -11,7 +11,7 @@ export class AuthService {
   /**
    * constructor
    *
-   * initializes local and session storage.
+   * injects StorageService to handle local/session storage methods.
    */
   constructor(private storageService: StorageService) {}
 
@@ -24,10 +24,7 @@ export class AuthService {
    * @returns `true` if the user is authenticated; otherwise, `false`.
    */
   isAuthenticated(): boolean {
-    const token = this.storageService.getUserToken();
-
-    if (token) return true;
-    return false;
+    return this.storageService.getUserToken() ? true : false;
   }
 
   /**
@@ -38,8 +35,6 @@ export class AuthService {
    * @returns 'true' if is "Premium", false otherwise
    */
   isPremium() {
-    const role = this.storageService.getUserRole();
-
-    return role === 'Premium';
+    return this.storageService.getUserRole() === 'Premium';
   }
 }
