@@ -60,3 +60,9 @@
     color: #000;
   }
 }
+
+@media (max-width: 500px) {
+  .privacy-container {
+    padding: 5rem 1rem;
+  }
+}
