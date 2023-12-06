@@ -37,11 +37,11 @@ export class SolesService extends BaseMethods {
 
       request
         .then((response) => {
-          if (response) {
-            response.forEach((data) => {
+          if (response && response.body) {
+            response.body.forEach((data) => {
               data.terrestrialDate = new Date(data.terrestrialDate);
             });
-            resolve(response);
+            resolve(response.body);
           } else {
             reject(
               this.openErrorDialog(

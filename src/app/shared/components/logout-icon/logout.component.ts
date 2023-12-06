@@ -72,7 +72,6 @@ export class LogoutComponent extends BaseMethods implements OnInit {
    */
 
   protected openPremiumModal(): void {
-    console.log('modal aberto');
     this.planModalCardsService.getPlanCardsData().then((data) => {
       this.dataToSend.emit(data as ICard[]);
 

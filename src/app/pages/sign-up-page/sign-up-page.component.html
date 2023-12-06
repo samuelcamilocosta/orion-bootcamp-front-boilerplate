@@ -1,0 +1,216 @@
+<section class="sign-up-container">
+  <div>
+    <h1>É novo por aqui? Cadastre-se!</h1>
+    <p>Informe abaixo os dados para realizar seu cadastramento.</p>
+  </div>
+  <form [formGroup]="signUpFormGroup" class="form-container">
+    <mat-form-field class="login-mat-form-field">
+      <mat-label>Digite seu nome</mat-label>
+      <input type="name" matInput formControlName="name" placeholder="" />
+      <mat-error *ngIf="signUpFormGroup.get('name')?.hasError('required')">
+        Nome é obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="login-mat-form-field">
+      <mat-label>E-mail</mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        placeholder="Ex. pat@example.com"
+      />
+      <mat-error
+        *ngIf="
+          signUpFormGroup.get('email')?.hasError('pattern') ||
+          (signUpFormGroup.get('email')?.hasError('email') &&
+            !signUpFormGroup.get('email')?.hasError('required'))
+        "
+      >
+        Por favor digite um email valido
+      </mat-error>
+      <mat-error *ngIf="signUpFormGroup.get('email')?.hasError('required')">
+        Email é obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="login-mat-form-field">
+      <mat-label>Digite sua senha</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+      />
+      <mat-error
+        *ngIf="
+          signUpFormGroup.get('password')?.hasError('pattern') &&
+          !signUpFormGroup.get('password')?.hasError('required')
+        "
+      >
+        Senha com padrões incorretos!
+      </mat-error>
+      <mat-error *ngIf="signUpFormGroup.get('password')?.hasError('required')">
+        Senha é obrigatória
+      </mat-error>
+
+      <mat-icon
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+        >{{ hide ? "visibility_off" : "visibility" }}
+      </mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="login-mat-form-field">
+      <mat-label>Digite novamente sua senha</mat-label>
+      <input
+        matInput
+        [type]="hideConfirmPassword ? 'password' : 'text'"
+        formControlName="confirmPassword"
+      />
+      <mat-error
+        *ngIf="
+          signUpFormGroup.get('confirmPassword')?.hasError('passwordMismatch')
+        "
+      >
+        A senha e a confirmação de senha devem ser idênticas.
+      </mat-error>
+      <mat-icon
+        matSuffix
+        (click)="hideConfirmPassword = !hideConfirmPassword"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hideConfirmPassword"
+        >{{ hideConfirmPassword ? "visibility_off" : "visibility" }}
+      </mat-icon>
+    </mat-form-field>
+
+    <div class="validator-container" [style.display]="showCheck()">
+      <div [ngClass]="lengthCheck()">
+        <svg
+          width="22"
+          height="21"
+          viewBox="0 0 22 21"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="Frame 770">
+            <path
+              id="Vector"
+              d="M10.9984 20.7564C8.25781 20.7564 5.67969 19.6876 3.74219 17.7501C-0.257812 13.7501 -0.257812 7.24072 3.74219 3.24072C7.74219 -0.759277 14.2516 -0.759277 18.2516 3.24072C20.1891 5.17822 21.2578 7.75635 21.2578 10.497C21.2578 13.2376 20.1891 15.8157 18.2516 17.7532C16.3141 19.6907 13.7359 20.7595 10.9953 20.7595L10.9984 20.7564ZM10.9984 2.00947C8.82344 2.00947 6.65157 2.8376 4.99532 4.49072C1.68594 7.8001 1.68594 13.1876 4.99532 16.497C6.59844 18.1001 8.72969 18.9845 10.9984 18.9845C13.2672 18.9845 15.3984 18.1001 17.0016 16.497C18.6047 14.8939 19.4891 12.7626 19.4891 10.4938C19.4891 8.22509 18.6047 6.09385 17.0016 4.49072C15.3484 2.8376 13.1734 2.00947 10.9984 2.00947Z"
+            />
+            <path
+              id="Vector_2"
+              d="M10.3703 14.1967C10.1359 14.1967 9.91094 14.1029 9.74532 13.9373L6.93594 11.1279C6.58906 10.7811 6.58906 10.2217 6.93594 9.87481C7.28281 9.52794 7.84219 9.52794 8.18907 9.87481L10.3734 12.0592L14.7516 7.68105C15.0984 7.33418 15.6578 7.33418 16.0047 7.68105C16.3516 8.02793 16.3516 8.58731 16.0047 8.93418L11.0016 13.9373C10.8359 14.1029 10.6109 14.1967 10.3766 14.1967H10.3703Z"
+            />
+          </g>
+        </svg>
+
+        <p>A senha deve conter, no mínimo, 8 caracteres;</p>
+      </div>
+      <div [ngClass]="letterCheck()">
+        <svg
+          width="22"
+          height="21"
+          viewBox="0 0 22 21"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="Frame 770">
+            <path
+              id="Vector"
+              d="M10.9984 20.7564C8.25781 20.7564 5.67969 19.6876 3.74219 17.7501C-0.257812 13.7501 -0.257812 7.24072 3.74219 3.24072C7.74219 -0.759277 14.2516 -0.759277 18.2516 3.24072C20.1891 5.17822 21.2578 7.75635 21.2578 10.497C21.2578 13.2376 20.1891 15.8157 18.2516 17.7532C16.3141 19.6907 13.7359 20.7595 10.9953 20.7595L10.9984 20.7564ZM10.9984 2.00947C8.82344 2.00947 6.65157 2.8376 4.99532 4.49072C1.68594 7.8001 1.68594 13.1876 4.99532 16.497C6.59844 18.1001 8.72969 18.9845 10.9984 18.9845C13.2672 18.9845 15.3984 18.1001 17.0016 16.497C18.6047 14.8939 19.4891 12.7626 19.4891 10.4938C19.4891 8.22509 18.6047 6.09385 17.0016 4.49072C15.3484 2.8376 13.1734 2.00947 10.9984 2.00947Z"
+            />
+            <path
+              id="Vector_2"
+              d="M10.3703 14.1967C10.1359 14.1967 9.91094 14.1029 9.74532 13.9373L6.93594 11.1279C6.58906 10.7811 6.58906 10.2217 6.93594 9.87481C7.28281 9.52794 7.84219 9.52794 8.18907 9.87481L10.3734 12.0592L14.7516 7.68105C15.0984 7.33418 15.6578 7.33418 16.0047 7.68105C16.3516 8.02793 16.3516 8.58731 16.0047 8.93418L11.0016 13.9373C10.8359 14.1029 10.6109 14.1967 10.3766 14.1967H10.3703Z"
+            />
+          </g>
+        </svg>
+
+        <p>Deve ter 1 letra maiúscula e minuscula;</p>
+      </div>
+      <div [ngClass]="numberCheck()">
+        <svg
+          width="22"
+          height="21"
+          viewBox="0 0 22 21"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="Frame 770">
+            <path
+              id="Vector"
+              d="M10.9984 20.7564C8.25781 20.7564 5.67969 19.6876 3.74219 17.7501C-0.257812 13.7501 -0.257812 7.24072 3.74219 3.24072C7.74219 -0.759277 14.2516 -0.759277 18.2516 3.24072C20.1891 5.17822 21.2578 7.75635 21.2578 10.497C21.2578 13.2376 20.1891 15.8157 18.2516 17.7532C16.3141 19.6907 13.7359 20.7595 10.9953 20.7595L10.9984 20.7564ZM10.9984 2.00947C8.82344 2.00947 6.65157 2.8376 4.99532 4.49072C1.68594 7.8001 1.68594 13.1876 4.99532 16.497C6.59844 18.1001 8.72969 18.9845 10.9984 18.9845C13.2672 18.9845 15.3984 18.1001 17.0016 16.497C18.6047 14.8939 19.4891 12.7626 19.4891 10.4938C19.4891 8.22509 18.6047 6.09385 17.0016 4.49072C15.3484 2.8376 13.1734 2.00947 10.9984 2.00947Z"
+            />
+            <path
+              id="Vector_2"
+              d="M10.3703 14.1967C10.1359 14.1967 9.91094 14.1029 9.74532 13.9373L6.93594 11.1279C6.58906 10.7811 6.58906 10.2217 6.93594 9.87481C7.28281 9.52794 7.84219 9.52794 8.18907 9.87481L10.3734 12.0592L14.7516 7.68105C15.0984 7.33418 15.6578 7.33418 16.0047 7.68105C16.3516 8.02793 16.3516 8.58731 16.0047 8.93418L11.0016 13.9373C10.8359 14.1029 10.6109 14.1967 10.3766 14.1967H10.3703Z"
+            />
+          </g>
+        </svg>
+
+        <p>Deve ter 1 número;</p>
+      </div>
+      <div [ngClass]="specialCharacterCheck()">
+        <svg
+          width="22"
+          height="21"
+          viewBox="0 0 22 21"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="Frame 770">
+            <path
+              id="Vector"
+              d="M10.9984 20.7564C8.25781 20.7564 5.67969 19.6876 3.74219 17.7501C-0.257812 13.7501 -0.257812 7.24072 3.74219 3.24072C7.74219 -0.759277 14.2516 -0.759277 18.2516 3.24072C20.1891 5.17822 21.2578 7.75635 21.2578 10.497C21.2578 13.2376 20.1891 15.8157 18.2516 17.7532C16.3141 19.6907 13.7359 20.7595 10.9953 20.7595L10.9984 20.7564ZM10.9984 2.00947C8.82344 2.00947 6.65157 2.8376 4.99532 4.49072C1.68594 7.8001 1.68594 13.1876 4.99532 16.497C6.59844 18.1001 8.72969 18.9845 10.9984 18.9845C13.2672 18.9845 15.3984 18.1001 17.0016 16.497C18.6047 14.8939 19.4891 12.7626 19.4891 10.4938C19.4891 8.22509 18.6047 6.09385 17.0016 4.49072C15.3484 2.8376 13.1734 2.00947 10.9984 2.00947Z"
+            />
+            <path
+              id="Vector_2"
+              d="M10.3703 14.1967C10.1359 14.1967 9.91094 14.1029 9.74532 13.9373L6.93594 11.1279C6.58906 10.7811 6.58906 10.2217 6.93594 9.87481C7.28281 9.52794 7.84219 9.52794 8.18907 9.87481L10.3734 12.0592L14.7516 7.68105C15.0984 7.33418 15.6578 7.33418 16.0047 7.68105C16.3516 8.02793 16.3516 8.58731 16.0047 8.93418L11.0016 13.9373C10.8359 14.1029 10.6109 14.1967 10.3766 14.1967H10.3703Z"
+            />
+          </g>
+        </svg>
+
+        <p>Deve ter 1 caractere especial: !@#</p>
+      </div>
+    </div>
+
+    <div class="checkbox-container">
+      <mat-checkbox class="custom-checkbox" formControlName="checkbox">
+      </mat-checkbox>
+      <div>
+        <ul>
+          Ao continuar confirmo que:
+          <li>
+            Tenho, pelo menos, 18 anos e sou maior de idade no meu território de
+            origem.
+          </li>
+          <li>
+            Concordo com os
+            <button (click)="openAgreementTerms()">Termos de Utilização</button>
+            e
+            <button (click)="openPrivacyPolicy()">
+              Política de Privacidade
+            </button>
+            do Orion Marte.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <button class="cancelBtn" mat-flat-button routerLink="/">CANCELAR</button>
+
+    <button
+      mat-flat-button
+      type="submit"
+      class="submitBtn"
+      (click)="onSubmit()"
+      [disabled]="signUpFormGroup.invalid"
+    >
+      ENTRAR
+    </button>
+  </form>
+
+  <p>Já tem uma conta? <a routerLink="/">Faça login</a></p>
+</section>

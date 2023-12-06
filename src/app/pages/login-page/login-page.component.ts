@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/api/v1/login.service';
 import { IFormParams } from 'src/app/interfaces/login-form-params';
 import { ILoginParams } from 'src/app/interfaces/login-params.interface';
-import { StorageService } from 'src/app/services/storage/storage.service';
+import { UserConfirmationService } from '../../api/v1/user-confirmation.service';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -39,7 +39,8 @@ export class LoginPageComponent implements OnInit {
     private loginService: LoginService,
     private auth: AuthService,
     private route: Router,
-    private storageService: StorageService
+    private activatedRoute: ActivatedRoute,
+    private userConfirmationService: UserConfirmationService
   ) {
     // Initialize the formGroup with email, password, and checkbox fields.
     this.formGroup = this.fb.group({
@@ -90,12 +91,20 @@ export class LoginPageComponent implements OnInit {
 
   /**
    * Initializes the component. If the user is already authenticated, it navigates to the home page.
+   *
+   * Case user is not authenticated, it checks for a confirmation token in URL.
+   * If token exists, it does an api request to authenticate the new user.
    */
   ngOnInit(): void {
     if (this.auth.isAuthenticated()) {
       this.route.navigate(['/page/home']);
-    } else {
-      this.storageService.removeItem('user');
+    }
+
+    const confirmationToken: string =
+      this.activatedRoute.snapshot.queryParams['confirmationToken'];
+
+    if (confirmationToken !== undefined) {
+      this.userConfirmationService.confirmUser({ confirmationToken });
     }
   }
 }
