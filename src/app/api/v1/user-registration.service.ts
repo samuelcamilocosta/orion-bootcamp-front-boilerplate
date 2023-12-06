@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { ConfirmationModalParams } from 'src/app/interfaces/confirmation-modal-params';
 import { RegistrationData } from 'src/app/interfaces/registration-data';
+import { AgreementModalComponent } from 'src/app/shared/components/agreement-modal/agreement-modal.component';
+import { PrivacyPolicyModalComponent } from 'src/app/shared/components/privacy-policy-modal/privacy-policy-modal.component';
 import { BaseMethods } from './base-methods';
 
 @Injectable({
@@ -20,11 +22,36 @@ export class UserRegistrationService extends BaseMethods {
    */
   userRegistration: ConfirmationModalParams = {
     title: 'Sucesso!',
-    paragraphA: 'Usuário cadastrado com sucesso!',
-    paragraphB:
-      'A confirmação deve ser realizada em até 24 horas, siga as instruções enviadas em seu e-mail.',
+    message: `
+    Usuário cadastrado com sucesso!
+  
+    A confirmação deve ser realizada em até 24 horas, siga as instruções enviadas em seu e-mail.`,
     icon: 'assets/images/action/check_circle_outline_24px.svg',
   };
+
+  /**
+   * openAgreement
+   *
+   * method that opens the User Agreement Term modal
+   */
+  openAgreement(): void {
+    this.dialog.open(AgreementModalComponent, {
+      disableClose: true,
+      panelClass: 'custom-border-radius',
+    });
+  }
+
+  /**
+   * openPrivacy
+   *
+   * method that opens the Privacy Policy Term modal
+   */
+  openPrivacy(): void {
+    this.dialog.open(PrivacyPolicyModalComponent, {
+      disableClose: true,
+      panelClass: 'custom-border-radius',
+    });
+  }
 
   /**
    * createUser

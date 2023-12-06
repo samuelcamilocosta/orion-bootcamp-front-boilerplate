@@ -191,4 +191,22 @@ export class SignUpPageComponent {
   specialCharacterCheck(): string | undefined {
     return this.checkPattern(/[!@#$%&]/);
   }
+
+  /**
+   * openAgreementTerms
+   *
+   * method to open the User Agreement Term modal
+   */
+  openAgreementTerms() {
+    this.registrationService.openAgreement();
+  }
+
+  /**
+   * openPrivacyPolicy
+   *
+   * method to open Privacy Policy Term modal
+   */
+  openPrivacyPolicy() {
+    this.registrationService.openPrivacy();
+  }
 }

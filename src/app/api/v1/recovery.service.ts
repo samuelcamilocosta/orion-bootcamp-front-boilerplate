@@ -17,8 +17,9 @@ export class RecoveryService extends BaseMethods {
    */
   recoveryConfirmation: ConfirmationModalParams = {
     title: 'Sucesso!',
-    paragraphA: 'E-mail de recuperação enviado com sucesso!',
-    paragraphB: 'Siga as instruções enviadas em seu e-mail.',
+    message: `
+    E-mail de recuperação enviado com sucesso!
+    Siga as instruções enviadas em seu e-mail.`,
     icon: 'assets/images/action/check_circle_outline_24px.svg',
   };
 

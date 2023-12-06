@@ -20,7 +20,9 @@ export class UserConfirmationService extends BaseMethods {
    */
   userConfirmation: ConfirmationModalParams = {
     title: 'Sucesso!',
-    paragraphA: 'Usuário confirmado com sucesso!',
+    message: `
+    Usuário confirmado com sucesso!
+    `,
     icon: 'assets/images/action/check_circle_outline_24px.svg',
   };
 
