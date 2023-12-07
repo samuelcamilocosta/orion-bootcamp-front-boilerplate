@@ -71,7 +71,7 @@ export class UserRegistrationService extends BaseMethods {
 
       request
         .then((response: HttpResponse<any> | undefined) => {
-          if (response && response.status === 201) {
+          if (response && response.status === 204) {
             this.openSuccessesDialog(this.userRegistration);
             resolve(response);
           } else {
