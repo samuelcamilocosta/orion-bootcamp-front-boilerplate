@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ChangePasswordService } from 'src/app/api/v1/change-password.service';
+import { NewPasswordRequest } from 'src/app/interfaces/new-password-request';
 
 @Component({
   selector: 'app-change-password-page',
@@ -57,8 +58,12 @@ export class ChangePasswordPageComponent {
    */
   async onSubmit() {
     const password = this.changePasswordForm.get('password');
+    const dataToSend: NewPasswordRequest = {
+      token: '',
+      newPassword: password?.value,
+    };
 
-    await this.changePasswordService.changePassword();
+    await this.changePasswordService.changePassword(dataToSend);
   }
 
   /**
