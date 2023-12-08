@@ -30,8 +30,8 @@ export class HomePageCardsService extends BaseMethods {
 
       request
         .then((response) => {
-          if (response) {
-            resolve(response);
+          if (response && response.body) {
+            resolve(response.body);
           } else {
             reject(
               this.openErrorDialog(

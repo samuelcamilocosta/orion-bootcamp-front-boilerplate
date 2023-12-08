@@ -22,12 +22,12 @@ export class PlanModalCardsService extends BaseMethods {
 
       request
         .then((response) => {
-          if (response) {
-            response.forEach((resp) => {
+          if (response && response.body) {
+            response.body.forEach((resp) => {
               return (resp.cardPath = `plan/${resp.id}`);
             });
 
-            resolve(response);
+            resolve(response.body);
           } else {
             reject(
               this.openErrorDialog(

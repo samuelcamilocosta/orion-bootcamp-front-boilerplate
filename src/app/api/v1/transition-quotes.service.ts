@@ -1,4 +1,4 @@
-import { HttpParams } from '@angular/common/http';
+import { HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { QuotesResponse } from 'src/app/interfaces/quotes-response-interface';
@@ -28,9 +28,9 @@ export class TransitionQuotesService extends BaseMethods {
       );
 
       request
-        .then((response) => {
-          response
-            ? resolve(response)
+        .then((response: HttpResponse<any> | undefined) => {
+          response && response.body
+            ? resolve(response.body)
             : reject(
                 this.openErrorDialog(
                   'Ocorreu algum erro de conexão ou erro interno, resposta recebida como vazia'
