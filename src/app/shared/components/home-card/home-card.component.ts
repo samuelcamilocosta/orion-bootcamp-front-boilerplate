@@ -60,7 +60,7 @@ export class HomeCardComponent {
    * @returns true if exists, false otherwise
    */
   isNews() {
-    return this.cardAttributes?.path === '/page/mars-map';
+    return this.cardAttributes?.cardPath === '/page/mars-map';
   }
 
   /**
@@ -83,8 +83,17 @@ export class HomeCardComponent {
    */
   isDisabled(): boolean {
     const route = this.route.config.find(
-      (route) => route.path && this.cardAttributes?.path.includes(route.path)
+      (route) =>
+        route.path && this.cardAttributes?.cardPath.includes(route.path)
     );
+
+    if (
+      this.cardAttributes?.cardPath === '/page/mars-map' &&
+      this.authService.isPremium()
+    ) {
+      return false;
+    }
+
     return !route;
   }
 
@@ -97,10 +106,8 @@ export class HomeCardComponent {
    */
   checkRole(): boolean {
     return (
-      // TODO: trocar quando a role estiver sendo recebida
-      // !this.authService.isPremium()
-      this.authService.isPremium() &&
-      this.cardAttributes?.path === '/page/mars-map'
+      !this.authService.isPremium() &&
+      this.cardAttributes?.cardPath === '/page/mars-map'
     );
   }
 
@@ -120,5 +127,12 @@ export class HomeCardComponent {
         data: { planCards: data },
       });
     });
+  }
+
+  /**
+   * Closes the premium modal.
+   */
+  closeDialog(): void {
+    this.dialog.closeAll();
   }
 }

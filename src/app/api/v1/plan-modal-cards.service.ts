@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
-import { ICard } from 'src/app/interfaces/card-params-interface';
+import { PlanCardResponse } from 'src/app/interfaces/plan-card-response';
 import { BaseMethods } from './base-methods';
 
 @Injectable({
@@ -13,9 +13,9 @@ import { BaseMethods } from './base-methods';
  * service that handles HTTP GET request on PremiumModalComponent
  */
 export class PlanModalCardsService extends BaseMethods {
-  async getPlanCardsData(): Promise<ICard[]> {
-    return new Promise<ICard[]>((resolve, reject) => {
-      const request = this.HttpRequest<ICard[]>(
+  async getPlanCardsData(): Promise<PlanCardResponse[]> {
+    return new Promise<PlanCardResponse[]>((resolve, reject) => {
+      const request = this.HttpRequest<PlanCardResponse[]>(
         HttpMethod.GET,
         'v1/plan-cards'
       );
@@ -23,8 +23,8 @@ export class PlanModalCardsService extends BaseMethods {
       request
         .then((response) => {
           if (response) {
-            response.forEach((resp, index) => {
-              return (resp.path = `plan/:${index + 1}`);
+            response.forEach((resp) => {
+              return (resp.cardPath = `plan/${resp.id}`);
             });
 
             resolve(response);

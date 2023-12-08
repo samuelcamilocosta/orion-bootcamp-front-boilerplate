@@ -28,24 +28,9 @@ export class HomePageCardsService extends BaseMethods {
         'v1/get-home-page-cards'
       );
 
-      // array of path to be parsed on the fetched data.
-      const paths: string[] = [
-        '/page/meteorology',
-        '',
-        '',
-        '/page/mars-map',
-        '',
-        '',
-      ];
-
       request
         .then((response) => {
           if (response) {
-            // TODO: remover forEach quando receber os paths da home na response
-            response.forEach((resp, index) => {
-              return (resp.path = paths[index]);
-            });
-
             resolve(response);
           } else {
             reject(
