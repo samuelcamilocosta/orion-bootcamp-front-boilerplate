@@ -1,6 +1,5 @@
 export interface ConfirmationModalParams {
   title: string;
-  paragraphA: string;
-  paragraphB: string;
+  message: string;
   icon: string;
 }

@@ -1,9 +1,10 @@
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { ILoginParams } from 'src/app/interfaces/login-params.interface';
 import { ILoginRespParams } from 'src/app/interfaces/login-resp-params-interface';
 import { IUser } from 'src/app/interfaces/user-interface';
+import { TransitionModalComponent } from 'src/app/shared/components/transition-modal/transition-modal.component';
 import { BaseMethods } from './base-methods';
 
 @Injectable({
@@ -11,17 +12,23 @@ import { BaseMethods } from './base-methods';
 })
 
 /**
- * Service for handling API requests with the v1 endpoint.
+ * LoginService
+ *
+ * Service that handles the login request.
  */
 export class LoginService extends BaseMethods {
   /**
-   * Constructor
+   * openTransitionModal
    *
-   * @param route - The Router service for navigation.
+   * Opens a 100% viewport transition modal after login authentication
    */
-
-  constructor(private route: Router) {
-    super();
+  private openTransitionModal(): void {
+    this.dialog.open(TransitionModalComponent, {
+      delayFocusTrap: false,
+      disableClose: true,
+      enterAnimationDuration: 0,
+      hasBackdrop: false,
+    });
   }
 
   /**
@@ -45,13 +52,12 @@ export class LoginService extends BaseMethods {
       );
 
       request
-        .then((response) => {
-          if (response) {
+        .then((response: HttpResponse<ILoginRespParams> | undefined) => {
+          if (response && response.body) {
             const userAuth: IUser = {
-              role: response.user.role,
-              accessToken: response.user.accessToken,
+              role: response.body.user.role,
+              accessToken: response.body.user.accessToken,
             };
-
             remember
               ? this.storageService.setLocalItem(
                   'user',
@@ -73,7 +79,7 @@ export class LoginService extends BaseMethods {
               this.route.navigate(['page/home']);
             }, 4400);
 
-            resolve(response);
+            resolve(response.body);
           } else {
             reject(
               this.openErrorDialog(

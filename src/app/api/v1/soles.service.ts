@@ -15,7 +15,7 @@ export class SolesService extends BaseMethods {
    * constructor
    *
    * @param http - The HttpClient service for making HTTP requests.
-   * @param dialog - Instance of BaseMethod class for displaying error dialogs.
+   * @param dialog - Injected instance of MatDialog for displaying dialogs from BaseMethods class.
    */
   constructor() {
     super();
@@ -37,11 +37,11 @@ export class SolesService extends BaseMethods {
 
       request
         .then((response) => {
-          if (response) {
-            response.forEach((data) => {
+          if (response && response.body) {
+            response.body.forEach((data) => {
               data.terrestrialDate = new Date(data.terrestrialDate);
             });
-            resolve(response);
+            resolve(response.body);
           } else {
             reject(
               this.openErrorDialog(

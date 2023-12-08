@@ -8,12 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PremiumGuard } from './guards/premium.guard';
 import { ChangePasswordPageComponent } from './pages/change-password-page/change-password-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
 import { PremiumPageComponent } from './pages/premium-page/premium-page.component';
+import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
+import { AgreementModalComponent } from './shared/components/agreement-modal/agreement-modal.component';
 import { CarouselComponent } from './shared/components/carousel/carousel.component';
 import { ConfirmationModalComponent } from './shared/components/confirmation-modal/confirmation-modal.component';
 import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
@@ -26,8 +29,8 @@ import { MeteorologyCarouselCardComponent } from './shared/components/meteorolog
 import { MeteorologyHeroCardComponent } from './shared/components/meteorology-hero-card/meteorology-hero-card.component';
 import { MinTempIndicatorComponent } from './shared/components/min-temp-indicator/min-temp-indicator.component';
 import { PremiumModalComponent } from './shared/components/premium-modal/premium-modal.component';
+import { PrivacyPolicyModalComponent } from './shared/components/privacy-policy-modal/privacy-policy-modal.component';
 import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
-import { ImageSliderModule } from './shared/modules/image-slider.module';
 import { MaterialModule } from './shared/modules/material.module';
 
 @NgModule({
@@ -35,7 +38,6 @@ import { MaterialModule } from './shared/modules/material.module';
     AppComponent,
     LoginPageComponent,
     PasswordRecoveryPageComponent,
-    ConfirmationModalComponent,
     ErrorDialogComponent,
     HomeCardComponent,
     HomePageComponent,
@@ -51,6 +53,10 @@ import { MaterialModule } from './shared/modules/material.module';
     MarsMapComponent,
     PremiumPageComponent,
     CarouselComponent,
+    SignUpPageComponent,
+    ConfirmationModalComponent,
+    AgreementModalComponent,
+    PrivacyPolicyModalComponent,
     ChangePasswordPageComponent,
   ],
   imports: [
@@ -61,10 +67,9 @@ import { MaterialModule } from './shared/modules/material.module';
     ReactiveFormsModule,
     NgIf,
     HttpClientModule,
-    ImageSliderModule,
     CommonModule,
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, PremiumGuard],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

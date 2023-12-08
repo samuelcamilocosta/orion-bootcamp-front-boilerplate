@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { PremiumGuard } from './guards/premium.guard';
 import { ChangePasswordPageComponent } from './pages/change-password-page/change-password-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
 import { PremiumPageComponent } from './pages/premium-page/premium-page.component';
+import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 
 /**
  * The main routing configuration for the application.
@@ -27,6 +29,13 @@ const routes: Routes = [
    * This route displays the password recovery page.
    */
   { path: 'recovery', component: PasswordRecoveryPageComponent },
+
+  /**
+   * The signup route of the application.
+   *
+   * This route displays the signup page.
+   */
+  { path: 'signup', component: SignUpPageComponent },
 
   /**
    * The route for change password.
@@ -66,7 +75,11 @@ const routes: Routes = [
        *
        * This child route displays the mars-map page when accessed.
        */
-      { path: 'mars-map', component: PremiumPageComponent },
+      {
+        path: 'mars-map',
+        component: PremiumPageComponent,
+        canActivate: [PremiumGuard],
+      },
     ],
   },
 ];

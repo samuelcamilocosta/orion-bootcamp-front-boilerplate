@@ -22,7 +22,7 @@ export class ConfirmationModalComponent {
   ) {}
 
   /**
-   * Closes the password recovery dialog.
+   * Closes the confirmation modal.
    */
   closeDialog(): void {
     this.dialogRef.close();

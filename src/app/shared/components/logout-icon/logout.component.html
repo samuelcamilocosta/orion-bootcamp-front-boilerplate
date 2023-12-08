@@ -1,5 +1,6 @@
 <!-- logout with animation -->
 <section class="logout-container">
+  <!-- Premium icon start -->
   <img
     *ngIf="checkRole(); else templateFree"
     class="premium-icon"
@@ -10,8 +11,12 @@
     matTooltip="Acesse e leia mais sobre o seu perfil premium"
     aria-label="Button that displays a tooltip when focused or hovered over"
   />
+  <!-- Premium icon end -->
+
   <ng-template #templateFree>
+    <!-- Free Premium button  start -->
     <button
+      class="free-premium-button"
       (click)="openPremiumModal()"
       mat-stroked-button
       matTooltipClass="custom-tooltip"
@@ -19,9 +24,15 @@
       matTooltip="Acesse e seja Premium"
       aria-label="Button that displays a tooltip when focused or hovered over"
     >
-      SEJA PREMIUM
+      <div class="button-content d-flex">
+        <img src="/assets/images/premium/premium-button-mobile.svg" alt="" />
+        <p>SEJA PREMIUM</p>
+      </div>
     </button>
   </ng-template>
+  <!-- Free Premium button end  -->
+
+  <!-- Logout button -->
   <button (click)="logout()" class="logout-btn">
     <div class="logout-svg">
       <svg
@@ -45,4 +56,5 @@
     </div>
     <div class="text">SAIR</div>
   </button>
+  <!-- Logout button end -->
 </section>

@@ -1,13 +1,35 @@
-// @import "../../../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+::ng-deep
+  .cards-container-premium
+  .card-component-container:has(.submitBtn-premium:disabled) {
+  opacity: 0.5;
+}
+
+::ng-deep .cards-container-premium .card-component-container {
+  .card-soon,
+  .card-soon-premium {
+    display: none !important;
+  }
+  .submitBtn-premium:disabled {
+    opacity: 0.3;
+    background: #979797 !important;
+  }
+}
 
 .premium-modal-container {
+  width: 67.6875rem;
+  height: 41.625rem;
+  display: flex;
+  place-content: center;
+  border-radius: 1.25rem;
+
+  .mat-loading-spinner {
+    display: flex;
+    align-self: center;
+  }
+
   *:not(app-card) {
     margin: 0;
   }
-
-  display: grid;
-  place-content: center;
-  border-radius: 1.25rem;
 
   background-image: url("/assets/images/background/premium-modal-bg.png");
   background-repeat: no-repeat;
@@ -15,8 +37,6 @@
   background-position: center center;
 
   .wrapper {
-    width: 67.6875rem;
-    height: 41.625rem;
     padding: 2.31rem 6.88rem 0.86rem 6.88rem;
     display: grid;
     justify-content: space-between;

@@ -1,29 +1,51 @@
 <section class="card-component-container">
   <img
     [style.filter]="filterImg()"
-    src="{{ cardAttributes.cardImage }}"
-    alt="{{ cardAttributes.imageAltText }}"
+    src="{{ cardAttributes?.cardImage }}"
+    alt="{{ cardAttributes?.cardImageDescription }}"
+    loading="lazy"
   />
   <div
     [ngClass]="{ 'card-content-premium': premiumStyle }"
     class="card-content"
   >
     <div class="text-card">
-      <div class="card-soon card-soon-premium" [style.visibility]="showSoon()">
+      <div
+        *ngIf="!isNews(); else templateName"
+        class="card-soon"
+        [style.visibility]="showSoon()"
+      >
         EM BREVE
       </div>
-      <h3>{{ cardAttributes.cardTitle }}</h3>
-      <p>{{ cardAttributes.cardSubTitle }}</p>
+
+      <ng-template #templateName>
+        <div class="card-soon-premium">NOVIDADE</div>
+      </ng-template>
+      <h3>{{ cardAttributes?.cardTitle }}</h3>
+      <p>
+        {{ cardAttributes?.cardDescription }}
+      </p>
     </div>
     <div class="button-container">
       <button
-        class="submitBtn submitBtn-premium"
-        mat-button
-        [disabled]="isDisabled()"
-        routerLink="{{ cardAttributes.path }}"
+        *ngIf="checkRole(); else blocked"
+        class="blocked-access"
+        (click)="openPremiumModal()"
       >
-        {{ cardAttributes.btnText }}
+        <span>SEJA PREMIUM</span>
+        <img src="/assets/images/premium/locker.svg" alt="" />
       </button>
+      <ng-template #blocked>
+        <button
+          mat-button
+          class="submitBtn submitBtn-premium"
+          [disabled]="isDisabled()"
+          (click)="closeDialog()"
+          routerLink="{{ cardAttributes?.cardPath }}"
+        >
+          {{ cardAttributes?.cardButtonText }}
+        </button>
+      </ng-template>
     </div>
   </div>
 </section>
