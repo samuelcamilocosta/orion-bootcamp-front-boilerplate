@@ -37,7 +37,7 @@ export class ChangePasswordService extends BaseMethods {
 
       request
         .then((response) => {
-          if (response && response.body) {
+          if (response && response.status === 200) {
             this.openSuccessesDialog(this.newPasswordModalParams);
 
             resolve(response);
