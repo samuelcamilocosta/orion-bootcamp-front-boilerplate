@@ -1,9 +1,5 @@
-export interface PlanCardResponse {
+import { ICard } from './card-params-interface';
+
+export interface PlanCardResponse extends ICard {
   id: number;
-  planCardTitle: string;
-  planCardDescription: string;
-  planCardImage: string;
-  planCardButtonText: string;
-  created_at: Date;
-  updated_at: Date;
 }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
-import { ICard } from 'src/app/interfaces/card-params-interface';
 import { PlanCardResponse } from 'src/app/interfaces/plan-card-response';
 import { BaseMethods } from './base-methods';
 
@@ -14,31 +13,21 @@ import { BaseMethods } from './base-methods';
  * service that handles HTTP GET request on PremiumModalComponent
  */
 export class PlanModalCardsService extends BaseMethods {
-  async getPlanCardsData(): Promise<ICard[]> {
-    return new Promise<ICard[]>((resolve, reject) => {
+  async getPlanCardsData(): Promise<PlanCardResponse[]> {
+    return new Promise<PlanCardResponse[]>((resolve, reject) => {
       const request = this.HttpRequest<PlanCardResponse[]>(
         HttpMethod.GET,
         'v1/plan-cards'
       );
 
-      // array of path to be parsed on fetched data
-      const paths: string[] = ['plano_pesquisador', ''];
-
       request
         .then((response) => {
           if (response && response.body) {
-            //placeholder until the fetched data is of the correctly type.
-            const newResponse: ICard[] = response.body.map((card, index) => {
-              return {
-                cardImage: card.planCardImage,
-                cardImageDescription: '',
-                cardTitle: card.planCardTitle,
-                cardDescription: card.planCardDescription,
-                cardButtonText: card.planCardButtonText,
-                path: paths[index],
-              };
+            response.body.forEach((resp) => {
+              return (resp.cardPath = `plan/${resp.id}`);
             });
-            resolve(newResponse);
+
+            resolve(response.body);
           } else {
             reject(
               this.openErrorDialog(

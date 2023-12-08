@@ -40,7 +40,8 @@
           mat-button
           class="submitBtn submitBtn-premium"
           [disabled]="isDisabled()"
-          routerLink="{{ cardAttributes?.path }}"
+          (click)="closeDialog()"
+          routerLink="{{ cardAttributes?.cardPath }}"
         >
           {{ cardAttributes?.cardButtonText }}
         </button>

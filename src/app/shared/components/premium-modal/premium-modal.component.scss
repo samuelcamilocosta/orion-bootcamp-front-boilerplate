@@ -2,12 +2,13 @@
   .cards-container-premium
   .card-component-container:has(.submitBtn-premium:disabled) {
   opacity: 0.5;
+}
 
+::ng-deep .cards-container-premium .card-component-container {
   .card-soon,
   .card-soon-premium {
     display: none !important;
   }
-
   .submitBtn-premium:disabled {
     opacity: 0.3;
     background: #979797 !important;

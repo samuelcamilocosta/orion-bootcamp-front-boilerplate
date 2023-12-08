@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { PlanModalCardsService } from 'src/app/api/v1/plan-modal-cards.service';
 import { ICard } from 'src/app/interfaces/card-params-interface';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -36,7 +37,8 @@ export class HomeCardComponent {
   constructor(
     private authService: AuthService,
     private planModalCardsService: PlanModalCardsService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private route: Router
   ) {}
 
   /**
@@ -47,7 +49,7 @@ export class HomeCardComponent {
    * @returns 'visible' if there's a empty path, 'hidden' otherwise.
    */
   showSoon(): string {
-    return this.cardAttributes?.path === '' ? 'visible' : 'hidden';
+    return this.isDisabled() ? 'visible' : 'hidden';
   }
 
   /**
@@ -58,23 +60,41 @@ export class HomeCardComponent {
    * @returns true if exists, false otherwise
    */
   isNews() {
-    return this.cardAttributes?.path === '/page/mars-map';
+    return this.cardAttributes?.cardPath === '/page/mars-map';
   }
 
   /**
-   * Applies a CSS filter to the card image based on the presence of a router link path.
-   * @returns 'grayscale(1)' if there's a empty path, 'none' otherwise.
+   * filterImg
+   *
+   * Applies a CSS filter to the card image if card button is disabled.
+   *
+   * @returns 'grayscale(1)' if `true`, 'none' otherwise.
    */
   filterImg(): string {
-    return this.cardAttributes?.path === '' ? 'grayscale(1)' : 'none';
+    return this.isDisabled() ? 'grayscale(1)' : 'none';
   }
 
   /**
-   * Checks if the card is disabled based on the presence of a router link path.
-   * @returns `true` if there's  a empty path, `false` otherwise.
+   * isDisabled
+   *
+   * Checks if the card is disabled based on paths in routing module.
+   *
+   * @returns `false` if path matches, `true` otherwise.
    */
   isDisabled(): boolean {
-    return this.cardAttributes?.path === '' ? true : false;
+    const route = this.route.config.find(
+      (route) =>
+        route.path && this.cardAttributes?.cardPath.includes(route.path)
+    );
+
+    if (
+      this.cardAttributes?.cardPath === '/page/mars-map' &&
+      this.authService.isPremium()
+    ) {
+      return false;
+    }
+
+    return !route;
   }
 
   /**
@@ -87,12 +107,17 @@ export class HomeCardComponent {
   checkRole(): boolean {
     return (
       !this.authService.isPremium() &&
-      this.cardAttributes?.path === '/page/mars-map'
+      this.cardAttributes?.cardPath === '/page/mars-map'
     );
   }
 
   @Output() dataToSend = new EventEmitter<any>();
 
+  /**
+   * openPremiumModal
+   *
+   * opens the premium modal when "SEJA PREMIUM" button is clicked
+   */
   protected openPremiumModal(): void {
     this.planModalCardsService.getPlanCardsData().then((data) => {
       this.dataToSend.emit(data as ICard[]);
@@ -102,5 +127,12 @@ export class HomeCardComponent {
         data: { planCards: data },
       });
     });
+  }
+
+  /**
+   * Closes the premium modal.
+   */
+  closeDialog(): void {
+    this.dialog.closeAll();
   }
 }

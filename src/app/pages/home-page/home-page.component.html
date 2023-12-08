@@ -24,7 +24,7 @@
           <!-- Slides -->
           <div class="swiper-slide" *ngFor="let card of cards; let i = index">
             <app-card
-              [class.disabled-card]="card.path === ''"
+              [class.disabled-card]="card.cardPath === ''"
               [cardAttributes]="card"
             ></app-card>
           </div>
@@ -42,7 +42,7 @@
           *ngFor="let card of cards; let i = index"
         >
           <app-card
-            [class.disabled-card]="card.path === ''"
+            [class.disabled-card]="card.cardPath === ''"
             [cardAttributes]="card"
           />
         </div>
