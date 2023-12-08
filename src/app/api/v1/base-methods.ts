@@ -162,7 +162,7 @@ export class BaseMethods {
   protected handleError(error: HttpErrorResponse): void {
     switch (error.status) {
       case 400:
-        this.openErrorDialog(error.error);
+        this.openErrorDialog(error.error.error ?? error.error.message);
         break;
 
       case 401:

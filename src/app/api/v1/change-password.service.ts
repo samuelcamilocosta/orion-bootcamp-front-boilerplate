@@ -17,11 +17,7 @@ export class ChangePasswordService extends BaseMethods {
 
   async changePassword(data: NewPasswordRequest) {
     return new Promise<any>((resolve, reject) => {
-      const request = this.HttpRequest(
-        HttpMethod.POST,
-        'v1/reset-password',
-        data
-      );
+      const request = this.HttpRequest(HttpMethod.POST, 'v1/reset', data);
 
       request
         .then((response) => {

@@ -6,6 +6,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ChangePasswordService } from 'src/app/api/v1/change-password.service';
 import { NewPasswordRequest } from 'src/app/interfaces/new-password-request';
 
@@ -33,7 +34,8 @@ export class ChangePasswordPageComponent {
    */
   constructor(
     private fb: FormBuilder,
-    private changePasswordService: ChangePasswordService
+    private changePasswordService: ChangePasswordService,
+    private activatedRoute: ActivatedRoute
   ) {
     // Initialize the changePasswordForm with password and confirmPassword
     this.changePasswordForm = this.fb.group(
@@ -57,9 +59,12 @@ export class ChangePasswordPageComponent {
    * Handles form submission by sending a new password to the user database.
    */
   async onSubmit() {
+    const recoveryToken: string =
+      this.activatedRoute.snapshot.queryParams['token'];
+
     const password = this.changePasswordForm.get('password');
     const dataToSend: NewPasswordRequest = {
-      token: '',
+      token: `bearer ${recoveryToken}`,
       newPassword: password?.value,
     };
 
