@@ -109,4 +109,22 @@ export class ResearcherPlanPageComponent implements OnInit {
   forceDisabled(): boolean {
     return true;
   }
+
+  /**
+   * openAgreementTerms
+   *
+   * method to open the User Agreement Term modal
+   */
+  openAgreementTerms() {
+    this.subscriptionPaymentService.openAgreement();
+  }
+
+  /**
+   * openPrivacyPolicy
+   *
+   * method to open Privacy Policy Term modal
+   */
+  openPrivacyPolicy() {
+    this.subscriptionPaymentService.openPrivacy();
+  }
 }

@@ -10,8 +10,10 @@ import { Router } from '@angular/router';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { ConfirmationModalParams } from 'src/app/interfaces/confirmation-modal-params';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { AgreementModalComponent } from 'src/app/shared/components/agreement-modal/agreement-modal.component';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import { PrivacyPolicyModalComponent } from 'src/app/shared/components/privacy-policy-modal/privacy-policy-modal.component';
 import { environment } from 'src/environment/environment';
 
 export class BaseMethods {
@@ -119,6 +121,30 @@ export class BaseMethods {
       default:
         throw new Error('Invalid HTTP method');
     }
+  }
+
+  /**
+   * openAgreement
+   *
+   * method that opens the User Agreement Term modal
+   */
+  openAgreement(): void {
+    this.dialog.open(AgreementModalComponent, {
+      disableClose: true,
+      panelClass: 'custom-border-radius',
+    });
+  }
+
+  /**
+   * openPrivacy
+   *
+   * method that opens the Privacy Policy Term modal
+   */
+  openPrivacy(): void {
+    this.dialog.open(PrivacyPolicyModalComponent, {
+      disableClose: true,
+      panelClass: 'custom-border-radius',
+    });
   }
 
   /**

@@ -233,14 +233,20 @@
               <a href="#">aqui</a>.
             </p>
           </div>
-          <div>
+          <div class="checkbox-container">
             <mat-checkbox class="custom-checkbox" formControlName="checkbox2" />
             <p class="weight-500">
               Você será cobrado na moeda nacional (Real). Seu banco irá
               processar a conversões das moedas necessárias e taxa adicionais
               bancárias podem ser aplicadas. Ao clicar e confirmar, você aceita
-              os <a href="#">Termos de Uso</a> e a nossa
-              <a href="#">Política de Privacidade</a>.
+              os
+              <button class="agreement" (click)="openAgreementTerms()">
+                Termos de Uso
+              </button>
+              e a nossa
+              <button class="policy" (click)="openPrivacyPolicy()">
+                Política de Privacidade</button
+              >.
             </p>
           </div>
           <!-- Agreement Checkboxes end -->
