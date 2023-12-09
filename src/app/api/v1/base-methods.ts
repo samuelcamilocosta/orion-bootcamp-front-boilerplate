@@ -12,8 +12,6 @@ import { ConfirmationModalParams } from 'src/app/interfaces/confirmation-modal-p
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
-import { PremiumModalComponent } from 'src/app/shared/components/premium-modal/premium-modal.component';
-import { TransitionModalComponent } from 'src/app/shared/components/transition-modal/transition-modal.component';
 import { environment } from 'src/environment/environment';
 
 export class BaseMethods {
@@ -154,8 +152,7 @@ export class BaseMethods {
   protected handleError(error: HttpErrorResponse): void {
     switch (error.status) {
       case 400:
-        this.openErrorDialog(error.error.error);
-
+        this.openErrorDialog(error.error.error ?? error.error.message);
         break;
 
       case 401:
