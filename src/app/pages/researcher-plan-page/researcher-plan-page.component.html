@@ -52,7 +52,9 @@
 
         <!-- Subscription Container Start -->
         <div class="researcher-subscription-container">
-          <app-subscription-card></app-subscription-card>
+          <app-subscription-card
+            [subscriptionCardParams]="subscriptionCardParams"
+          ></app-subscription-card>
           <p class="weight-500">
             Assine sem compromissos. Cancele antes de [Dez 20, 2023] para que
             não haja cobrança. Depois dela, o ORION MARTE vai renovar seu plano
@@ -83,6 +85,7 @@
                   appearance="outline"
                 >
                   <input
+                    (input)="updateList()"
                     matInput
                     formControlName="cardNumber"
                     placeholder="Credit Card Number"
@@ -102,10 +105,11 @@
                     matInput
                     formControlName="cardholderName"
                     placeholder="Nome como está no cartão"
+                    maxlength="24"
                   />
                 </mat-form-field>
               </div>
-              <div class="expiration-ccv-container d-flex">
+              <div class="expiration-cvv-container d-flex">
                 <!-- Expiration Date -->
                 <div class="d-flex flex-column expiration-date">
                   <p>Validade</p>
@@ -122,10 +126,10 @@
                   </mat-form-field>
                 </div>
 
-                <!-- CCV -->
-                <div class="d-flex flex-column ccv">
-                  <div class="ccv-header">
-                    <p>CCV</p>
+                <!-- CVV -->
+                <div class="d-flex flex-column cvv">
+                  <div class="cvv-header">
+                    <p>CVV</p>
                     <img
                       src="/assets/images/subscription/Question.svg"
                       alt=""
@@ -141,8 +145,8 @@
                   >
                     <input
                       matInput
-                      formControlName="ccv"
-                      placeholder="CCV"
+                      formControlName="cvv"
+                      placeholder="CVV"
                       maxlength="3"
                     />
                   </mat-form-field>
@@ -165,12 +169,33 @@
                     />
                   </div>
                 </div>
-                <input
-                  [disabled]="forceDisabled()"
-                  class="card-number-input"
-                  placeholder="4716 8039 02** ****"
-                  value="{{ this.subscribeForm.get('cardNumber')?.value }}"
-                />
+                <div>
+                  <p
+                    *ngIf="
+                      this.subscribeForm.get('cardNumber')?.value.length === 0
+                    "
+                  >
+                    4716 8039 02** ****
+                  </p>
+
+                  <div class="card-simulation-numbers-wrapper">
+                    <ng-container *ngFor="let item of list; let i = index">
+                      <ng-container *ngIf="i < 10; else imageBlock">
+                        <span [ngClass]="{ 'span-spacing': addClass(i) }">
+                          {{ this.subscribeForm.get("cardNumber")?.value[i] }}
+                        </span>
+                      </ng-container>
+                      <ng-template #imageBlock>
+                        <span
+                          *ngIf="i >= 10"
+                          [ngClass]="{ 'span-spacing': addClass(i) }"
+                        >
+                          *
+                        </span>
+                      </ng-template>
+                    </ng-container>
+                  </div>
+                </div>
 
                 <div class="d-flex justify-content-between">
                   <input
@@ -185,7 +210,7 @@
                     [disabled]="forceDisabled()"
                     class="card-expiration-input"
                     placeholder="**/**"
-                    value="{{ test() }}"
+                    value="{{ formatExpirationDate() }}"
                   />
                 </div>
               </div>
@@ -194,7 +219,6 @@
                 <p>Seus dados estão seguros</p>
               </div>
             </div>
-            <!-- </div> -->
           </div>
           <!-- end -->
 

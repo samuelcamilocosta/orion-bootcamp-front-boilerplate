@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
-import { ICard } from 'src/app/interfaces/card-params-interface';
+import { SubscriptionCardParams } from 'src/app/interfaces/subscription-card-params';
 import { BaseMethods } from './base-methods';
 
 @Injectable({
@@ -8,25 +8,28 @@ import { BaseMethods } from './base-methods';
 })
 
 /**
- * PlanModalCardsService
+ * SubscriptionCardsParamsService
  *
- * service that handles HTTP GET request on PremiumModalComponent
+ * service that handles the subscription cards params
  */
-export class PlanModalCardsService extends BaseMethods {
-  async getPlanCardsData(): Promise<ICard[]> {
-    return new Promise<ICard[]>((resolve, reject) => {
-      const request = this.HttpRequest<ICard[]>(
+export class SubscriptionCardsParamsService extends BaseMethods {
+  /**
+   * getParams
+   *
+   * method to get the monthly subscription card params from api
+   *
+   * @returns A promise that resolves with the monthly card params response data.
+   */
+  async getParams(): Promise<SubscriptionCardParams> {
+    return new Promise<SubscriptionCardParams>((resolve, reject) => {
+      const request = this.HttpRequest<Promise<SubscriptionCardParams>>(
         HttpMethod.GET,
-        'v1/plan-cards'
+        'v1/plans/1'
       );
 
       request
         .then((response) => {
           if (response) {
-            response.forEach((resp) => {
-              return (resp.path = `plan/${resp.id}`);
-            });
-
             resolve(response);
           } else {
             reject(

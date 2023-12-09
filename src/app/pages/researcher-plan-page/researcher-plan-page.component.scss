@@ -8,7 +8,7 @@
   width: fit-content;
 }
 
-.ccv {
+.cvv {
   width: fit-content;
 }
 
@@ -228,7 +228,7 @@ section {
               --mdc-outlined-text-field-label-text-color: initial;
             }
 
-            .expiration-ccv-container {
+            .expiration-cvv-container {
               gap: 1rem;
 
               .expiration-date {
@@ -236,12 +236,12 @@ section {
                 width: 100%;
               }
 
-              .ccv {
+              .cvv {
                 ::ng-deep .mat-mdc-form-field-infix {
                   width: fit-content;
                 }
 
-                .ccv-header {
+                .cvv-header {
                   display: flex;
                   align-items: center;
                   gap: 0.25rem;
@@ -297,6 +297,32 @@ section {
                 border: 1px solid #242323;
                 box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.25);
 
+                .card-simulation-numbers-wrapper {
+                  display: flex;
+                  // gap: 0.25rem;
+
+                  span {
+                    color: var(--foundation-gray-scale-white, #fff);
+                    text-align: center;
+
+                    font-family: "Source Sans 3";
+                    font-size: 1rem;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 1rem;
+                    margin-right: 0.25rem;
+
+                    &:last-child {
+                      margin: 0;
+                    }
+                  }
+
+                  .span-spacing {
+                    margin: 0;
+                    padding-right: 1.135rem !important;
+                  }
+                }
+
                 p {
                   color: #fff;
                 }
@@ -312,7 +338,8 @@ section {
                 }
 
                 :last-child {
-                  letter-spacing: 0.25rem;
+                  // letter-spacing: 0.25rem;
+                  // letter-spacing: 0.219rem;
                 }
 
                 .card-number-input {
