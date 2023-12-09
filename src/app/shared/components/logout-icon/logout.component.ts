@@ -66,13 +66,11 @@ export class LogoutComponent extends BaseMethods implements OnInit {
   }
 
   /**
-   * openModal
+   * openPremiumModal
    *
    * opens the premium modal when "SEJA PREMIUM" button is clicked
    */
-
   protected openPremiumModal(): void {
-    console.log('modal aberto');
     this.planModalCardsService.getPlanCardsData().then((data) => {
       this.dataToSend.emit(data as ICard[]);
 

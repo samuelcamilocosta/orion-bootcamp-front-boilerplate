@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
 import { ILoginParams } from 'src/app/interfaces/login-params.interface';
@@ -11,7 +12,9 @@ import { BaseMethods } from './base-methods';
 })
 
 /**
- * Service for handling API requests with the v1 endpoint.
+ * LoginService
+ *
+ * Service that handles the login request.
  */
 export class LoginService extends BaseMethods {
   /**
@@ -49,13 +52,12 @@ export class LoginService extends BaseMethods {
       );
 
       request
-        .then((response) => {
-          if (response) {
+        .then((response: HttpResponse<ILoginRespParams> | undefined) => {
+          if (response && response.body) {
             const userAuth: IUser = {
-              role: response.user.role,
-              accessToken: response.user.accessToken,
+              role: response.body.user.role,
+              accessToken: response.body.user.accessToken,
             };
-
             remember
               ? this.storageService.setLocalItem(
                   'user',
@@ -77,7 +79,7 @@ export class LoginService extends BaseMethods {
               this.route.navigate(['page/home']);
             }, 4400);
 
-            resolve(response);
+            resolve(response.body);
           } else {
             reject(
               this.openErrorDialog(

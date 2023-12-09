@@ -21,10 +21,10 @@
               !formGroup.get('email')?.hasError('required'))
           "
         >
-          Please enter a valid email address
+          Por favor digite um email valido
         </mat-error>
         <mat-error *ngIf="formGroup.get('email')?.hasError('required')">
-          Email is required
+          Email é obrigatório
         </mat-error>
       </mat-form-field>
 
@@ -45,10 +45,10 @@
           <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
         </button>
         <mat-error *ngIf="formGroup.get('password')?.hasError('required')">
-          Password is <strong>required</strong>
+          Senha é obrigatória
         </mat-error>
         <mat-error *ngIf="formGroup.get('password')?.hasError('pattern')">
-          Password must meet certain criteria.
+          Senha com padrões incorretos
         </mat-error>
       </mat-form-field>
       <div class="checkbox-container">
@@ -67,5 +67,8 @@
         ENTRAR
       </button>
     </form>
+    <div>
+      <p>Ainda não é membro, <a routerLink="/signup"> cadastre-se</a></p>
+    </div>
   </div>
 </section>

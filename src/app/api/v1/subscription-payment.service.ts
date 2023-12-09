@@ -24,7 +24,7 @@ export class SubscriptionPaymentService extends BaseMethods {
 
       request
         .then((response) => {
-          if (response) {
+          if (response && response.status === 200) {
             resolve(response);
           } else {
             reject(

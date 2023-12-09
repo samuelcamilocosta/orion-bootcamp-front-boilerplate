@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
+import { ConfirmationModalParams } from 'src/app/interfaces/confirmation-modal-params';
 import { IEmail } from 'src/app/interfaces/recovery-params';
 import { BaseMethods } from './base-methods';
 
@@ -11,6 +12,17 @@ import { BaseMethods } from './base-methods';
  * Service that handles the recovery page API request
  */
 export class RecoveryService extends BaseMethods {
+  /**
+   * recoveryConfirmation: success modal params
+   */
+  recoveryConfirmation: ConfirmationModalParams = {
+    title: 'Sucesso!',
+    message: `
+    E-mail de recuperação enviado com sucesso!
+    Siga as instruções enviadas em seu e-mail.`,
+    icon: 'assets/images/action/check_circle_outline_24px.svg',
+  };
+
   /**
    * sendEmail
    *
@@ -27,7 +39,7 @@ export class RecoveryService extends BaseMethods {
       this.route.navigate(['/']);
 
       setTimeout(() => {
-        this.openSuccessesDialog();
+        this.openSuccessesDialog(this.recoveryConfirmation);
       }, 500);
     } catch (error) {
       if (error instanceof HttpErrorResponse) {

@@ -6,8 +6,8 @@ export interface ICard {
   cardImage: string;
   cardImageDescription: string;
   cardButtonText: string;
+  cardPath: string;
   cardAccess?: string;
   created_at?: Date;
   updated_at?: Date;
-  path: string;
 }

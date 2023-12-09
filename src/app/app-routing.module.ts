@@ -8,6 +8,7 @@ import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-p
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
 import { PremiumPageComponent } from './pages/premium-page/premium-page.component';
 import { ResearcherPlanPageComponent } from './pages/researcher-plan-page/researcher-plan-page.component';
+import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 
 /**
  * The main routing configuration for the application.
@@ -29,6 +30,13 @@ const routes: Routes = [
    * This route displays the password recovery page.
    */
   { path: 'recovery', component: PasswordRecoveryPageComponent },
+
+  /**
+   * The signup route of the application.
+   *
+   * This route displays the signup page.
+   */
+  { path: 'signup', component: SignUpPageComponent },
 
   /**
    * The "page" route as placeholder for better semantics with child routes.

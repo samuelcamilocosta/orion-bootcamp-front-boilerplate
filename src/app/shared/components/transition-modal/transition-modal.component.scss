@@ -46,7 +46,6 @@
     .out-swiper-container {
       position: relative;
       max-width: 33.75rem;
-      max-height: 7.0625rem;
       align-self: flex-end;
 
       .swiper-container {
@@ -88,12 +87,18 @@
   }
 }
 
-// animations
+//animation
 @keyframes fadeIn {
   from {
     opacity: 1;
   }
   to {
     opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .swiper-wrapper {
+    width: 90dvw;
   }
 }
