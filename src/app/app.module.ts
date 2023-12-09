@@ -15,6 +15,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
 import { PremiumPageComponent } from './pages/premium-page/premium-page.component';
+import { ResearcherPlanPageComponent } from './pages/researcher-plan-page/researcher-plan-page.component';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { AgreementModalComponent } from './shared/components/agreement-modal/agreement-modal.component';
 import { CarouselComponent } from './shared/components/carousel/carousel.component';
@@ -30,6 +31,7 @@ import { MeteorologyHeroCardComponent } from './shared/components/meteorology-he
 import { MinTempIndicatorComponent } from './shared/components/min-temp-indicator/min-temp-indicator.component';
 import { PremiumModalComponent } from './shared/components/premium-modal/premium-modal.component';
 import { PrivacyPolicyModalComponent } from './shared/components/privacy-policy-modal/privacy-policy-modal.component';
+import { SubscriptionCardComponent } from './shared/components/subscription-card/subscription-card.component';
 import { TransitionModalComponent } from './shared/components/transition-modal/transition-modal.component';
 import { MaterialModule } from './shared/modules/material.module';
 
@@ -53,6 +55,8 @@ import { MaterialModule } from './shared/modules/material.module';
     MarsMapComponent,
     PremiumPageComponent,
     CarouselComponent,
+    ResearcherPlanPageComponent,
+    SubscriptionCardComponent,
     SignUpPageComponent,
     ConfirmationModalComponent,
     AgreementModalComponent,

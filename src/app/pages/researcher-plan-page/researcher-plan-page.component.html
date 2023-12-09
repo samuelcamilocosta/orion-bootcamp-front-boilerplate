@@ -1,0 +1,266 @@
+<section class="container">
+  <div class="researcher-page-container container">
+    <div class="researcher-page-header">
+      <div class="header-text">
+        <img
+          routerLink="/page/home"
+          src="assets/images/navigation/chevron-forward-outline.png"
+          alt="return"
+          matTooltipClass="custom-tooltip"
+          matTooltipPosition="above"
+          matTooltip="Voltar"
+          aria-label="Button that displays a tooltip when focused or hovered over"
+        />
+        <div>
+          <div>
+            <img src="/assets/images/premium/premium-icon.svg" alt="" />
+            <h1>SEJA <span>PREMIUM!</span></h1>
+          </div>
+          <p>
+            Uma jornada interativa através do Planeta Vermelho. Veja, aprenda e
+            mergulhe na sua superfície intrigante.
+          </p>
+        </div>
+      </div>
+      <!-- logout component -->
+      <app-logout />
+    </div>
+    <div class="researcher-main-wrapper container">
+      <div class="researcher-main-container">
+        <h1>PLANO PESQUISADOR(A)</h1>
+        <!-- First Container Start-->
+        <div class="researcher-banner">
+          <img src="/assets/images/premium/reseracher-plan-banner.png" alt="" />
+          <div>
+            <p>
+              Desbloqueie acesso total às maravilhas de Marte com o Plano
+              Explorador (Premium) do Orion Marte.
+            </p>
+            <p><strong>As vantagens de ser Pesquisador(a)</strong></p>
+            <ul>
+              <li>
+                ✅ Acesso avançado a dados históricos e recursos adicionais,
+                como visualizações em 3D de Marte.
+              </li>
+              <li>✅ Dados de órbita e clima atual.</li>
+              <li>✅ Sem anúncios.</li>
+              <li>✅ Suporte por e-mail.</li>
+            </ul>
+          </div>
+        </div>
+        <!-- First Container End-->
+
+        <!-- Subscription Container Start -->
+        <div class="researcher-subscription-container">
+          <app-subscription-card
+            [subscriptionCardParams]="subscriptionCardParams"
+          ></app-subscription-card>
+          <p class="weight-500">
+            Assine sem compromissos. Cancele antes de [Dez 20, 2023] para que
+            não haja cobrança. Depois dela, o ORION MARTE vai renovar seu plano
+            conforme mencionado acima até que você o cancele.
+          </p>
+        </div>
+        <!-- Subscription Container End -->
+
+        <!-- Payment Header -->
+        <div class="payment-header">
+          <h1>FORMAS DE PAGAMENTO:</h1>
+          <P class="weight-500"
+            >Preencha seus dados corretamente no campo abaixo para a realização
+            da cobrança.</P
+          >
+        </div>
+
+        <!-- TODO -->
+        <form class="container" [formGroup]="subscribeForm">
+          <!-- Payment card inputs -->
+          <div class="payment-card-container">
+            <!-- <div class="row"> -->
+            <div class="payment-wrapper">
+              <div class="d-flex flex-column">
+                <p>Número do cartão</p>
+                <mat-form-field
+                  class="payment-mat-form-field card-number"
+                  appearance="outline"
+                >
+                  <input
+                    (input)="updateList()"
+                    matInput
+                    formControlName="cardNumber"
+                    placeholder="Credit Card Number"
+                    maxlength="16"
+                  />
+                </mat-form-field>
+              </div>
+              <!-- Cardholder Name -->
+
+              <div class="d-flex flex-column">
+                <p>Nome do titular</p>
+                <mat-form-field
+                  class="payment-mat-form-field"
+                  appearance="outline"
+                >
+                  <input
+                    matInput
+                    formControlName="cardholderName"
+                    placeholder="Nome como está no cartão"
+                    maxlength="24"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="expiration-cvv-container d-flex">
+                <!-- Expiration Date -->
+                <div class="d-flex flex-column expiration-date">
+                  <p>Validade</p>
+                  <mat-form-field
+                    class="payment-mat-form-field"
+                    appearance="outline"
+                  >
+                    <input
+                      matInput
+                      formControlName="expirationDate"
+                      placeholder="Expiration Date"
+                      maxlength="4"
+                    />
+                  </mat-form-field>
+                </div>
+
+                <!-- CVV -->
+                <div class="d-flex flex-column cvv">
+                  <div class="cvv-header">
+                    <p>CVV</p>
+                    <img
+                      src="/assets/images/subscription/Question.svg"
+                      alt=""
+                      matTooltipClass="custom-tooltip"
+                      matTooltipPosition="above"
+                      matTooltip="Placeholder"
+                      aria-label="Button that displays a tooltip when focused or hovered over"
+                    />
+                  </div>
+                  <mat-form-field
+                    class="payment-mat-form-field"
+                    appearance="outline"
+                  >
+                    <input
+                      matInput
+                      formControlName="cvv"
+                      placeholder="CVV"
+                      maxlength="3"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="card-simulation-container">
+              <div class="wrapper">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <img
+                      src="/assets/images/subscription/Bandeiras cartão.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      src="/assets/images/subscription/ContactlessPayment.svg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div>
+                  <p
+                    *ngIf="
+                      this.subscribeForm.get('cardNumber')?.value.length === 0
+                    "
+                  >
+                    4716 8039 02** ****
+                  </p>
+
+                  <div class="card-simulation-numbers-wrapper">
+                    <ng-container *ngFor="let item of list; let i = index">
+                      <ng-container *ngIf="i < 10; else imageBlock">
+                        <span [ngClass]="{ 'span-spacing': addClass(i) }">
+                          {{ this.subscribeForm.get("cardNumber")?.value[i] }}
+                        </span>
+                      </ng-container>
+                      <ng-template #imageBlock>
+                        <span
+                          *ngIf="i >= 10"
+                          [ngClass]="{ 'span-spacing': addClass(i) }"
+                        >
+                          *
+                        </span>
+                      </ng-template>
+                    </ng-container>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                  <input
+                    [disabled]="forceDisabled()"
+                    class="holder-name-input"
+                    placeholder="seu nome aqui"
+                    value="{{
+                      this.subscribeForm.get('cardholderName')?.value
+                    }}"
+                  />
+                  <input
+                    [disabled]="forceDisabled()"
+                    class="card-expiration-input"
+                    placeholder="**/**"
+                    value="{{ formatExpirationDate() }}"
+                  />
+                </div>
+              </div>
+              <div class="protected-data-text">
+                <img src="/assets/images/subscription/ShieldCheck.svg" alt="" />
+                <p>Seus dados estão seguros</p>
+              </div>
+            </div>
+          </div>
+          <!-- end -->
+
+          <!-- Agreement Checkboxes Start -->
+          <div>
+            <mat-checkbox class="custom-checkbox" formControlName="checkbox1" />
+            <p class="weight-500">
+              O ORION MARTE vai fazer a cobrança do valor da assinatura
+              automaticamente conforme mencionado acima no início de cada
+              período de cobrança até você cancelar seu plano de assinatura, o
+              que pode ser feito a qualquer momento clicando em “cancelar plano”
+              <a href="#">aqui</a>.
+            </p>
+          </div>
+          <div class="checkbox-container">
+            <mat-checkbox class="custom-checkbox" formControlName="checkbox2" />
+            <p class="weight-500">
+              Você será cobrado na moeda nacional (Real). Seu banco irá
+              processar a conversões das moedas necessárias e taxa adicionais
+              bancárias podem ser aplicadas. Ao clicar e confirmar, você aceita
+              os
+              <button class="agreement" (click)="openAgreementTerms()">
+                Termos de Uso
+              </button>
+              e a nossa
+              <button class="policy" (click)="openPrivacyPolicy()">
+                Política de Privacidade</button
+              >.
+            </p>
+          </div>
+          <!-- Agreement Checkboxes end -->
+
+          <button
+            [disabled]="this.subscribeForm.invalid"
+            (click)="onSubmit()"
+            class="charge-btn"
+            mat-raised-button
+          >
+            Realizar a cobrança
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

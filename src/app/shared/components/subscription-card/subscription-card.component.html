@@ -1,0 +1,15 @@
+<section class="subscription-container">
+  <div class="subscription-header"></div>
+  <p>{{ subscriptionType() }}</p>
+
+  <h1><span>R$ </span> {{ subscriptionCardParams?.price }}</h1>
+
+  <div [style.visibility]="showDiscount()" class="subscription-discount">
+    {{ subscriptionCardParams?.saves_percentage }}% OFF
+  </div>
+
+  <button mat-raised-button>ASSINE AGORA</button>
+  <div class="subscription-footer">
+    {{ subscriptionCardParams?.description }}
+  </div>
+</section>

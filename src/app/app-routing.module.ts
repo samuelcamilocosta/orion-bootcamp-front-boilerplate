@@ -8,6 +8,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
 import { PasswordRecoveryPageComponent } from './pages/password-recovery-page/password-recovery-page.component';
 import { PremiumPageComponent } from './pages/premium-page/premium-page.component';
+import { ResearcherPlanPageComponent } from './pages/researcher-plan-page/researcher-plan-page.component';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 
 /**
@@ -43,6 +44,13 @@ const routes: Routes = [
    * This route displays the new password page.
    */
   { path: 'newpassword', component: ChangePasswordPageComponent },
+
+  /**
+   * The route for researcher plan page.
+   *
+   * This route displays the researcher plan page and user can make subscription
+   */
+  { path: 'plan/1', component: ResearcherPlanPageComponent },
 
   /**
    * The "page" route as placeholder for better semantics with child routes.
