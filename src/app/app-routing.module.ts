@@ -22,7 +22,6 @@ const routes: Routes = [
    *
    * This route displays the login page by default.
    */
-  { path: 'plan/:1', component: ResearcherPlanPageComponent },
   { path: '', component: LoginPageComponent },
 
   /**
@@ -45,6 +44,13 @@ const routes: Routes = [
    * This route displays the new password page.
    */
   { path: 'newpassword', component: ChangePasswordPageComponent },
+
+  /**
+   * The route for researcher plan page.
+   *
+   * This route displays the researcher plan page and user can make subscription
+   */
+  { path: 'plan/1', component: ResearcherPlanPageComponent },
 
   /**
    * The "page" route as placeholder for better semantics with child routes.

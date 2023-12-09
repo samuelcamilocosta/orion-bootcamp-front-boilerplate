@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpMethod } from 'src/app/enum/http-method.enum';
+import { ConfirmationModalParams } from 'src/app/interfaces/confirmation-modal-params';
 import { PaymentCardParams } from 'src/app/interfaces/payment-card-params';
+import { IUser } from 'src/app/interfaces/user-interface';
 import { BaseMethods } from './base-methods';
 
 @Injectable({
@@ -8,11 +10,24 @@ import { BaseMethods } from './base-methods';
 })
 export class SubscriptionPaymentService extends BaseMethods {
   /**
-   * getParams
+   * recoveryConfirmation: success modal params
+   */
+  subscriptionSuccess: ConfirmationModalParams = {
+    title: 'Sucesso!',
+    message: `
+    Pagamento realizado com sucesso!
+    Você já pode ter acesso a todos os privilégios
+    da conta premium.
+    `,
+    icon: 'assets/images/action/check_circle_outline_24px.svg',
+  };
+
+  /**
+   * checkout
    *
-   * method to get the monthly subscription card params from api
+   * method to handle the subscription checkout
    *
-   * @returns A promise that resolves with the monthly card params response data.
+   * @returns A promise that resolves with the HttpResponse data.
    */
   async checkout(data: PaymentCardParams): Promise<any> {
     return new Promise<any>((resolve, reject) => {
@@ -25,6 +40,22 @@ export class SubscriptionPaymentService extends BaseMethods {
       request
         .then((response) => {
           if (response && response.status === 200) {
+            this.openSuccessesDialog(this.subscriptionSuccess);
+
+            if (localStorage.length === 0) {
+              const user: IUser = JSON.parse(
+                this.storageService.getSessionItem('user')
+              );
+              user.role = 'Premium';
+              this.storageService.setSessionItem('user', JSON.stringify(user));
+            } else {
+              const user: IUser = JSON.parse(
+                this.storageService.getLocalItem('user')
+              );
+              user.role = 'Premium';
+              this.storageService.setLocalItem('user', JSON.stringify(user));
+            }
+
             resolve(response);
           } else {
             reject(
