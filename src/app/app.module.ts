@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PremiumGuard } from './guards/premium.guard';
+import { ChangePasswordPageComponent } from './pages/change-password-page/change-password-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
@@ -56,6 +57,7 @@ import { MaterialModule } from './shared/modules/material.module';
     ConfirmationModalComponent,
     AgreementModalComponent,
     PrivacyPolicyModalComponent,
+    ChangePasswordPageComponent,
   ],
   imports: [
     BrowserModule,

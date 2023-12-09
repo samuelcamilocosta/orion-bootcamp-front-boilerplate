@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { PremiumGuard } from './guards/premium.guard';
+import { ChangePasswordPageComponent } from './pages/change-password-page/change-password-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MeteorologyPageComponent } from './pages/meteorology-page/meteorology-page.component';
@@ -35,6 +36,13 @@ const routes: Routes = [
    * This route displays the signup page.
    */
   { path: 'signup', component: SignUpPageComponent },
+
+  /**
+   * The route for change password.
+   *
+   * This route displays the new password page.
+   */
+  { path: 'newpassword', component: ChangePasswordPageComponent },
 
   /**
    * The "page" route as placeholder for better semantics with child routes.
